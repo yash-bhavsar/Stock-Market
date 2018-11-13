@@ -1,43 +1,40 @@
+package model;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
- * The type Portfolio.
+ * The type model.Portfolio.
  */
 public class Portfolio {
 
-  private HashMap<Integer, List<Stock>> stocks;
-
-  private List<Stock> stockList;
-
-  /**
-   * Gets stocks.
-   *
-   * @return the stocks
-   */
-  public HashMap<Integer, List<Stock>> getStocks() {
-    return stocks;
-  }
+  private Map<Integer, List<Stock>> portfolio;
 
   public Portfolio() {
-    stockList = new ArrayList<Stock>();
-    stocks = new HashMap<>();
+    this.portfolio = new HashMap<>();
   }
 
-  /**
-   * Helper method to add a stock to the portfolio.
-   */
-  private void addStock(Stock stock) {
-    stockList.add(stock);
-    stocks.put(0, stockList);
-    System.out.println(stocks.get(0).get(0).getTicker());
+  public Map<Integer, List<Stock>> getPortfolio() {
+    return portfolio;
+  }
+
+  public void addStock(int portfolioNumber, Stock stock) {
+    if (!this.portfolio.get(portfolioNumber).isEmpty()) {
+      List<Stock> stockList = this.portfolio.get(portfolioNumber);
+      stockList.add(stock);
+      this.portfolio.put(portfolioNumber, stockList);
+    } else {
+      List<Stock> stockList = new ArrayList<>();
+      stockList.add(stock);
+      this.portfolio.put(portfolioNumber, stockList);
+    }
   }
 
   /**
@@ -92,19 +89,19 @@ public class Portfolio {
     catch (IOException e) {
       throw new IllegalArgumentException("No price data found for " + stockSymbol);
     }
-    String s = output.toString().substring(37);
-    stockArray = s.split("\n");
+
+    stockArray = output.toString().split("\n");
 
     String[] temp = stockArray[1].split(",");
 
-    Date currentDate = new Date();
+    String currentDate = temp[0];
+    System.out.println(currentDate);
     float open = Float.parseFloat(temp[1]);
     String high = temp[2];
     String low = temp[3];
     String close = temp[4];
     String volume = temp[5];
     Stock stock = new Stock(stockSymbol, shares, open, currentDate, open);
-    addStock(stock);
-    System.out.println(output);
+    System.out.println(Arrays.toString(stockArray));
   }
 }

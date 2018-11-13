@@ -1,30 +1,32 @@
+package model;
+
 import java.util.Date;
 
 /**
- * The type Stock.
+ * The type model.Stock.
  */
 public class Stock {
 
   private final String ticker;
   private final int shares;
   private final float purchasePrice;
-  private final Date dateTime;
+  private final String date;
   private final float currentPrice;
 
   /**
-   * Instantiates a new Stock.
+   * Instantiates a new model.Stock.
    *
    * @param ticker        the ticker
    * @param shares        the shares
    * @param purchasePrice the purchase price
-   * @param dateTime      the date time
+   * @param date      the date time
    * @param currentPrice  the current price
    */
-  public Stock(String ticker, int shares, float purchasePrice, Date dateTime, float currentPrice) {
+  public Stock(String ticker, int shares, float purchasePrice, String date, float currentPrice) {
     this.ticker = ticker;
     this.shares = shares;
     this.purchasePrice = purchasePrice;
-    this.dateTime = dateTime;
+    this.date = date;
     this.currentPrice = currentPrice;
   }
 
@@ -60,8 +62,8 @@ public class Stock {
    *
    * @return the date time
    */
-  public Date getDateTime() {
-    return dateTime;
+  public String getDateTime() {
+    return date;
   }
 
   /**
