@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The type User.
@@ -11,8 +10,11 @@ public class User {
 
   private List<Portfolio> portfolios;
 
+  /**
+   * Instantiates a new User.
+   */
   public User() {
-    portfolios = new ArrayList<>();
+    this.portfolios = new ArrayList<>();
   }
 
   /**
@@ -22,5 +24,13 @@ public class User {
    */
   public List<Portfolio> getPortfolios() {
     return this.portfolios;
+  }
+
+  /**
+   * Create portfolio.
+   */
+  public void createPortfolio() {
+    Portfolio portfolio = new Portfolio();
+    this.portfolios.add(portfolio);
   }
 }
