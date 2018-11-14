@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Date;
-
 /**
  * The type model.Stock.
  */
@@ -95,6 +93,11 @@ public class Stock {
     return this.shares * value;
   }
 
+  /**
+   * Calculate cost basis double.
+   *
+   * @return the double
+   */
   public double calculateCostBasis() {
     return this.purchasePrice * this.shares;
   }

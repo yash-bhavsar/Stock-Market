@@ -1,9 +1,9 @@
-package controller;
+package model;
 
 /**
  * The interface Stock market controller.
  */
-public interface IStockMarketController {
+public interface IStockMarketModel {
 
   /**
    * Method to buy stock.
@@ -44,7 +44,7 @@ public interface IStockMarketController {
    *
    * @param portfolioNumber the portfolio number
    * @param date            the date
-   * @return double
+   * @return double double
    */
   double calculateCostBasis(int portfolioNumber, String date);
 }

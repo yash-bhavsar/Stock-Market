@@ -1,14 +1,16 @@
-package controller;
+package model;
 
-import model.Services;
-import model.Stock;
-import model.User;
-
-public class StockMarketControllerImpl implements IStockMarketController {
+/**
+ * The type Stock market controller.
+ */
+public class StockMarketModelImpl implements IStockMarketModel {
 
   private User user;
 
-  public StockMarketControllerImpl() {
+  /**
+   * Instantiates a new Stock market controller.
+   */
+  public StockMarketModelImpl() {
     this.user = new User();
   }
 
@@ -39,8 +41,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
     return user.calculateCostBasis(portfolioNumber, date);
   }
 
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
   public static void main(String[] args) {
-    IStockMarketController s = new StockMarketControllerImpl();
+    IStockMarketModel s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("AAPL", 2, "2016-11-22", 1);
     s.buyStock("AAPL", 2, "2016-10-12", 1);

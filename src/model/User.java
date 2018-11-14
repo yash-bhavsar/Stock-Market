@@ -61,7 +61,7 @@ public class User {
    * View composition string.
    *
    * @param portfolioNumber the portfolio number
-   * @return string
+   * @return string string
    */
   public String viewComposition(int portfolioNumber) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
@@ -74,6 +74,8 @@ public class User {
   /**
    * Calculate cost basis.
    *
+   * @param portfolioNumber the portfolio number
+   * @param date            the date
    * @return the cost basis.
    */
   public double calculateCostBasis(int portfolioNumber, String date) {
