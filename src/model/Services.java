@@ -5,9 +5,11 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * The type Services.
+ */
 public class Services {
 
   private static Services instance = null;
@@ -17,6 +19,11 @@ public class Services {
     cachedData = new HashMap<>();
   }
 
+  /**
+   * Gets instance.
+   *
+   * @return the instance
+   */
   public static Services getInstance() {
     if (instance == null) {
       instance = new Services();
@@ -29,6 +36,11 @@ public class Services {
   /**
    * Helper method to get data for a company and add the stock to the portfolio. Make private after
    * testing.
+   *
+   * @param stockSymbol the stock symbol
+   * @param shares      the shares
+   * @param date        the date
+   * @return the data for company
    */
   public Stock getDataForCompany(String stockSymbol, int shares, String date) {
 
@@ -96,20 +108,28 @@ public class Services {
         low = Float.parseFloat(temp[3]);
         String close = temp[4];
         String volume = temp[5];
+        break;
       }
     }
     return new Stock(stockSymbol, shares, low, finalDate, low);
   }
 
-  public int getValueForCompany(String date, String ticker) {
-    int value = 0;
+  /**
+   * Gets value for company.
+   *
+   * @param date   the date
+   * @param ticker the ticker
+   * @return the value for company
+   */
+  public double getValueForCompany(String date, String ticker) {
+    double value = 0;
     if (this.cachedData.containsKey(ticker)) {
       String data = this.cachedData.get(ticker);
       String[] stockArray = data.split("\n");
       for (int i = 1; i < stockArray.length; i++) {
         String[] temp = stockArray[i].split(",");
         if (temp[0].equals(date)) {
-          value = Integer.parseInt(temp[2].trim());
+          value = Double.parseDouble(temp[2].trim());
         }
       }
     }

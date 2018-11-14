@@ -12,22 +12,29 @@ public class Portfolio {
   private List<Stock> stocks;
 
   /**
-   * Instantiates a new Portfolio.
+   * Instantiates a new Portfolio that has scope package private.
    */
-  public Portfolio() {
+  Portfolio() {
     this.stocks = new ArrayList<>();
   }
 
   /**
-   * Gets portfolio.
+   * Gets the stocks in a particular portfolio and this method's scope has been intentionally kept
+   * package-private.
    *
    * @return the portfolio
    */
-  public List<Stock> getStocks() {
+  List<Stock> getStocks() {
     return this.stocks;
   }
 
-  public List<Stock> getStocksBeforeDate(String date) {
+  /**
+   * Gets stocks before date passed as argument. Scope has been intentionally kept package private.
+   *
+   * @param date the date upto which stock records are needed.
+   * @return the stocks before the given date.
+   */
+  List<Stock> getStocksBeforeDate(String date) {
     return this.stocks
             .stream()
             .filter(stock -> stock.getDateTime().compareTo(date) < 1)
@@ -35,11 +42,11 @@ public class Portfolio {
   }
 
   /**
-   * Add stock.
+   * Add stock to the portfolio.
    *
-   * @param stock the stock
+   * @param stock the stock that has to be added to the portfolio.
    */
-  public void addStock(Stock stock) {
+  void addStock(Stock stock) {
     boolean exists = false;
     for (Stock s : stocks) {
       if (s.getDateTime().equals(stock.getDateTime()) && s.getTicker().equals(stock.getTicker())) {
@@ -48,7 +55,6 @@ public class Portfolio {
         s.setShares(totalShares);
       }
     }
-
     if (!exists) {
       this.stocks.add(stock);
     }

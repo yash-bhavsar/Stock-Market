@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * The type User.
@@ -29,8 +30,9 @@ public class User {
   }
 
   /**
+   * Create portfolio.
    *
-   * @param portfolioNumber
+   * @param portfolioNumber the portfolio number
    */
   public void createPortfolio(int portfolioNumber) {
     if (this.portfolios.containsKey(portfolioNumber)) {
@@ -41,10 +43,10 @@ public class User {
   }
 
   /**
+   * Buy stock.
    *
-   *
-   * @param portfolioNumber
-   * @param stock
+   * @param portfolioNumber the portfolio number
+   * @param stock           the stock
    */
   public void buyStock(int portfolioNumber, Stock stock) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
@@ -56,23 +58,43 @@ public class User {
   }
 
   /**
+   * View composition string.
    *
-   * @param portfolioNumber
-   * @return
+   * @param portfolioNumber the portfolio number
+   * @return string
    */
   public String viewComposition(int portfolioNumber) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
       throw new IllegalArgumentException("Create portfolio first.");
     }
     Portfolio portfolio = this.portfolios.get(portfolioNumber);
-    return portfolio.getStocks().stream().map(Object::toString).toString();
+    return portfolio.getStocks().stream().map(Object::toString).collect(Collectors.joining("\n"));
   }
 
-  public int evaluatePortfolio(int portfolioNumber, String date) {
-    Services services = Services.getInstance();
-    int value = this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
+  /**
+   * Calculate cost basis.
+   *
+   * @return the cost basis.
+   */
+  public double calculateCostBasis(int portfolioNumber, String date) {
+    return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
-            .mapToInt(stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker())))
+            .mapToDouble(Stock::calculateCostBasis)
+            .sum();
+  }
+
+  /**
+   * Evaluate portfolio int.
+   *
+   * @param portfolioNumber the portfolio number
+   * @param date            the date
+   * @return the int
+   */
+  public double evaluatePortfolio(int portfolioNumber, String date) {
+    Services services = Services.getInstance();
+    double value = this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
+            .stream()
+            .mapToDouble(stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker())))
             .sum();
     return value;
   }

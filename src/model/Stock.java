@@ -11,6 +11,7 @@ public class Stock {
   private int shares;
   private final float purchasePrice;
   private final String date;
+  //remove this field.
   private final float currentPrice;
 
   /**
@@ -19,7 +20,7 @@ public class Stock {
    * @param ticker        the ticker
    * @param shares        the shares
    * @param purchasePrice the purchase price
-   * @param date      the date time
+   * @param date          the date time
    * @param currentPrice  the current price
    */
   public Stock(String ticker, int shares, float purchasePrice, String date, float currentPrice) {
@@ -27,7 +28,7 @@ public class Stock {
     this.shares = shares;
     this.purchasePrice = purchasePrice;
     this.date = date;
-    this.currentPrice = currentPrice;
+    this.currentPrice = currentPrice;//remove this field.
   }
 
   /**
@@ -49,8 +50,9 @@ public class Stock {
   }
 
   /**
+   * Sets shares.
    *
-   * @param shares
+   * @param shares the shares
    */
   public void setShares(int shares) {
     this.shares = shares;
@@ -83,7 +85,24 @@ public class Stock {
     return currentPrice;
   }
 
-  public int evaluate(int value) {
+  /**
+   * Evaluate int.
+   *
+   * @param value the value
+   * @return the int
+   */
+  public double evaluate(double value) {
     return this.shares * value;
+  }
+
+  public double calculateCostBasis() {
+    return this.purchasePrice * this.shares;
+  }
+
+  @Override
+  public String toString() {
+    return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDateTime() +
+            "\nPurchase price: " + this.purchasePrice + "\nNumber of shares: " + this.shares +
+            "\n";
   }
 }

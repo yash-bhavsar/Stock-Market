@@ -19,6 +19,7 @@ public interface IStockMarketController {
    * View composition of a portfolio.
    *
    * @param portfolioNumber the portfolio name
+   * @return the string
    */
   String viewComposition(int portfolioNumber);
 
@@ -30,10 +31,20 @@ public interface IStockMarketController {
   void createPortfolio(int portfolioNumber);
 
   /**
-   * Evaluate the po
+   * Evaluate the portfolio.
    *
-   * @param portfolioNumber
-   * @return
+   * @param portfolioNumber the portfolio number
+   * @param date            the date
+   * @return int double
    */
-  int evaluatePortfolio(int portfolioNumber, String date);
+  double evaluatePortfolio(int portfolioNumber, String date);
+
+  /**
+   * Calculate cost basis double.
+   *
+   * @param portfolioNumber the portfolio number
+   * @param date            the date
+   * @return double
+   */
+  double calculateCostBasis(int portfolioNumber, String date);
 }
