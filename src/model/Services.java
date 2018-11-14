@@ -4,19 +4,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Services {
 
   private static Services instance = null;
+  private Map<String, String> cachedData;
 
-  private Services() {}
+  private Services() {
+    cachedData = new HashMap<>();
+  }
 
   public static Services getInstance() {
     if (instance == null) {
       instance = new Services();
       return instance;
-    }
-    else {
+    } else {
       return instance;
     }
   }
@@ -48,9 +53,8 @@ public class Services {
        */
       url = new URL("https://www.alphavantage" + ".co/query?function=TIME_SERIES_DAILY"
               + "&outputsize=full" + "&symbol" + "=" + stockSymbol
-              + "&apikey="+apiKey+"&datatype=csv");
-    }
-    catch (MalformedURLException e) {
+              + "&apikey=" + apiKey + "&datatype=csv");
+    } catch (MalformedURLException e) {
       throw new RuntimeException("the alphavantage API has either changed or no longer works");
     }
 
@@ -70,17 +74,18 @@ public class Services {
       in = url.openStream();
       int b;
 
-      while ((b=in.read())!=-1) {
-        output.append((char)b);
+      while ((b = in.read()) != -1) {
+        output.append((char) b);
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       throw new IllegalArgumentException("No price data found for " + stockSymbol);
     }
 
+    this.cachedData.put(stockSymbol, output.toString());
     stockArray = output.toString().split("\n");
 
     for (int i = 1; i < stockArray.length; i++) {
+
       String[] temp = stockArray[i].split(",");
 
       currentDate = temp[0];
@@ -94,5 +99,20 @@ public class Services {
       }
     }
     return new Stock(stockSymbol, shares, low, finalDate, low);
+  }
+
+  public int getValueForCompany(String date, String ticker) {
+    int value = 0;
+    if (this.cachedData.containsKey(ticker)) {
+      String data = this.cachedData.get(ticker);
+      String[] stockArray = data.split("\n");
+      for (int i = 1; i < stockArray.length; i++) {
+        String[] temp = stockArray[i].split(",");
+        if (temp[0].equals(date)) {
+          value = Integer.parseInt(temp[2].trim());
+        }
+      }
+    }
+    return value;
   }
 }

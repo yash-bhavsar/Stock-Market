@@ -8,7 +8,7 @@ import java.util.Date;
 public class Stock {
 
   private final String ticker;
-  private final int shares;
+  private int shares;
   private final float purchasePrice;
   private final String date;
   private final float currentPrice;
@@ -49,6 +49,14 @@ public class Stock {
   }
 
   /**
+   *
+   * @param shares
+   */
+  public void setShares(int shares) {
+    this.shares = shares;
+  }
+
+  /**
    * Gets purchase price.
    *
    * @return the purchase price
@@ -73,5 +81,9 @@ public class Stock {
    */
   public float getCurrentPrice() {
     return currentPrice;
+  }
+
+  public int evaluate(int value) {
+    return this.shares * value;
   }
 }

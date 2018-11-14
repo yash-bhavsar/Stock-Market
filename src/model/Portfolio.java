@@ -1,27 +1,21 @@
 package model;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * The type model.Portfolio.
  */
 public class Portfolio {
 
-  private Map<Integer, List<Stock>> portfolio;
+  private List<Stock> stocks;
 
   /**
    * Instantiates a new Portfolio.
    */
   public Portfolio() {
-    this.portfolio = new HashMap<>();
+    this.stocks = new ArrayList<>();
   }
 
   /**
@@ -29,28 +23,34 @@ public class Portfolio {
    *
    * @return the portfolio
    */
-  public Map<Integer, List<Stock>> getPortfolio() {
-    return this.portfolio;
+  public List<Stock> getStocks() {
+    return this.stocks;
+  }
+
+  public List<Stock> getStocksBeforeDate(String date) {
+    return this.stocks
+            .stream()
+            .filter(stock -> stock.getDateTime().compareTo(date) < 1)
+            .collect(Collectors.toList());
   }
 
   /**
    * Add stock.
    *
-   * @param portfolioNumber the portfolio number
-   * @param stock           the stock
+   * @param stock the stock
    */
-  public void addStock(int portfolioNumber, Stock stock) {
-    if (this.portfolio.containsKey(portfolioNumber)) {
-      if (!this.portfolio.get(portfolioNumber).isEmpty()) {
-        List<Stock> stockList = this.portfolio.get(portfolioNumber);
-        stockList.add(stock);
-        this.portfolio.put(portfolioNumber, stockList);
+  public void addStock(Stock stock) {
+    boolean exists = false;
+    for (Stock s : stocks) {
+      if (s.getDateTime().equals(stock.getDateTime()) && s.getTicker().equals(stock.getTicker())) {
+        exists = true;
+        int totalShares = s.getShares() + stock.getShares();
+        s.setShares(totalShares);
       }
     }
-     else {
-      List<Stock> stockList = new ArrayList<>();
-      stockList.add(stock);
-      this.portfolio.put(portfolioNumber, stockList);
+
+    if (!exists) {
+      this.stocks.add(stock);
     }
   }
 }

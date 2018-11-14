@@ -18,14 +18,22 @@ public interface IStockMarketController {
   /**
    * View composition of a portfolio.
    *
-   * @param portfolioName the portfolio name
+   * @param portfolioNumber the portfolio name
    */
-  void viewComposition(String portfolioName);
+  String viewComposition(int portfolioNumber);
 
   /**
    * Create portfolio.
    *
-   * @param portfolioName the portfolio name
+   * @param portfolioNumber the portfolio name
    */
-  void createPortfolio(String portfolioName);
+  void createPortfolio(int portfolioNumber);
+
+  /**
+   * Evaluate the po
+   *
+   * @param portfolioNumber
+   * @return
+   */
+  int evaluatePortfolio(int portfolioNumber, String date);
 }

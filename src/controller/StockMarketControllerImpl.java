@@ -1,6 +1,8 @@
 package controller;
 
+import java.net.Inet4Address;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import model.Portfolio;
@@ -10,30 +12,32 @@ import model.User;
 
 public class StockMarketControllerImpl implements IStockMarketController {
 
+  private User user;
+
+  public StockMarketControllerImpl() {
+    this.user = new User();
+  }
+
   @Override
   public void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber) {
     Services s = Services.getInstance();
     Stock stock = s.getDataForCompany(ticker, numberOfStocks, date);
-    User u = new User();
-    List<Portfolio> portfolios = u.getPortfolios();
-    if (portfolios.isEmpty()) {
-      portfolios.add(portfolioNumber - 1, new Portfolio());
-      Portfolio userPortfolio = portfolios.get(portfolioNumber - 1);
-      userPortfolio.addStock(portfolioNumber - 1, stock);
-    } else {
-      Portfolio userPortfolio = portfolios.get(portfolioNumber - 1);
-      userPortfolio.addStock(portfolioNumber - 1, stock);
-    }
+    user.buyStock(portfolioNumber, stock);
   }
 
   @Override
-  public void viewComposition(String portfolioName) {
-
+  public String viewComposition(int portfolioNumber) {
+    return user.viewComposition(portfolioNumber);
   }
 
   @Override
-  public void createPortfolio(String portfolioName) {
+  public void createPortfolio(int portfolioNumber) {
+    user.createPortfolio(portfolioNumber);
+  }
 
+  @Override
+  public int evaluatePortfolio(int portfolioNumber, String date) {
+    return user.evaluatePortfolio(portfolioNumber, date);
   }
 
   public static void main(String[] args) {
