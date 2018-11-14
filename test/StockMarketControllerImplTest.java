@@ -1,20 +1,23 @@
 import org.junit.Test;
 
-import controller.IStockMarketController;
-import controller.StockMarketControllerImpl;
+import model.IStockMarketModel;
+import model.StockMarketModelImpl;
 
 import static org.junit.Assert.assertEquals;
 
 public class StockMarketControllerImplTest {
 
-  IStockMarketController s;
+  IStockMarketModel s;
 
   @Test
   public void test1() {
-    s = new StockMarketControllerImpl();
+    s = new StockMarketModelImpl();
 
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2017-10-22", 2);
+    s.buyStock("GOOG", 2, "2016-10-20",1);
+    s.buyStock("GOOG", 2, "2016-10-20",1);
+    s.buyStock("GOOG", 2, "2017-10-23", 1);
+    System.out.println(s.viewComposition(1));
   }
 
   /**
@@ -22,7 +25,7 @@ public class StockMarketControllerImplTest {
    */
   @Test
   public void testBuyStock() {
-    s = new StockMarketControllerImpl();
+    s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2014-10-22", 1);
     assertEquals("Company name: GOOG\n" +
@@ -36,7 +39,7 @@ public class StockMarketControllerImplTest {
    */
   @Test
   public void testEvaluate() {
-    s = new StockMarketControllerImpl();
+    s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2014-10-22", 1);
     s.buyStock("AAPL", 2, "2014-10-22", 1);
@@ -48,7 +51,7 @@ public class StockMarketControllerImplTest {
    */
   @Test
   public void testCostBasis() {
-    s = new StockMarketControllerImpl();
+    s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2014-10-22", 1);
     assertEquals(1057.5999755859375, s.calculateCostBasis(1, "2014-10-22"), 0.1);
@@ -59,7 +62,7 @@ public class StockMarketControllerImplTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void checkForNonExistentPortfolio() {
-    s = new StockMarketControllerImpl();
+    s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2014-10-22", 2);
   }
