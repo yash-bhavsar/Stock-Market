@@ -27,7 +27,7 @@ public class StockMarketModelImplTest {
   public void testCreatePortfolio() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2016-10-22", 1);
+    s.buyStock("GOOG", 2, "2016-10-21", 1);
     assertEquals(1630.36, s.evaluatePortfolio(1, "2016-10-24"), 0.1);
   }
 
