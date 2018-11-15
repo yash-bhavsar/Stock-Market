@@ -147,9 +147,14 @@ public class StockMarketViewImpl implements IStockMarketView {
     df.setLenient(false);
     try {
       Date date = df.parse(s.trim());
+      Date currentDate = new Date();
+      if (date.after(currentDate)) {
+        this.out.append("\nFuture dates are not valid.\n");
+        return askDate();
+      }
       return s.trim();
     } catch (ParseException e) {
-      this.out.append("Enter valid date in format (yyyy-mm-dd): ");
+      this.out.append("\nEnter valid date in format (yyyy-mm-dd): ");
       return askDate();
     }
   }
