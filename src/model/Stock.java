@@ -48,15 +48,6 @@ public class Stock {
   }
 
   /**
-   * Sets shares.
-   *
-   * @param shares the shares
-   */
-  public void setShares(int shares) {
-    this.shares = shares;
-  }
-
-  /**
    * Gets purchase price.
    *
    * @return the purchase price
