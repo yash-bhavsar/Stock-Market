@@ -77,4 +77,64 @@ public class StockMarketViewImplTest {
     } catch (Exception e) {}
   }
 
+  /**
+   * Test to see if negative shares gives an error.
+   */
+  @Test
+  public void testNegativeShares() {
+    try {
+      rd = new StringReader("2 AAPL -1 1 2018-05-15 1");
+      ap = new StringBuffer();
+      sv = new StockMarketViewImpl(rd, ap);
+      sv.enterCommand();
+      assertEquals("\n" +
+              "Enter Choice:\n" +
+              " 1. Create new portfolio.\n" +
+              " 2. Buy Stock.\n" +
+              " 3. View Composition of a portfolio.\n" +
+              " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
+              " 5. Quit.\n" +
+              "\n" +
+              "Enter Stock details: \n" +
+              "Stock symbol(Ticker): \n" +
+              "The number of shares you want to buy: \n" +
+              "Enter valid number.\n" +
+              " \n" +
+              "The number of shares you want to buy: \n" +
+              "The date at which you want to buy stock: \n" +
+              "Enter portfolio number: ", ap.toString());
+    } catch (Exception e) {}
+  }
+
+  /**
+   * Test to see if entering future date works as expected.
+   */
+  @Test
+  public void testFutureDate() {
+    try {
+      rd = new StringReader("2 AAPL 2 2018-11-26 2018-11-14 1 5");
+      ap = new StringBuffer();
+      sv = new StockMarketViewImpl(rd, ap);
+      sv.enterCommand();
+      assertEquals("\n" +
+              "Enter Choice:\n" +
+              " 1. Create new portfolio.\n" +
+              " 2. Buy Stock.\n" +
+              " 3. View Composition of a portfolio.\n" +
+              " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
+              " 5. Quit.\n" +
+              "\n" +
+              "Enter Stock details: \n" +
+              "Stock symbol(Ticker): \n" +
+              "The number of shares you want to buy: \n" +
+              "The date at which you want to buy stock: \n" +
+              "Future dates are not valid.\n" +
+              "\n" +
+              "The date at which you want to buy stock: \n" +
+              "Enter portfolio number: ", ap.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 }

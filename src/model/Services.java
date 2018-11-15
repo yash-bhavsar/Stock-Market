@@ -166,7 +166,6 @@ public class Services {
       for (int i = 1; i < stockArray.length; i++) {
         String[] temp = stockArray[i].split(",");
         if (temp[0].equals(date)) {
-          System.out.println(temp[2]);
           value = Double.parseDouble(temp[2].trim());
         }
       }

@@ -119,7 +119,7 @@ public class StockMarketViewImpl implements IStockMarketView {
       int a = Integer.parseInt(s.trim());
       if (a < 0) {
         this.out.append("\nEnter valid number.\n ");
-        return askPortfolioNumber();
+        return askNumberOfShares()  ;
       }
       return s.trim();
     } catch (NumberFormatException e) {

@@ -21,6 +21,16 @@ public class StockMarketModelImplTest {
   }
 
   /**
+   * Test to check if entering invalid ticker throws IllegalArgumentException.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvalidTicker() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("akjshd", 2, "2016-10-20",1);
+  }
+
+  /**
    * Test to check if create portfolio works as expected.
    */
   @Test
@@ -104,7 +114,7 @@ public class StockMarketModelImplTest {
   }
 
   /**
-   * Test to check if evaluate method works as expected.
+   * Test to check if evaluate method works as expected on weekdays and holidays.
    */
   @Test
   public void testEvaluate() {
@@ -113,6 +123,7 @@ public class StockMarketModelImplTest {
     s.buyStock("GOOG", 2, "2014-10-22", 1);
     s.buyStock("AAPL", 2, "2014-10-22", 1);
     assertEquals(1287.82, s.evaluatePortfolio(1, "2014-10-22"), 0.1);
+    assertEquals(1300.74, s.evaluatePortfolio(1, "2014-10-26"), 0.1);
   }
 
   /**
@@ -124,6 +135,7 @@ public class StockMarketModelImplTest {
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2014-10-22", 1);
     s.evaluatePortfolio(-1, "2014-10-28");
+    s.evaluatePortfolio(2, "2014-10-28");
   }
 
   /**
