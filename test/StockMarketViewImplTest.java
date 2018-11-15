@@ -3,6 +3,9 @@ import org.junit.Test;
 import java.io.StringReader;
 
 import controller.IStockMarketController;
+import controller.StockMarketControllerImpl;
+import model.IStockMarketModel;
+import model.StockMarketModelImpl;
 import view.IStockMarketView;
 import view.StockMarketViewImpl;
 
@@ -12,8 +15,8 @@ public class StockMarketViewImplTest {
 
   IStockMarketView sv;
   IStockMarketController sc;
-  IStockMarketView sm;
-  Readable rd;
+  IStockMarketModel sm;
+  Readable rd, rd1, rd2;
   Appendable ap;
 
   /**

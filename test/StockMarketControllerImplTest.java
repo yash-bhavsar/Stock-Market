@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
@@ -19,13 +20,6 @@ public class StockMarketControllerImplTest {
   IStockMarketModel sm;
   Readable rd;
   Appendable ap;
-
-  /**
-   * Test to see if controller works correcrtly.
-   */
-  @Test
-  public void testController() {
-  }
 
   /**
    * Test to see if passing null in model or view throws IllegalArgumentException.
