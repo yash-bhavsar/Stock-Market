@@ -116,13 +116,13 @@ public class Services {
       throw new IllegalArgumentException("No price data found for " + stockSymbol);
     }
 
+    if (output.toString().contains("Invalid")) {
+      throw new IllegalArgumentException("\nStock symbol not valid.\n");
+    }
     this.cachedData.put(stockSymbol, output.toString());
     stockArray = output.toString().split("\n");
-
     for (int i = 1; i < stockArray.length; i++) {
-
       String[] temp = stockArray[i].split(",");
-
       currentDate = temp[0];
       if (currentDate.equals(date)) {
         finalDate = currentDate;
@@ -133,6 +133,10 @@ public class Services {
         String volume = temp[5];
         break;
       }
+    }
+
+    if (low == 0.0) {
+      throw new IllegalArgumentException("\nMarket is closed.\n");
     }
     return new Stock(stockSymbol, shares, low, finalDate, low);
   }

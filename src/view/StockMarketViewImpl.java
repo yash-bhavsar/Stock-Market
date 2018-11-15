@@ -64,13 +64,16 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
       case "5":
         input.append("5 ");
-        this.out.append("Quitting.....");
+        this.out.append("Quitting..... JAI HIND!!!");
         try {
           TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
         break;
+
+      default:
+        this.out.append("\n\t\t\t\t\tEnter valid choice. JAI HIND!!!\n");
     }
     return input.toString();
   }
@@ -144,10 +147,10 @@ public class StockMarketViewImpl implements IStockMarketView {
     this.out.append("\nThe date at which you want to buy stock: ");
     Scanner sc = new Scanner(this.rd);
     String s = sc.next();
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
     try {
-      Date date = df.parse(s.trim());
+      Date date = df.parse(s);
       Date currentDate = new Date();
       if (date.after(currentDate)) {
         this.out.append("\nFuture dates are not valid.\n");

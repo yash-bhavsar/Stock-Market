@@ -26,6 +26,9 @@ public class StockMarketModelImpl implements IStockMarketModel {
    */
   @Override
   public void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber) {
+    if (numberOfStocks < 0) {
+      throw new IllegalArgumentException("\nNumber of stocks cannot be negative.\n");
+    }
     Services s = Services.getInstance();
     Stock stock;
     try {

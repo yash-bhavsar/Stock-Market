@@ -38,7 +38,11 @@ public class StockMarketControllerImpl implements IStockMarketController {
         String result = "";
         switch (inputs[0]) {
           case "1":
-            this.im.createPortfolio(Integer.parseInt(inputs[1].trim()));
+            try {
+              this.im.createPortfolio(Integer.parseInt(inputs[1].trim()));
+            } catch (IllegalArgumentException e) {
+              result = e.getMessage();
+            }
             break;
           case "2":
             try {
