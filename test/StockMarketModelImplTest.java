@@ -5,7 +5,7 @@ import model.StockMarketModelImpl;
 
 import static org.junit.Assert.assertEquals;
 
-public class StockMarketControllerImplTest {
+public class StockMarketModelImplTest {
 
   IStockMarketModel s;
 
