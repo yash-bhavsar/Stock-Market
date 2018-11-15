@@ -33,8 +33,10 @@ public class User {
    * @param portfolioNumber the portfolio number
    */
   public void createPortfolio(int portfolioNumber) {
-    if (this.portfolios.containsKey(portfolioNumber)) {
-      throw new IllegalArgumentException("Portfolio number already exists");
+    if (portfolioNumber < 0) {
+      throw new IllegalArgumentException("\nInvalid number entered.\n");
+    } else if (this.portfolios.containsKey(portfolioNumber)) {
+      throw new IllegalArgumentException("\nPortfolio number already exists\n");
     }
     Portfolio portfolio = new Portfolio();
     this.portfolios.put(portfolioNumber, portfolio);
@@ -48,7 +50,7 @@ public class User {
    */
   public void buyStock(int portfolioNumber, Stock stock) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
-      throw new IllegalArgumentException("Create portfolio first.");
+      throw new IllegalArgumentException("\nCreate portfolio first.\n");
     } else {
       Portfolio userPortfolio = this.portfolios.get(portfolioNumber);
       userPortfolio.addStock(stock);
@@ -103,8 +105,10 @@ public class User {
    * @param portfolioNumber is the portfolio number.
    */
   private void checkPortfolioNumber(int portfolioNumber) {
-    if (!this.portfolios.containsKey(portfolioNumber)) {
-      throw new IllegalArgumentException("Create portfolio first.");
+    if (portfolioNumber < 0) {
+      throw new IllegalArgumentException("\nInvalid number entered.\n");
+    } else if (!this.portfolios.containsKey(portfolioNumber)) {
+      throw new IllegalArgumentException("\nCreate portfolio first.\n");
     }
   }
 }

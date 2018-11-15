@@ -63,13 +63,16 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
       case "5":
         input.append("5 ");
-        this.out.append("Quitting.....");
+        this.out.append("Quitting..... JAI HIND!!!");
         try {
           TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
         break;
+
+      default:
+        this.out.append("\n\t\t\t\t\tEnter valid choice. JAI HIND!!!\n");
     }
     return input.toString();
   }
