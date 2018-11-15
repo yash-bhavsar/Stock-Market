@@ -3,17 +3,20 @@ import org.junit.Test;
 import java.io.StringReader;
 
 import controller.IStockMarketController;
+import model.IStockMarketModel;
 import view.IStockMarketView;
 import view.StockMarketViewImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class StockMarketViewImplTest {
 
   IStockMarketView sv;
   IStockMarketController sc;
-  IStockMarketView sm;
+  IStockMarketModel sm;
   Readable rd;
+  Readable rd1;
+  Readable rd2;
   Appendable ap;
 
   /**
@@ -48,6 +51,7 @@ public class StockMarketViewImplTest {
               "\n" +
               "\t\t\t\t\tEnter valid choice. JAI HIND!!!\n", ap.toString());
     } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -73,7 +77,9 @@ public class StockMarketViewImplTest {
               "Enter valid number.\n" +
               " \n" +
               "Enter portfolio number: ", ap.toString());
-    } catch (Exception e) {}
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -102,7 +108,9 @@ public class StockMarketViewImplTest {
               "The number of shares you want to buy: \n" +
               "The date at which you want to buy stock: \n" +
               "Enter portfolio number: ", ap.toString());
-    } catch (Exception e) {}
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**

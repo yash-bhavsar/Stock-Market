@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import java.io.InputStreamReader;
 import java.io.StringReader;
 
 import controller.IStockMarketController;
@@ -10,8 +9,6 @@ import model.StockMarketModelImpl;
 import view.IStockMarketView;
 import view.StockMarketViewImpl;
 
-import static junit.framework.TestCase.assertEquals;
-
 public class StockMarketControllerImplTest {
 
   IStockMarketController s;
@@ -19,13 +16,6 @@ public class StockMarketControllerImplTest {
   IStockMarketModel sm;
   Readable rd;
   Appendable ap;
-
-  /**
-   * Test to see if controller works correcrtly.
-   */
-  @Test
-  public void testController() {
-  }
 
   /**
    * Test to see if passing null in model or view throws IllegalArgumentException.
@@ -39,5 +29,4 @@ public class StockMarketControllerImplTest {
     s = new StockMarketControllerImpl(null, sv);
     s = new StockMarketControllerImpl(sm, null);
   }
-
 }

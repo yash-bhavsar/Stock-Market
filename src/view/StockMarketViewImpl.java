@@ -8,12 +8,11 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The class StockMarketView which has methods to get the input from the user. These include
- * helper methods like askDate, askNumberOfShares etc.
+ * The class StockMarketView which has methods to get the input from the user. These include helper
+ * methods like askDate, askNumberOfShares etc.
  */
 public class StockMarketViewImpl implements IStockMarketView {
 
-  private Readable rd;
   private Appendable out;
   private Scanner scanner;
 
@@ -27,9 +26,9 @@ public class StockMarketViewImpl implements IStockMarketView {
     if (rd == null || out == null) {
       throw new IllegalArgumentException("Readable or appendable cannot be null");
     }
-    this.rd = rd;
+    Readable rd1 = rd;
     this.out = out;
-    scanner = new Scanner(this.rd);
+    scanner = new Scanner(rd1);
   }
 
   /**
@@ -69,7 +68,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
       case "5":
         input.append("5 ");
-        this.out.append("Quitting..... JAI HIND!!!");
+        this.out.append("Quitting.....");
         try {
           TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
@@ -78,7 +77,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
 
       default:
-        this.out.append("\n\t\t\t\t\tEnter valid choice. JAI HIND!!!\n");
+        this.out.append("\n\t\t\t\t\t\tEnter valid choice.\n");
     }
     return input.toString();
   }
@@ -96,6 +95,7 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   /**
    * Private helper method to get get the questions to be asked to the user.
+   *
    * @return the string of questions separated by a newline.
    */
   private String getQuestion() {
@@ -109,6 +109,7 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   /**
    * Helper method to get the number of shares from the user.
+   *
    * @return returns the string.
    * @throws IOException if the input is invalid.
    */
@@ -119,7 +120,7 @@ public class StockMarketViewImpl implements IStockMarketView {
       int a = Integer.parseInt(s.trim());
       if (a < 0) {
         this.out.append("\nEnter valid number.\n ");
-        return askNumberOfShares()  ;
+        return askNumberOfShares();
       }
       return s.trim();
     } catch (NumberFormatException e) {
@@ -130,6 +131,7 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   /**
    * Helper method to take the portfolio number as an input from the user.
+   *
    * @return returns the portfolio number.
    * @throws IOException if the input is invalid.
    */
@@ -143,7 +145,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\nEnter valid number.\n ");
         return askPortfolioNumber();
       }
-       return s.trim();
+      return s.trim();
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number.\n ");
       return askPortfolioNumber();
@@ -152,11 +154,12 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   /**
    * Helper method to ask the user for the date.
+   *
    * @return returns the date which is a string.
    * @throws IOException if the input is invalid.
    */
   private String askDate() throws IOException {
-    this.out.append("\nThe date at which you want to buy stock: ");
+    this.out.append("\nDate(yyyy-mm-dd) at which you want to buy stock: ");
     String s = scanner.next();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
@@ -172,5 +175,9 @@ public class StockMarketViewImpl implements IStockMarketView {
       this.out.append("\nEnter valid date in format (yyyy-mm-dd).\n ");
       return askDate();
     }
+  }
+
+  public Appendable getOut() {
+    return this.out;
   }
 }

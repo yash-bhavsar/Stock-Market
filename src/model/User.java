@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * The class User which has methods to buy stock, create portfolio, evaluate portfolio,
- * calculate cost basis and view composition of the portfolio.
+ * The class User which has methods to buy stock, create portfolio, evaluate portfolio, calculate
+ * cost basis and view composition of the portfolio.
  */
 public class User {
 
@@ -97,12 +97,14 @@ public class User {
     Services services = Services.getInstance();
     return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
-            .mapToDouble(stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker())))
-            .sum();
+            .mapToDouble(
+                    stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker()))
+            ).sum();
   }
 
   /**
    * Helper method to check portfolio number.
+   *
    * @param portfolioNumber is the portfolio number.
    */
   private void checkPortfolioNumber(int portfolioNumber) {

@@ -135,6 +135,7 @@ public class Services {
 
   /**
    * Helper method to get nearest date if the date passed is a holiday.
+   *
    * @return the nearest date.
    */
   private String getNearestDate(String date) {
