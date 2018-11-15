@@ -17,7 +17,12 @@ public class StockMarketModelImpl implements IStockMarketModel {
   @Override
   public void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber) {
     Services s = Services.getInstance();
-    Stock stock = s.getDataForCompany(ticker, numberOfStocks, date);
+    Stock stock;
+    try {
+      stock = s.getDataForCompany(ticker, numberOfStocks, date);
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
     user.buyStock(portfolioNumber, stock);
   }
 
@@ -46,14 +51,4 @@ public class StockMarketModelImpl implements IStockMarketModel {
    *
    * @param args the input arguments
    */
-  public static void main(String[] args) {
-    IStockMarketModel s = new StockMarketModelImpl();
-    s.createPortfolio(1);
-    s.buyStock("AAPL", 2, "2016-11-22", 1);
-    s.buyStock("AAPL", 2, "2016-10-12", 1);
-    System.out.println(s.viewComposition(1));
-
-//    System.out.println(s.evaluatePortfolio(1, "2016-11-22"));
-//    System.out.println(s.viewComposition(1));
-  }
 }

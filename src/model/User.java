@@ -62,9 +62,7 @@ public class User {
    * @return string string
    */
   public String viewComposition(int portfolioNumber) {
-    if (!this.portfolios.containsKey(portfolioNumber)) {
-      throw new IllegalArgumentException("Create portfolio first.");
-    }
+    checkPortfolioNumber(portfolioNumber);
     Portfolio portfolio = this.portfolios.get(portfolioNumber);
     return portfolio.getStocks().stream().map(Object::toString).collect(Collectors.joining("\n"));
   }
@@ -77,6 +75,7 @@ public class User {
    * @return the cost basis.
    */
   public double calculateCostBasis(int portfolioNumber, String date) {
+    checkPortfolioNumber(portfolioNumber);
     return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
             .mapToDouble(Stock::calculateCostBasis)
@@ -91,11 +90,17 @@ public class User {
    * @return the int
    */
   public double evaluatePortfolio(int portfolioNumber, String date) {
+    checkPortfolioNumber(portfolioNumber);
     Services services = Services.getInstance();
-    double value = this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
+    return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
             .mapToDouble(stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker())))
             .sum();
-    return value;
+  }
+
+  private void checkPortfolioNumber(int portfolioNumber) {
+    if (!this.portfolios.containsKey(portfolioNumber)) {
+      throw new IllegalArgumentException("Create portfolio first.");
+    }
   }
 }
