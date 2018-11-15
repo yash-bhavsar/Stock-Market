@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * The class model.Portfolio which has methods to get stocks, get stocks before a certain date,
- * and add stock.
+ * The class model.Portfolio which has methods to get stocks, get stocks before a certain date, and
+ * add stock.
  */
 public class Portfolio {
 
@@ -53,9 +53,12 @@ public class Portfolio {
       if (s.getDateTime().equals(stock.getDateTime()) && s.getTicker().equals(stock.getTicker())) {
         exists = true;
         int totalShares = s.getShares() + stock.getShares();
-        s.setShares(totalShares);
+        stocks.remove(s);
+        stocks.add(new Stock(stock.getTicker(), totalShares, stock.getPurchasePrice(),
+                stock.getDateTime(), stock.getCurrentPrice()));
       }
     }
+
     if (!exists) {
       this.stocks.add(stock);
     }
