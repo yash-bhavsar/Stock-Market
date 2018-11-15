@@ -22,6 +22,9 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @param iv the IStockMarketView object.
    */
   public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
+    if (im == null || iv == null) {
+      throw new IllegalArgumentException("Model or View is null");
+    }
     this.im = im;
     this.iv = iv;
   }
