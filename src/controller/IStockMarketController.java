@@ -1,12 +1,12 @@
 package controller;
 
 /**
- * The interface Stock market controller.
+ * The interface Stock market controller which has the method to start the stock market simulator.
  */
 public interface IStockMarketController {
 
   /**
-   * Start stock market simulator.
+   * Method to start stock market simulator.
    */
   void startStockMarketSimulator();
 }

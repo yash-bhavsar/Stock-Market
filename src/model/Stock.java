@@ -1,7 +1,8 @@
 package model;
 
 /**
- * The type model.Stock.
+ * The class model.Stock which has getter and setter methods for ticker, shares, purchase price,
+ * date.
  */
 public class Stock {
 
@@ -9,8 +10,6 @@ public class Stock {
   private int shares;
   private final float purchasePrice;
   private final String date;
-  //remove this field.
-  private final float currentPrice;
 
   /**
    * Instantiates a new model.Stock.
@@ -19,14 +18,12 @@ public class Stock {
    * @param shares        the shares
    * @param purchasePrice the purchase price
    * @param date          the date time
-   * @param currentPrice  the current price
    */
-  public Stock(String ticker, int shares, float purchasePrice, String date, float currentPrice) {
+  public Stock(String ticker, int shares, float purchasePrice, String date) {
     this.ticker = ticker;
     this.shares = shares;
     this.purchasePrice = purchasePrice;
     this.date = date;
-    this.currentPrice = currentPrice;//remove this field.
   }
 
   /**
@@ -57,21 +54,12 @@ public class Stock {
   }
 
   /**
-   * Gets date time. May need to rename to getDate.
+   * Gets date time.
    *
-   * @return the date time
+   * @return the date
    */
-  public String getDateTime() {
+  public String getDate() {
     return date;
-  }
-
-  /**
-   * Gets current price.
-   *
-   * @return the current price
-   */
-  public float getCurrentPrice() {
-    return currentPrice;
   }
 
   /**
@@ -87,15 +75,20 @@ public class Stock {
   /**
    * Calculate cost basis double.
    *
-   * @return the double
+   * @return the cost basis
    */
   public double calculateCostBasis() {
     return this.purchasePrice * this.shares;
   }
 
+  /**
+   * Overridden toString method which formats the output in the format purchase price, date of
+   * purchase, purchase price, shares separated by a newline.
+   * @return the string formatted in the way described above.
+   */
   @Override
   public String toString() {
-    return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDateTime() +
+    return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDate() +
             "\nPurchase price: " + this.purchasePrice + "\nNumber of shares: " + this.shares +
             "\n";
   }

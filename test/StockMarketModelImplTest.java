@@ -34,11 +34,31 @@ public class StockMarketModelImplTest {
   /**
    * Test if create portfolio fails on passing a negative number.
    */
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testCreatePortfolioFails() {
     s = new StockMarketModelImpl();
+    s.createPortfolio(-1);
+  }
+
+  /**
+   * Test to check if buy stock fails on passing any invalid argument.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testBuyStockFails() {
+    s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("AAPL", 2, "2016-10-22", 1);
+    s.buyStock("AAPL", 1, "2016-10-21", 2);
+    s.buyStock("AAPL", -1, "2016-10-21", 1);
+    s.buyStock("AAPL", 1, "2016-10-21", -1);
+  }
+
+  /**
+   * Test to see if buying stock without creating a portfolio throws exception.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testBuyStockWithoutPortfolio() {
+    s = new StockMarketModelImpl();
+    s.buyStock("GOOG", 2, "2016-10-22", 1);
   }
 
   /**
@@ -53,15 +73,34 @@ public class StockMarketModelImplTest {
             "Date of purchase: 2014-10-22\n" +
             "Purchase price: 528.8\n" +
             "Number of shares: 2\n", s.viewComposition(1));
+
+    s.buyStock("AAPL", 2, "2014-10-22", 1);
+    s.buyStock("GOOG", 2, "2016-10-25", 1);
+    assertEquals("Company name: GOOG\n" +
+            "Date of purchase: 2014-10-22\n" +
+            "Purchase price: 528.8\n" +
+            "Number of shares: 2\n" +
+            "\n" +
+            "Company name: AAPL\n" +
+            "Date of purchase: 2014-10-22\n" +
+            "Purchase price: 102.6\n" +
+            "Number of shares: 2\n" +
+            "\n" +
+            "Company name: GOOG\n" +
+            "Date of purchase: 2016-10-25\n" +
+            "Purchase price: 805.14\n" +
+            "Number of shares: 2\n", s.viewComposition(1));
   }
 
   /**
-   * Test to check if passing an invalid argument to buyStock throws an exception.
+   * Test if buy stock takes the nearest date on entering a holiday in evaluate portfolio method.
    */
   @Test
-  public void buyStockFail() {
+  public void testBuyStockHoliday() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
+    s.buyStock("AAPL", 2, "2016-10-05", 1);
+    assertEquals(229.12, s.evaluatePortfolio(1, "2016-10-08"), 0.1);
   }
 
   /**

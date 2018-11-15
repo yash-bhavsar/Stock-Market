@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * The type User.
+ * The class User which has methods to buy stock, create portfolio, evaluate portfolio,
+ * calculate cost basis and view composition of the portfolio.
  */
 public class User {
 
@@ -19,7 +20,7 @@ public class User {
   }
 
   /**
-   * Gets portfolios.
+   * Method to get portfolios.
    *
    * @return the portfolios
    */
@@ -28,7 +29,7 @@ public class User {
   }
 
   /**
-   * Create portfolio.
+   * Method to create portfolio.
    *
    * @param portfolioNumber the portfolio number
    */
@@ -41,7 +42,7 @@ public class User {
   }
 
   /**
-   * Buy stock.
+   * Method to buy stock.
    *
    * @param portfolioNumber the portfolio number
    * @param stock           the stock
@@ -56,10 +57,10 @@ public class User {
   }
 
   /**
-   * View composition string.
+   * Method to view the composition.
    *
    * @param portfolioNumber the portfolio number
-   * @return string string
+   * @return the composition of the portfolio
    */
   public String viewComposition(int portfolioNumber) {
     checkPortfolioNumber(portfolioNumber);
@@ -68,7 +69,7 @@ public class User {
   }
 
   /**
-   * Calculate cost basis.
+   * Method to calculate cost basis.
    *
    * @param portfolioNumber the portfolio number
    * @param date            the date
@@ -83,7 +84,7 @@ public class User {
   }
 
   /**
-   * Evaluate portfolio.
+   * Method to evaluate portfolio.
    *
    * @param portfolioNumber the portfolio number
    * @param date            the date

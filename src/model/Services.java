@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The type Services.
+ * The class Services which has methods to get data for a particular ticker, check the nearest date
+ * in case of holidays and get a value for a company.
  */
 public class Services {
 
@@ -23,7 +24,7 @@ public class Services {
   }
 
   /**
-   * Gets instance.
+   * Gets the service instance.
    *
    * @return the instance
    */

@@ -1,7 +1,8 @@
 package model;
 
 /**
- * The interface Stock market controller.
+ * The interface IStockMarketModel which has methods to buy stocks, calculate cost basis, view
+ * composition, create and evaluate portfolio.
  */
 public interface IStockMarketModel {
 
@@ -19,14 +20,14 @@ public interface IStockMarketModel {
    * View composition of a portfolio.
    *
    * @param portfolioNumber the portfolio name
-   * @return the string
+   * @return the composition of the portfolio.
    */
   String viewComposition(int portfolioNumber);
 
   /**
    * Create portfolio.
    *
-   * @param portfolioNumber the portfolio name
+   * @param portfolioNumber the portfolio number
    */
   void createPortfolio(int portfolioNumber);
 
@@ -35,16 +36,16 @@ public interface IStockMarketModel {
    *
    * @param portfolioNumber the portfolio number
    * @param date            the date
-   * @return int double
+   * @return returns the evaluated value of the portfolio.
    */
   double evaluatePortfolio(int portfolioNumber, String date);
 
   /**
-   * Calculate cost basis double.
+   * Calculate cost basis.
    *
    * @param portfolioNumber the portfolio number
    * @param date            the date
-   * @return double double
+   * @return returns the cost basis.
    */
   double calculateCostBasis(int portfolioNumber, String date);
 }

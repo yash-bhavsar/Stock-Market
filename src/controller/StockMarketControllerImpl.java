@@ -6,7 +6,8 @@ import model.IStockMarketModel;
 import view.IStockMarketView;
 
 /**
- * The type Stock market controller.
+ * The class StockMarketController which has the overridden method startStockMarketSimulator
+ * to start the simulation.
  */
 public class StockMarketControllerImpl implements IStockMarketController {
 
@@ -15,7 +16,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
 
 
   /**
-   * Instantiates a new Stock market controller.
+   * Constructor which initializes stock market model and view objects.
    *
    * @param im IStockMarketModel object.
    * @param iv the IStockMarketView object.
@@ -25,6 +26,9 @@ public class StockMarketControllerImpl implements IStockMarketController {
     this.iv = iv;
   }
 
+  /**
+   * Method to start stock market simulator.
+   */
   @Override
   public void startStockMarketSimulator() {
     try {
