@@ -83,11 +83,11 @@ public class User {
   }
 
   /**
-   * Evaluate portfolio int.
+   * Evaluate portfolio.
    *
    * @param portfolioNumber the portfolio number
    * @param date            the date
-   * @return the int
+   * @return the evaluated portfolio.
    */
   public double evaluatePortfolio(int portfolioNumber, String date) {
     checkPortfolioNumber(portfolioNumber);
@@ -98,6 +98,10 @@ public class User {
             .sum();
   }
 
+  /**
+   * Helper method to check portfolio number.
+   * @param portfolioNumber is the portfolio number.
+   */
   private void checkPortfolioNumber(int portfolioNumber) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
       throw new IllegalArgumentException("Create portfolio first.");

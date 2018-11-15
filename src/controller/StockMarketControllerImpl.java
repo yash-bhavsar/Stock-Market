@@ -5,12 +5,21 @@ import java.io.IOException;
 import model.IStockMarketModel;
 import view.IStockMarketView;
 
+/**
+ * The type Stock market controller.
+ */
 public class StockMarketControllerImpl implements IStockMarketController {
 
   private IStockMarketView iv;
   private IStockMarketModel im;
 
 
+  /**
+   * Instantiates a new Stock market controller.
+   *
+   * @param im the im
+   * @param iv the iv
+   */
   public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
     this.im = im;
     this.iv = iv;
@@ -60,7 +69,5 @@ public class StockMarketControllerImpl implements IStockMarketController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-
   }
 }

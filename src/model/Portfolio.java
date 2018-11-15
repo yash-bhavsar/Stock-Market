@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * The type model.Portfolio.
+ * The class model.Portfolio which has methods to get stocks, get stocks before a certain date,
+ * and add stock.
  */
 public class Portfolio {
 
@@ -44,7 +45,7 @@ public class Portfolio {
   /**
    * Add stock to the portfolio.
    *
-   * @param stock the stock that has to be added to the portfolio.
+   * @param stock the stock that is to be added to the portfolio.
    */
   void addStock(Stock stock) {
     boolean exists = false;

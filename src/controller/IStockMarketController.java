@@ -1,11 +1,12 @@
 package controller;
 
-import model.IStockMarketModel;
-
 /**
- *
+ * The interface Stock market controller.
  */
 public interface IStockMarketController {
 
+  /**
+   * Start stock market simulator.
+   */
   void startStockMarketSimulator();
 }

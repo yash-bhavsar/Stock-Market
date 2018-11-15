@@ -66,7 +66,7 @@ public class Stock {
   }
 
   /**
-   * Gets date time.
+   * Gets date time. May need to rename to getDate.
    *
    * @return the date time
    */
@@ -84,10 +84,10 @@ public class Stock {
   }
 
   /**
-   * Evaluate int.
+   * Method to evaluate the price.
    *
-   * @param value the value
-   * @return the int
+   * @param value is the value of the share.
+   * @return returns the evaluated value which is a double.
    */
   public double evaluate(double value) {
     return this.shares * value;
