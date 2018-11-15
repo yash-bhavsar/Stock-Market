@@ -38,7 +38,7 @@ public class Portfolio {
   List<Stock> getStocksBeforeDate(String date) {
     return this.stocks
             .stream()
-            .filter(stock -> stock.getDateTime().compareTo(date) < 1)
+            .filter(stock -> stock.getDateTime().compareTo(date) <= 0)
             .collect(Collectors.toList());
   }
 

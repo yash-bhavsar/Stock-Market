@@ -116,6 +116,10 @@ public class StockMarketViewImpl implements IStockMarketView {
     String s = sc.next();
     try {
       int a = Integer.parseInt(s.trim());
+      if (a < 0) {
+        this.out.append("\nEnter valid number.\n ");
+        return askPortfolioNumber();
+      }
       return s.trim();
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number: ");
@@ -134,9 +138,13 @@ public class StockMarketViewImpl implements IStockMarketView {
     String s = sc.next();
     try {
       int a = Integer.parseInt(s.trim());
-      return s.trim();
+      if (a < 0) {
+        this.out.append("\nEnter valid number.\n ");
+        return askPortfolioNumber();
+      }
+       return s.trim();
     } catch (NumberFormatException e) {
-      this.out.append("\nEnter valid number: ");
+      this.out.append("\nEnter valid number.\n ");
       return askPortfolioNumber();
     }
   }
@@ -159,9 +167,9 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\nFuture dates are not valid.\n");
         return askDate();
       }
-      return s.trim();
+      return df.format(date);
     } catch (ParseException e) {
-      this.out.append("\nEnter valid date in format (yyyy-mm-dd): ");
+      this.out.append("\nEnter valid date in format (yyyy-mm-dd).\n ");
       return askDate();
     }
   }
