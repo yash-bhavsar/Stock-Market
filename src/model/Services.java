@@ -54,6 +54,24 @@ public class Services {
     String currentDate = "";
     String finalDate = "";
 
+    if (cachedData.containsKey(stockSymbol)) {
+      String[] temp = cachedData.get(stockSymbol).split("\n");
+
+      for (int i = 0; i < temp.length; i++) {
+        String[] tempArray = temp[i].split(",");
+        currentDate = tempArray[0];
+        if (currentDate.equals(date)) {
+          finalDate = currentDate;
+          open = Float.parseFloat(tempArray[1]);
+          String high = tempArray[2];
+          low = Float.parseFloat(tempArray[3]);
+          String close = tempArray[4];
+          String volume = tempArray[5];
+          return new Stock(stockSymbol, shares, low, finalDate, low);
+        }
+      }
+    }
+
     //the API key needed to use this web service.
     //Please get your own free API key here: https://www.alphavantage.co/
     //Please look at documentation here: https://www.alphavantage.co/documentation/
@@ -102,37 +120,19 @@ public class Services {
       throw new IllegalArgumentException("\nStock symbol not valid.\n");
     }
 
-    if (cachedData.containsKey(stockSymbol)) {
-      String[] temp = cachedData.get(stockSymbol).split("\n");
-
-      for (int i = 0; i < temp.length; i++) {
-        String[] tempArray = temp[i].split(",");
-        currentDate = tempArray[0];
-        if (currentDate.equals(date)) {
-          finalDate = currentDate;
-          open = Float.parseFloat(tempArray[1]);
-          String high = tempArray[2];
-          low = Float.parseFloat(tempArray[3]);
-          String close = tempArray[4];
-          String volume = tempArray[5];
-          break;
-        }
-      }
-    } else {
-      this.cachedData.put(stockSymbol, output.toString());
-      stockArray = output.toString().split("\n");
-      for (int i = 1; i < stockArray.length; i++) {
-        String[] temp = stockArray[i].split(",");
-        currentDate = temp[0];
-        if (currentDate.equals(date)) {
-          finalDate = currentDate;
-          open = Float.parseFloat(temp[1]);
-          String high = temp[2];
-          low = Float.parseFloat(temp[3]);
-          String close = temp[4];
-          String volume = temp[5];
-          break;
-        }
+    this.cachedData.put(stockSymbol, output.toString());
+    stockArray = output.toString().split("\n");
+    for (int i = 1; i < stockArray.length; i++) {
+      String[] temp = stockArray[i].split(",");
+      currentDate = temp[0];
+      if (currentDate.equals(date)) {
+        finalDate = currentDate;
+        open = Float.parseFloat(temp[1]);
+        String high = temp[2];
+        low = Float.parseFloat(temp[3]);
+        String close = temp[4];
+        String volume = temp[5];
+        break;
       }
     }
 

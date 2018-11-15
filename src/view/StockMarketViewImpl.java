@@ -23,6 +23,9 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @param out is the appendable object.
    */
   public StockMarketViewImpl(Readable rd, Appendable out) {
+    if (rd == null || out == null) {
+      throw new IllegalArgumentException("Readable or appendable cannot be null");
+    }
     this.rd = rd;
     this.out = out;
   }
