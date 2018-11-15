@@ -50,8 +50,7 @@ public class Services {
 
     String[] stockArray;
     float low = 0;
-    float open = 0;
-    String currentDate = "";
+    String currentDate;
     String finalDate = "";
 
     if (cachedData.containsKey(stockSymbol)) {
@@ -62,11 +61,7 @@ public class Services {
         currentDate = tempArray[0];
         if (currentDate.equals(date)) {
           finalDate = currentDate;
-          open = Float.parseFloat(tempArray[1]);
-          String high = tempArray[2];
           low = Float.parseFloat(tempArray[3]);
-          String close = tempArray[4];
-          String volume = tempArray[5];
           return new Stock(stockSymbol, shares, low, finalDate, low);
         }
       }
@@ -127,11 +122,7 @@ public class Services {
       currentDate = temp[0];
       if (currentDate.equals(date)) {
         finalDate = currentDate;
-        open = Float.parseFloat(temp[1]);
-        String high = temp[2];
         low = Float.parseFloat(temp[3]);
-        String close = temp[4];
-        String volume = temp[5];
         break;
       }
     }
