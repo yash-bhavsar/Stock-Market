@@ -3,7 +3,9 @@ import org.junit.Test;
 import java.io.StringReader;
 
 import controller.IStockMarketController;
+
 import model.IStockMarketModel;
+
 import view.IStockMarketView;
 import view.StockMarketViewImpl;
 
