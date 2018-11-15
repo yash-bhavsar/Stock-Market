@@ -147,10 +147,10 @@ public class StockMarketViewImpl implements IStockMarketView {
     this.out.append("\nThe date at which you want to buy stock: ");
     Scanner sc = new Scanner(this.rd);
     String s = sc.next();
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
     try {
-      Date date = df.parse(s.trim());
+      Date date = df.parse(s);
       Date currentDate = new Date();
       if (date.after(currentDate)) {
         this.out.append("\nFuture dates are not valid.\n");
