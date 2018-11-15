@@ -16,7 +16,7 @@ public class User {
    * Instantiates a new User and the portfolios hash map.
    */
   public User() {
-    this.portfolios = new HashMap<Integer, Portfolio>();
+    this.portfolios = new HashMap<>();
   }
 
   /**

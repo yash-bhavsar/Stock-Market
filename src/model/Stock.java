@@ -2,9 +2,10 @@ package model;
 
 /**
  * The class model.Stock which has getter and setter methods for ticker, shares, purchase price,
- * date and current price.
+ * date and current price. Intentionally kept package-private object of this class are not used
+ * outside of this package.
  */
-public class Stock {
+class Stock {
 
   private final String ticker;
   private int shares;
@@ -94,8 +95,9 @@ public class Stock {
   }
 
   /**
-   * Overridden toString method which outputs the information in the format, company name, date
-   * of purchase, purchase price, number of shares, each separated by a newline.
+   * Overridden toString method which outputs the information in the format, company name, date of
+   * purchase, purchase price, number of shares, each separated by a newline.
+   *
    * @return the formatted string.
    */
   @Override

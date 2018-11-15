@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 /**
  * The class model.Portfolio which has methods to get stocks, get stocks before a certain date, and
- * add stock.
+ * add stock. Intentionally kept package-private as this class is not outside of this package.
  */
-public class Portfolio {
+class Portfolio {
 
   private List<Stock> stocks;
 
@@ -18,6 +18,7 @@ public class Portfolio {
   Portfolio() {
     this.stocks = new ArrayList<>();
   }
+
 
   /**
    * Gets the stocks in a particular portfolio and this method's scope has been intentionally kept
@@ -43,7 +44,7 @@ public class Portfolio {
   }
 
   /**
-   * Add stock to the portfolio.
+   * Add stock to the portfolio. Intentionally kept package-private.
    *
    * @param stock the stock that is to be added to the portfolio.
    */
