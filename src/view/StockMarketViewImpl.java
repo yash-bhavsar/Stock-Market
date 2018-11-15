@@ -134,7 +134,7 @@ public class StockMarketViewImpl implements IStockMarketView {
       return s.trim();
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number: ");
-      return askNumberOfShares();
+      return askPortfolioNumber();
     }
   }
 

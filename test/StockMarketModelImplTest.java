@@ -116,6 +116,17 @@ public class StockMarketModelImplTest {
   }
 
   /**
+   * Test to check if evaluate throws an exception when a negative portfolio number is passed.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testEvaluatefails() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2014-10-22", 1);
+    s.evaluatePortfolio(-1, "2014-10-28");
+  }
+
+  /**
    * Test to check if calculate cost basis works as expected.
    */
   @Test
@@ -148,6 +159,26 @@ public class StockMarketModelImplTest {
     s.buyStock("GOOG", 2, "2014-10-22", 1);
     assertEquals(1079.6, s.evaluatePortfolio(1, "2014-10-22"), 0.1);
     assertEquals(210.98, s.evaluatePortfolio(2, "2014-10-24"), 0.1);
+  }
+
+  /**
+   * Test to check if multiple portfolios are created.
+   */
+  @Test
+  public void testCreateMultiplePortfolios() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.createPortfolio(2);
+    s.buyStock("GOOG", 2, "2014-10-22", 1);
+    s.buyStock("AAPL", 2, "2014-10-22", 2);
+    assertEquals("Company name: GOOG\n" +
+            "Date of purchase: 2014-10-22\n" +
+            "Purchase price: 528.8\n" +
+            "Number of shares: 2\n", s.viewComposition(1));
+    assertEquals("Company name: AAPL\n" +
+            "Date of purchase: 2014-10-22\n" +
+            "Purchase price: 102.6\n" +
+            "Number of shares: 2\n", s.viewComposition(2));
   }
 
 }
