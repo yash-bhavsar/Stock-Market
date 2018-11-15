@@ -40,6 +40,16 @@ public class StockMarketModelImplTest {
   }
 
   /**
+   * Test if create portfolio fails on passing a already existing portfolio number.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testCreatePortfolioFails2() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.createPortfolio(1);
+  }
+
+  /**
    * Test to check if buy stock fails on passing any invalid argument.
    */
   @Test(expected = IllegalArgumentException.class)

@@ -37,6 +37,9 @@ public class StockMarketControllerImpl implements IStockMarketController {
     try {
       while (true) {
         String input = this.iv.enterCommand();
+        if (input.equals(String.valueOf(Integer.MAX_VALUE))) {
+          break;
+        }
         String[] inputs = input.trim().split("\\s+");
         String result = "";
         switch (inputs[0]) {

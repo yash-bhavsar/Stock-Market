@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -43,7 +44,11 @@ public class StockMarketViewImpl implements IStockMarketView {
     StringBuilder input = new StringBuilder();
 
     this.out.append(getQuestion());
-    choice = scanner.next();
+    try {
+      choice = scanner.next();
+    } catch (NoSuchElementException e) {
+      return String.valueOf(Integer.MAX_VALUE);
+    }
     switch (choice) {
       case "1":
         input.append("1 ");
