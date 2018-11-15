@@ -17,7 +17,7 @@ public class StockMarketViewImpl implements IStockMarketView {
   private Appendable out;
 
   /**
-   * Instantiates a new Stock market view.
+   * Constructor which initializes the readable and appendable objects.
    *
    * @param rd  is the readable object.
    * @param out is the appendable object.

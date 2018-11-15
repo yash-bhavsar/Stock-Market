@@ -13,7 +13,7 @@ public class User {
   private Map<Integer, Portfolio> portfolios;
 
   /**
-   * Instantiates a new User.
+   * Instantiates a new User and the portfolios hash map.
    */
   public User() {
     this.portfolios = new HashMap<Integer, Portfolio>();

@@ -2,7 +2,7 @@ package model;
 
 /**
  * The class model.Stock which has getter and setter methods for ticker, shares, purchase price,
- * date.
+ * date and current price.
  */
 public class Stock {
 
@@ -10,6 +10,7 @@ public class Stock {
   private int shares;
   private final float purchasePrice;
   private final String date;
+  private final float currentPrice;
 
   /**
    * Instantiates a new model.Stock.
@@ -18,12 +19,14 @@ public class Stock {
    * @param shares        the shares
    * @param purchasePrice the purchase price
    * @param date          the date time
+   * @param currentPrice  the current price
    */
-  public Stock(String ticker, int shares, float purchasePrice, String date) {
+  public Stock(String ticker, int shares, float purchasePrice, String date, float currentPrice) {
     this.ticker = ticker;
     this.shares = shares;
     this.purchasePrice = purchasePrice;
     this.date = date;
+    this.currentPrice = currentPrice;
   }
 
   /**
@@ -56,10 +59,19 @@ public class Stock {
   /**
    * Gets date time.
    *
-   * @return the date
+   * @return the date and time
    */
-  public String getDate() {
+  public String getDateTime() {
     return date;
+  }
+
+  /**
+   * Gets current price of a stock.
+   *
+   * @return the current price
+   */
+  public float getCurrentPrice() {
+    return currentPrice;
   }
 
   /**
@@ -75,20 +87,20 @@ public class Stock {
   /**
    * Calculate cost basis double.
    *
-   * @return the cost basis
+   * @return the double
    */
   public double calculateCostBasis() {
     return this.purchasePrice * this.shares;
   }
 
   /**
-   * Overridden toString method which formats the output in the format purchase price, date of
-   * purchase, purchase price, shares separated by a newline.
-   * @return the string formatted in the way described above.
+   * Overridden toString method which outputs the information in the format, company name, date
+   * of purchase, purchase price, number of shares, each separated by a newline.
+   * @return the formatted string.
    */
   @Override
   public String toString() {
-    return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDate() +
+    return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDateTime() +
             "\nPurchase price: " + this.purchasePrice + "\nNumber of shares: " + this.shares +
             "\n";
   }

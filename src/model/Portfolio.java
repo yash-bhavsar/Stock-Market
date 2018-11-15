@@ -58,7 +58,6 @@ public class Portfolio {
                 stock.getDateTime(), stock.getCurrentPrice()));
       }
     }
-
     if (!exists) {
       this.stocks.add(stock);
     }
