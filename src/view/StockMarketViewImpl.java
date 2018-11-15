@@ -15,6 +15,7 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   private Readable rd;
   private Appendable out;
+  private Scanner scanner;
 
   /**
    * Constructor which initializes the readable and appendable objects.
@@ -28,6 +29,7 @@ public class StockMarketViewImpl implements IStockMarketView {
     }
     this.rd = rd;
     this.out = out;
+    scanner = new Scanner(this.rd);
   }
 
   /**
@@ -40,7 +42,7 @@ public class StockMarketViewImpl implements IStockMarketView {
   public String enterCommand() throws IOException {
     String choice;
     StringBuilder input = new StringBuilder();
-    Scanner scanner = new Scanner(rd);
+
     this.out.append(getQuestion());
     choice = scanner.next();
     switch (choice) {
@@ -112,8 +114,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    */
   private String askNumberOfShares() throws IOException {
     this.out.append("\nThe number of shares you want to buy: ");
-    Scanner sc = new Scanner(this.rd);
-    String s = sc.next();
+    String s = scanner.next();
     try {
       int a = Integer.parseInt(s.trim());
       if (a < 0) {
@@ -134,8 +135,8 @@ public class StockMarketViewImpl implements IStockMarketView {
    */
   private String askPortfolioNumber() throws IOException {
     this.out.append("\nEnter portfolio number: ");
-    Scanner sc = new Scanner(this.rd);
-    String s = sc.next();
+
+    String s = scanner.next();
     try {
       int a = Integer.parseInt(s.trim());
       if (a < 0) {
@@ -156,8 +157,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    */
   private String askDate() throws IOException {
     this.out.append("\nThe date at which you want to buy stock: ");
-    Scanner sc = new Scanner(this.rd);
-    String s = sc.next();
+    String s = scanner.next();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
     try {
