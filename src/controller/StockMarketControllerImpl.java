@@ -17,8 +17,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
   /**
    * Instantiates a new Stock market controller.
    *
-   * @param im the im
-   * @param iv the iv
+   * @param im IStockMarketModel object.
+   * @param iv the IStockMarketView object.
    */
   public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
     this.im = im;

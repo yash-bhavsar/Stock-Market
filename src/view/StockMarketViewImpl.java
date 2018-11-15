@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
  * helper methods like askDate, askNumberOfShares etc.
  */
 public class StockMarketViewImpl implements IStockMarketView {
+
   private Readable rd;
   private Appendable out;
 

@@ -21,6 +21,27 @@ public class StockMarketModelImplTest {
   }
 
   /**
+   * Test to check if create portfolio works as expected.
+   */
+  @Test
+  public void testCreatePortfolio() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2016-10-22", 1);
+    assertEquals(1630.36, s.evaluatePortfolio(1, "2016-10-24"), 0.1);
+  }
+
+  /**
+   * Test if create portfolio fails on passing a negative number.
+   */
+  @Test
+  public void testCreatePortfolioFails() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("AAPL", 2, "2016-10-22", 1);
+  }
+
+  /**
    * Test to check if buy stock method works as expected.
    */
   @Test
@@ -32,6 +53,15 @@ public class StockMarketModelImplTest {
             "Date of purchase: 2014-10-22\n" +
             "Purchase price: 528.8\n" +
             "Number of shares: 2\n", s.viewComposition(1));
+  }
+
+  /**
+   * Test to check if passing an invalid argument to buyStock throws an exception.
+   */
+  @Test
+  public void buyStockFail() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
   }
 
   /**
@@ -65,6 +95,20 @@ public class StockMarketModelImplTest {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2014-10-22", 2);
+  }
+
+  /**
+   * Test to check if creating multiple portfolios works as expected.
+   */
+  @Test
+  public void createPortfolios() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.createPortfolio(2);
+    s.buyStock("AAPL", 2, "2014-10-22", 2);
+    s.buyStock("GOOG", 2, "2014-10-22", 1);
+    assertEquals(1079.6, s.evaluatePortfolio(1, "2014-10-22"), 0.1);
+    assertEquals(210.98, s.evaluatePortfolio(2, "2014-10-24"), 0.1);
   }
 
 }
