@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -134,6 +137,24 @@ public class Services {
   }
 
   /**
+   * Helper method to get nearest date if the date passed is a holiday.
+   * @return the nearest date.
+   */
+  private String getNearestDate(String date) {
+    int daysToDecrement = -1;
+    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+    Calendar c = Calendar.getInstance();
+    try {
+      c.setTime(sd.parse(date));
+      c.add(Calendar.DATE, daysToDecrement);
+      date = sd.format(c.getTime());
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return date;
+  }
+
+  /**
    * Gets value for company.
    *
    * @param date   the date
@@ -150,6 +171,10 @@ public class Services {
         if (temp[0].equals(date)) {
           value = Double.parseDouble(temp[2].trim());
         }
+      }
+      if (value == 0) {
+        date = getNearestDate(date);
+        value = getValueForCompany(date, ticker);
       }
     }
     return value;

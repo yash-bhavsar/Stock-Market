@@ -16,8 +16,8 @@ public class StockMarketControllerImplTest {
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2016-10-20",1);
     s.buyStock("GOOG", 2, "2016-10-20",1);
-    s.buyStock("GOOG", 2, "2017-10-23", 1);
-    System.out.println(s.viewComposition(1));
+    s.buyStock("GOOG", 2, "2016-10-21", 1);
+    System.out.println(s.evaluatePortfolio(1, "2016-10-22"));
   }
 
   /**
