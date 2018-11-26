@@ -22,7 +22,7 @@ public interface IStockMarketModel {
    * @param portfolioNumber the portfolio name
    * @return the composition of the portfolio.
    */
-  String viewComposition(int portfolioNumber);
+  String viewComposition(int portfolioNumber, String date);
 
   /**
    * Create portfolio.

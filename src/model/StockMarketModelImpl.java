@@ -46,8 +46,8 @@ public class StockMarketModelImpl implements IStockMarketModel {
    * @return the composition of the portfolio.
    */
   @Override
-  public String viewComposition(int portfolioNumber) {
-    return user.viewComposition(portfolioNumber);
+  public String viewComposition(int portfolioNumber, String date) {
+    return user.viewComposition(portfolioNumber, date);
   }
 
   /**

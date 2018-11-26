@@ -60,7 +60,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
             break;
           case "3":
             try {
-              result = this.im.viewComposition(Integer.parseInt(inputs[1]));
+              result = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]);
             } catch (IllegalArgumentException e) {
               result = e.getMessage();
             }

@@ -64,10 +64,10 @@ public class User {
    * @param portfolioNumber the portfolio number
    * @return the composition of the portfolio
    */
-  public String viewComposition(int portfolioNumber) {
+  public String viewComposition(int portfolioNumber, String date) {
     checkPortfolioNumber(portfolioNumber);
     Portfolio portfolio = this.portfolios.get(portfolioNumber);
-    return portfolio.getStocks().stream().map(Object::toString).collect(Collectors.joining("\n"));
+    return portfolio.getStocksBeforeDate(date).stream().map(Object::toString).collect(Collectors.joining("\n"));
   }
 
   /**

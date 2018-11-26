@@ -81,7 +81,7 @@ public class StockMarketModelImplTest {
     assertEquals("Company name: GOOG\n" +
             "Date of purchase: 2014-10-22\n" +
             "Purchase price: 528.8\n" +
-            "Number of shares: 2\n", s.viewComposition(1));
+            "Number of shares: 2\n", s.viewComposition(1, "2014-10-22"));
 
     s.buyStock("AAPL", 2, "2014-10-22", 1);
     s.buyStock("GOOG", 2, "2016-10-25", 1);
@@ -98,7 +98,7 @@ public class StockMarketModelImplTest {
             "Company name: GOOG\n" +
             "Date of purchase: 2016-10-25\n" +
             "Purchase price: 805.14\n" +
-            "Number of shares: 2\n", s.viewComposition(1));
+            "Number of shares: 2\n", s.viewComposition(1, "2014-10-22"));
   }
 
   /**
@@ -185,11 +185,11 @@ public class StockMarketModelImplTest {
     assertEquals("Company name: GOOG\n" +
             "Date of purchase: 2014-10-22\n" +
             "Purchase price: 528.8\n" +
-            "Number of shares: 2\n", s.viewComposition(1));
+            "Number of shares: 2\n", s.viewComposition(1, "2014-10-22"));
     assertEquals("Company name: AAPL\n" +
             "Date of purchase: 2014-10-22\n" +
             "Purchase price: 102.6\n" +
-            "Number of shares: 2\n", s.viewComposition(2));
+            "Number of shares: 2\n", s.viewComposition(2, "2014-10-22"));
   }
 
   /**
@@ -203,7 +203,7 @@ public class StockMarketModelImplTest {
     assertEquals("Company name: AAPL\n" +
             "Date of purchase: 2018-11-15\n" +
             "Purchase price: 186.9\n" +
-            "Number of shares: 2\n", s.viewComposition(1));
+            "Number of shares: 2\n", s.viewComposition(1, "2014-10-22"));
   }
 
   /**
@@ -217,6 +217,6 @@ public class StockMarketModelImplTest {
     assertEquals("Company name: GOOG\n" +
             "Date of purchase: 2018-11-15\n" +
             "Purchase price: 1031.78\n" +
-            "Number of shares: 2\n", s.viewComposition(1));
+            "Number of shares: 2\n", s.viewComposition(1, "2014-10-22"));
   }
 }
