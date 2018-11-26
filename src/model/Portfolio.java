@@ -53,10 +53,10 @@ class Portfolio {
     for (Stock s : stocks) {
       if (s.getDateTime().equals(stock.getDateTime()) && s.getTicker().equals(stock.getTicker())) {
         exists = true;
-        int totalShares = s.getShares() + stock.getShares();
+        double totalShares = s.getShares() + stock.getShares();
         stocks.remove(s);
         stocks.add(new Stock(stock.getTicker(), totalShares, stock.getPurchasePrice(),
-                stock.getDateTime(), stock.getCurrentPrice()));
+                stock.getDateTime(), stock.getCurrentPrice(),stock.getCommission()));
       }
     }
     if (!exists) {

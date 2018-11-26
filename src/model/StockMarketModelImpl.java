@@ -1,11 +1,13 @@
 package model;
 
+import java.util.List;
+
 /**
  * The class StockMarketModelImpl which implements the interface IStockMarketModel. It has
  * overridden methods like buyStock, viewComposition, createPortfolio, evaluatePortfolio and
  * calculateCostBasis.
  */
-public class StockMarketModelImpl implements IStockMarketModel {
+public class StockMarketModelImpl implements IStockMarketModel<Stock> {
 
   private User user;
 
@@ -25,14 +27,14 @@ public class StockMarketModelImpl implements IStockMarketModel {
    * @param portfolioNumber the portfolio number
    */
   @Override
-  public void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber) {
+  public void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber, double commission) {
     if (numberOfStocks < 0) {
       throw new IllegalArgumentException("\nNumber of stocks cannot be negative.\n");
     }
     Services s = Services.getInstance();
     Stock stock;
     try {
-      stock = s.getDataForCompany(ticker, numberOfStocks, date);
+      stock = s.getDataForCompany(ticker, numberOfStocks, date, commission);
     } catch (IllegalArgumentException e) {
       throw new IllegalArgumentException(e.getMessage());
     }
@@ -46,7 +48,7 @@ public class StockMarketModelImpl implements IStockMarketModel {
    * @return the composition of the portfolio.
    */
   @Override
-  public String viewComposition(int portfolioNumber, String date) {
+  public List<Stock> viewComposition(int portfolioNumber, String date) {
     return user.viewComposition(portfolioNumber, date);
   }
 

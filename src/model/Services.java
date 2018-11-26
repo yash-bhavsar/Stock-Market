@@ -46,10 +46,10 @@ public class Services {
    * @param date        the date
    * @return the data for company
    */
-  public Stock getDataForCompany(String stockSymbol, int shares, String date) {
+  public Stock getDataForCompany(String stockSymbol, int shares, String date, double commission) {
 
     String[] stockArray;
-    float low = 0;
+    float close = 0;
     String currentDate;
     String finalDate = "";
 
@@ -61,8 +61,8 @@ public class Services {
         currentDate = tempArray[0];
         if (currentDate.equals(date)) {
           finalDate = currentDate;
-          low = Float.parseFloat(tempArray[3]);
-          return new Stock(stockSymbol, shares, low, finalDate, low);
+          close = Float.parseFloat(tempArray[4]);
+          return new Stock(stockSymbol, shares, close, finalDate, close, commission);
         }
       }
     }
@@ -122,15 +122,15 @@ public class Services {
       currentDate = temp[0];
       if (currentDate.equals(date)) {
         finalDate = currentDate;
-        low = Float.parseFloat(temp[3]);
+        close = Float.parseFloat(temp[4]);
         break;
       }
     }
 
-    if (low == 0.0) {
+    if (close == 0.0) {
       throw new IllegalArgumentException("\nMarket is closed.\n");
     }
-    return new Stock(stockSymbol, shares, low, finalDate, low);
+    return new Stock(stockSymbol, shares, close, finalDate, close, commission);
   }
 
   /**
@@ -167,7 +167,7 @@ public class Services {
       for (int i = 1; i < stockArray.length; i++) {
         String[] temp = stockArray[i].split(",");
         if (temp[0].equals(date)) {
-          value = Double.parseDouble(temp[2].trim());
+          value = Double.parseDouble(temp[4].trim());
         }
       }
       if (value == 0) {

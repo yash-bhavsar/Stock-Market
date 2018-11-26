@@ -1,6 +1,8 @@
 package model;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -64,10 +66,10 @@ public class User {
    * @param portfolioNumber the portfolio number
    * @return the composition of the portfolio
    */
-  public String viewComposition(int portfolioNumber, String date) {
+  public List<Stock> viewComposition(int portfolioNumber, String date) {
     checkPortfolioNumber(portfolioNumber);
     Portfolio portfolio = this.portfolios.get(portfolioNumber);
-    return portfolio.getStocksBeforeDate(date).stream().map(Object::toString).collect(Collectors.joining("\n"));
+    return portfolio.getStocksBeforeDate(date);
   }
 
   /**
