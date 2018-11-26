@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class StockMarketViewImpl implements IStockMarketView {
 
-  private Readable rd;
   private Appendable out;
   private Scanner scanner;
 
@@ -27,9 +27,9 @@ public class StockMarketViewImpl implements IStockMarketView {
     if (rd == null || out == null) {
       throw new IllegalArgumentException("Readable or appendable cannot be null");
     }
-    this.rd = rd;
+    Readable rd1 = rd;
     this.out = out;
-    scanner = new Scanner(this.rd);
+    scanner = new Scanner(rd1);
   }
 
   /**
@@ -44,7 +44,11 @@ public class StockMarketViewImpl implements IStockMarketView {
     StringBuilder input = new StringBuilder();
 
     this.out.append(getQuestion());
-    choice = scanner.next();
+    try {
+      choice = scanner.next();
+    } catch (NoSuchElementException e) {
+      return String.valueOf(Integer.MAX_VALUE);
+    }
     switch (choice) {
       case "1":
         input.append("1 ");
@@ -69,7 +73,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
       case "5":
         input.append("5 ");
-        this.out.append("Quitting..... JAI HIND!!!");
+        this.out.append("Quitting.....");
         try {
           TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
@@ -78,7 +82,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
 
       default:
-        this.out.append("\n\t\t\t\t\tEnter valid choice. JAI HIND!!!\n");
+        this.out.append("\n\t\t\t\t\t\tEnter valid choice.\n");
     }
     return input.toString();
   }
@@ -160,7 +164,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @throws IOException if the input is invalid.
    */
   private String askDate() throws IOException {
-    this.out.append("\nThe date at which you want to buy stock: ");
+    this.out.append("\nDate(yyyy-mm-dd) at which you want to buy stock: ");
     String s = scanner.next();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
@@ -176,5 +180,9 @@ public class StockMarketViewImpl implements IStockMarketView {
       this.out.append("\nEnter valid date in format (yyyy-mm-dd).\n ");
       return askDate();
     }
+  }
+
+  public Appendable getOut() {
+    return this.out;
   }
 }

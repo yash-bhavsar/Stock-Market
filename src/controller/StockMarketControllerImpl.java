@@ -6,8 +6,8 @@ import model.IStockMarketModel;
 import view.IStockMarketView;
 
 /**
- * The class StockMarketController which has the overridden method startStockMarketSimulator
- * to start the simulation.
+ * The class StockMarketController which has the overridden method startStockMarketSimulator to
+ * start the simulation.
  */
 public class StockMarketControllerImpl implements IStockMarketController {
 
@@ -37,6 +37,9 @@ public class StockMarketControllerImpl implements IStockMarketController {
     try {
       while (true) {
         String input = this.iv.enterCommand();
+        if (input.equals(String.valueOf(Integer.MAX_VALUE))) {
+          break;
+        }
         String[] inputs = input.trim().split("\\s+");
         String result = "";
         switch (inputs[0]) {
@@ -65,14 +68,16 @@ public class StockMarketControllerImpl implements IStockMarketController {
           case "4":
             try {
               result += "Total basis: " + this.im.calculateCostBasis(Integer.parseInt(inputs[1])
-                      ,inputs[2]) + "\nTotal Evaluation: " + this.im.evaluatePortfolio(
-                              Integer.parseInt(inputs[1]), inputs[2]);
+                      , inputs[2]) + "\nTotal Evaluation: " + this.im.evaluatePortfolio(
+                      Integer.parseInt(inputs[1]), inputs[2]);
             } catch (Exception e) {
               result = e.getMessage();
             }
             break;
           case "5":
             System.exit(0);
+            break;
+          default:
             break;
         }
         this.iv.result(result);
