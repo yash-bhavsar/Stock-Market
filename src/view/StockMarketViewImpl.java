@@ -134,9 +134,9 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   /**
    *
-   * @param string
-   * @return
-   * @throws IOException
+   * @param string is the number which the user wishes to enter.
+   * @return the number, if it passes validations.
+   * @throws IOException if input is invalid.
    */
   private String askNumber(String string) throws IOException {
     this.out.append(string);
