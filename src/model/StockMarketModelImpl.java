@@ -1,5 +1,6 @@
 package model;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -101,5 +102,11 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     double value = services.getValueForCompany(date, ticker, true);
     double numberOfShares = investmentAmount / value;
     buyStock(ticker, numberOfShares, date, portfolioNumber, 0);
+  }
+
+  @Override
+  public void DCassStrategy(String ticker, double investmentAmount, String startDate, String endDate, int portfolioNumber, int frequency) throws ParseException {
+    IStrategy strategy = new DCAS();
+    strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate, portfolioNumber, frequency);
   }
 }

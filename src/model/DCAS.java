@@ -12,6 +12,7 @@ public class DCAS implements IStrategy {
   private IStockMarketModel model;
 
   public DCAS() {
+    this.model = new StockMarketModelImpl();
   }
 
   @Override
