@@ -60,21 +60,21 @@ public class StockMarketViewImpl implements IStockMarketView {
     switch (choice) {
       case "1":
         input.append("1 ");
-        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
         break;
       case "2":
         input.append("2 ");
         this.out.append("\nEnter Stock details: \nStock symbol(Ticker): ");
         input.append(" ").append(scanner.next());
-        input.append(" ").append(askNumberOfShares());
+        input.append(" ").append(askNumber("\nThe number of shares you want to buy: "));
         input.append(" ").append(askDate());
-        input.append(" ").append(askPortfolioNumber());
-        input.append(" ").append(askCommissionAmount());
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
+        input.append(" ").append(askNumber("\nEnter commission amount: "));
         break;
       case "3":
         input.append("3 ");
         this.out.append("\nEnter investment details. \n");
-        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
         input.append(" ").append(askDate());
         this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights.\n");
         input.append(" ").append(scanner.next());
@@ -82,19 +82,19 @@ public class StockMarketViewImpl implements IStockMarketView {
       case "4":
         input.append("4 ");
         this.out.append("\nEnter strategy details: \n");
-        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
         input.append(" ").append(askDate());
         input.append(" ").append(askDate());
-        input.append(" ").append(askFrequency());
+        input.append(" ").append(askNumber("\nPlease enter the frequency for the strategy\n"));
         break;
       case "5":
         input.append("5 ");
-        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
         input.append(" ").append(askDate());
         break;
       case "6":
         input.append("6 ");
-        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
         input.append(" ").append(askDate());
         break;
       case "7":
@@ -132,19 +132,25 @@ public class StockMarketViewImpl implements IStockMarketView {
     return input.toString();
   }
 
-  private String askFrequency() throws IOException {
-    this.out.append("\nPlease enter the frequency for the strategy\n");
+  /**
+   *
+   * @param string
+   * @return
+   * @throws IOException
+   */
+  private String askNumber(String string) throws IOException {
+    this.out.append(string);
     String s = scanner.next();
     try {
       int t = Integer.parseInt(s);
       if (t < 0) {
         this.out.append("\nEnter valid number.\n ");
-        return askFrequency();
+        return askWeights(string);
       }
       return s.trim();
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number: ");
-      return askFrequency();
+      return askWeights(string);
     }
   }
 
@@ -194,74 +200,6 @@ public class StockMarketViewImpl implements IStockMarketView {
             "\n 5. View Composition of a portfolio." +
             "\n 6. View total cost basis and evaluation of a portfolio on a particular date." +
             "\n 7. Quit.\n";
-  }
-
-  /**
-   * Helper method to get the number of shares from the user.
-   *
-   * @return returns the string.
-   * @throws IOException if the input is invalid.
-   */
-  private String askNumberOfShares() throws IOException {
-    this.out.append("\nThe number of shares you want to buy: ");
-    String s = scanner.next();
-    try {
-      int a = Integer.parseInt(s.trim());
-      if (a < 0) {
-        this.out.append("\nEnter valid number.\n ");
-        return askNumberOfShares();
-      }
-      return s.trim();
-    } catch (NumberFormatException e) {
-      this.out.append("\nEnter valid number: ");
-      return askNumberOfShares();
-    }
-  }
-
-  /**
-   * Helper method to take the commission amount as input from user.
-   *
-   * @return the commission amount.
-   * @throws IOException if the input is invalid.
-   */
-  private String askCommissionAmount() throws IOException {
-    this.out.append("\nEnter commission amount: ");
-
-    String s = scanner.next();
-    try {
-      double a = Double.parseDouble(s.trim());
-      if (a < 0) {
-        this.out.append("\nEnter a valid number");
-        return askCommissionAmount();
-      }
-      return s.trim();
-    } catch (NumberFormatException e) {
-      this.out.append("\nEnter valid number");
-      return askCommissionAmount();
-    }
-  }
-
-  /**
-   * Helper method to take the portfolio number as an input from the user.
-   *
-   * @return returns the portfolio number.
-   * @throws IOException if the input is invalid.
-   */
-  private String askPortfolioNumber() throws IOException {
-    this.out.append("\nEnter portfolio number: ");
-
-    String s = scanner.next();
-    try {
-      int a = Integer.parseInt(s.trim());
-      if (a < 0) {
-        this.out.append("\nEnter valid number.\n ");
-        return askPortfolioNumber();
-      }
-      return s.trim();
-    } catch (NumberFormatException e) {
-      this.out.append("\nEnter valid number.\n ");
-      return askPortfolioNumber();
-    }
   }
 
   /**
