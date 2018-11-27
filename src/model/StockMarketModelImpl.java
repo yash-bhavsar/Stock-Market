@@ -27,7 +27,7 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
    * @param portfolioNumber the portfolio number
    */
   @Override
-  public void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber, double commission) {
+  public void buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber, double commission) {
     if (numberOfStocks < 0) {
       throw new IllegalArgumentException("\nNumber of stocks cannot be negative.\n");
     }
@@ -84,5 +84,13 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
   @Override
   public double calculateCostBasis(int portfolioNumber, String date) {
     return user.calculateCostBasis(portfolioNumber, date);
+  }
+
+  @Override
+  public void invest(String ticker, double investmentAmount, String date, int portfolioNumber, double commission) {
+    Services services = Services.getInstance();
+    double value = services.getValueForCompany(date, ticker, true);
+    double numberOfShares = investmentAmount / value;
+    buyStock(ticker, numberOfShares, date, portfolioNumber, 0);
   }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 /**
  * The interface IStockMarketModel which has methods to buy stocks, calculate cost basis, view
  * composition, create and evaluate portfolio.
+ *
+ * @param <T> the type parameter
  */
 public interface IStockMarketModel<T> {
 
@@ -15,13 +17,15 @@ public interface IStockMarketModel<T> {
    * @param numberOfStocks  the number of stocks
    * @param date            the date
    * @param portfolioNumber the portfolio number
+   * @param commission      the commission
    */
-  void buyStock(String ticker, int numberOfStocks, String date, int portfolioNumber, double commission);
+  void buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber, double commission);
 
   /**
    * View composition of a portfolio.
    *
    * @param portfolioNumber the portfolio name
+   * @param date            the date
    * @return the composition of the portfolio.
    */
   List<T> viewComposition(int portfolioNumber, String date);
@@ -50,4 +54,16 @@ public interface IStockMarketModel<T> {
    * @return returns the cost basis.
    */
   double calculateCostBasis(int portfolioNumber, String date);
+
+  /**
+   * Invest in a particular portfolio.
+   *
+   * @param ticker           the ticker
+   * @param investmentAmount the investment amount
+   * @param date             the date
+   * @param portfolioNumber  the portfolio number
+   * @param commission       the commission
+   */
+  void invest(String ticker, double investmentAmount, String date, int portfolioNumber,
+              double commission);
 }

@@ -46,7 +46,7 @@ public class Services {
    * @param date        the date
    * @return the data for company
    */
-  public Stock getDataForCompany(String stockSymbol, int shares, String date, double commission) {
+  public Stock getDataForCompany(String stockSymbol, double shares, String date, double commission) {
 
     String[] stockArray;
     float close = 0;
@@ -159,7 +159,7 @@ public class Services {
    * @param ticker the ticker
    * @return the value for company
    */
-  public double getValueForCompany(String date, String ticker) {
+  public double getValueForCompany(String date, String ticker, boolean low) {
     double value = 0;
     if (this.cachedData.containsKey(ticker)) {
       String data = this.cachedData.get(ticker);
@@ -167,12 +167,16 @@ public class Services {
       for (int i = 1; i < stockArray.length; i++) {
         String[] temp = stockArray[i].split(",");
         if (temp[0].equals(date)) {
-          value = Double.parseDouble(temp[4].trim());
+          if (low) {
+            value = Double.parseDouble(temp[3].trim());
+          } else {
+            value = Double.parseDouble(temp[4].trim());
+          }
         }
       }
       if (value == 0) {
         date = getNearestDate(date);
-        value = getValueForCompany(date, ticker);
+        value = getValueForCompany(date, ticker, low);
       }
     }
     return value;

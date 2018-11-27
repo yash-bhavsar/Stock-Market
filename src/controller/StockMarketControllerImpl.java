@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,20 +66,27 @@ public class StockMarketControllerImpl implements IStockMarketController {
             break;
           case "3":
             try {
-              List tempList = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]);
-              if (tempList.size() == 0) {
+              String date = inputs[2];
+              int portfolioNumber = Integer.parseInt(inputs[1]);
+              List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+              //Write helper method.
+              if (stockList.size() == 0) {
                 result = "\n\nBuy stock first\n";
                 break;
               }
-              List<Stock> stockList = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]);
               String weights = this.iv.continueTakingWeights(stockList);
-              int[] numbers = Arrays.stream(weights.trim().split("\\s+")).mapToInt(Integer::parseInt).toArray();
-              int total = 0;
-              for (int number : numbers) {
-                total += number;
+              int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
+                      .mapToInt(Integer::parseInt).toArray();
+              int amount = numbers[numbers.length - 1];
+              int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
+              if (Arrays.stream(weightsNumbers).sum() != 100) {
+                result = "\nSum of weights should be 100\n";
+                break;
               }
-              if (total > 100) {
-                System.out.println("Weights total > 100");
+              double[] numbers1 = Arrays.stream(weightsNumbers)
+                      .mapToDouble(number -> number * 0.01 * amount).toArray();
+              for (int i = 0; i < stockList.size(); i++) {
+                this.im.invest(stockList.get(i).getTicker(), numbers1[i], date, portfolioNumber, 0);
               }
             } catch (IllegalArgumentException e) {
               result = e.getMessage();
@@ -85,12 +94,38 @@ public class StockMarketControllerImpl implements IStockMarketController {
             break;
           case "4":
             try {
-              result = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]).toString();
+              String date = inputs[2];
+              int portfolioNumber = Integer.parseInt(inputs[1]);
+              int frequency = Integer.parseInt(inputs[4]);
+              List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+              //Write helper method.
+              if (stockList.size() == 0) {
+                result = "\n\nBuy stock first\n";
+                break;
+              }
+              String weights = this.iv.continueTakingWeights(stockList);
+              int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
+                      .mapToInt(Integer::parseInt).toArray();
+              int amount = numbers[numbers.length - 1];
+              int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
+              if (Arrays.stream(weightsNumbers).sum() != 100) {
+                result = "\nSum of weights should be 100\n";
+                break;
+              }
+              double[] numbers1 = Arrays.stream(weightsNumbers)
+                      .mapToDouble(number -> number * 0.01 * amount).toArray();
             } catch (IllegalArgumentException e) {
               result = e.getMessage();
             }
             break;
           case "5":
+            try {
+              result = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]).toString();
+            } catch (IllegalArgumentException e) {
+              result = e.getMessage();
+            }
+            break;
+          case "6":
             try {
               result += "Total basis: " + this.im.calculateCostBasis(Integer.parseInt(inputs[1])
                       , inputs[2]) + "\nTotal Evaluation: " + this.im.evaluatePortfolio(
@@ -99,7 +134,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
               result = e.getMessage();
             }
             break;
-          case "6":
+          case "7":
             System.exit(0);
             break;
           default:
