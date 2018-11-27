@@ -2,8 +2,6 @@ package model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,12 +28,4 @@ public class DCAS implements IStrategy {
       System.out.println(sdate);
     }
   }
-
-//  public static void main(String[] args) {
-//    try {
-//      investmentStrateg("AAPL", 1000, "2018-11-15", "2018-11-26", 1, 1);
-//    } catch (ParseException e) {
-//      e.printStackTrace();
-//    }
-//  }
 }

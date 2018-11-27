@@ -114,10 +114,10 @@ public class StockMarketViewImpl implements IStockMarketView {
   }
 
   @Override
-  public String continueTakingWeights(List<Stock> stockList) throws IOException {
+  public String continueTakingWeights(List<String> stockList) throws IOException {
     input = new StringBuilder();
-    for (Stock stock : stockList) {
-      input.append(" ").append(askWeights(stock.getTicker()));
+    for (String stock : stockList) {
+      input.append(" ").append(askWeights(stock));
     }
     this.out.append("\nEnter Amount to be invested: $");
     input.append(" ").append(scanner.next());

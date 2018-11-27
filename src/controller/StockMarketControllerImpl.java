@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import model.IStockMarketModel;
 import model.Stock;
@@ -71,12 +72,14 @@ public class StockMarketControllerImpl implements IStockMarketController {
                 String date = inputs[2];
                 int portfolioNumber = Integer.parseInt(inputs[1]);
                 List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
                 //Write helper method.
                 if (stockList.size() == 0) {
                   result = "\n\nBuy stock first\n";
                   break;
                 }
-                String weights = this.iv.continueTakingWeights(stockList);
+                String weights = this.iv.continueTakingWeights(stockNames);
                 int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
                         .mapToInt(Integer::parseInt).toArray();
                 int amount = numbers[numbers.length - 1];
@@ -120,12 +123,14 @@ public class StockMarketControllerImpl implements IStockMarketController {
               int portfolioNumber = Integer.parseInt(inputs[1]);
               int frequency = Integer.parseInt(inputs[4]);
               List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
+              List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+              stockNames = stockNames.stream().distinct().collect(Collectors.toList());
               //Write helper method.
               if (stockList.size() == 0) {
                 result = "\n\nBuy stock first\n";
                 break;
               }
-              String weights = this.iv.continueTakingWeights(stockList);
+              String weights = this.iv.continueTakingWeights(stockNames);
               int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
                       .mapToInt(Integer::parseInt).toArray();
               int amount = numbers[numbers.length - 1];
