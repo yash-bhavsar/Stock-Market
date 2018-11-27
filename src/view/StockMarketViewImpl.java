@@ -4,9 +4,15 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
+import model.Stock;
+
 
 /**
  * The class StockMarketView which has methods to get the input from the user. These include helper
@@ -16,6 +22,8 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   private Appendable out;
   private Scanner scanner;
+  private StringBuilder input;
+
 
   /**
    * Constructor which initializes the readable and appendable objects.
@@ -41,7 +49,7 @@ public class StockMarketViewImpl implements IStockMarketView {
   @Override
   public String enterCommand() throws IOException {
     String choice;
-    StringBuilder input = new StringBuilder();
+    input = new StringBuilder();
 
     this.out.append(getQuestion());
     try {
@@ -61,18 +69,34 @@ public class StockMarketViewImpl implements IStockMarketView {
         input.append(" ").append(askNumberOfShares());
         input.append(" ").append(askDate());
         input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askCommissionAmount());
         break;
       case "3":
         input.append("3 ");
-        input.append(" ").append(askPortfolioNumber());
-        break;
-      case "4":
-        input.append("4 ");
+        this.out.append("\nEnter investment details. \n");
         input.append(" ").append(askPortfolioNumber());
         input.append(" ").append(askDate());
         break;
+      case "4":
+        input.append("4 ");
+        this.out.append("\nEnter strategy details: \n");
+        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askDate());
+        input.append(" ").append(askDate());
+        input.append(" ").append(askFrequency());
+        break;
       case "5":
         input.append("5 ");
+        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askDate());
+        break;
+      case "6":
+        input.append("6 ");
+        input.append(" ").append(askPortfolioNumber());
+        input.append(" ").append(askDate());
+        break;
+      case "7":
+        input.append("7 ");
         this.out.append("Quitting.....");
         try {
           TimeUnit.SECONDS.sleep(3);
@@ -85,6 +109,54 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\n\t\t\t\t\t\tEnter valid choice.\n");
     }
     return input.toString();
+  }
+
+  @Override
+  public String continueTakingWeights(List<Stock> stockList) throws IOException {
+    input = new StringBuilder();
+    for (Stock stock : stockList) {
+      input.append(" ").append(askWeights(stock.getTicker()));
+    }
+    this.out.append("\nEnter Amount to be invested: ");
+    input.append(" ").append(scanner.next());
+    return input.toString();
+  }
+
+  private String askFrequency() throws IOException {
+    this.out.append("\nPlease enter the frequency for the strategy\n");
+    String s = scanner.next();
+    try {
+      int t = Integer.parseInt(s);
+      if (t < 0) {
+        this.out.append("\nEnter valid number.\n ");
+        return askFrequency();
+      }
+      return s.trim();
+    } catch (NumberFormatException e) {
+      this.out.append("\nEnter valid number: ");
+      return askFrequency();
+    }
+  }
+
+  /**
+   * Private helper method which asks the user for weights of each stock in the portfolio.
+   *
+   * @return the weight entered by the user.
+   */
+  private String askWeights(String ticker) throws IOException {
+    this.out.append("\nEnter weight for: " + ticker + "\n");
+    String s = scanner.next();
+    try {
+      int t = Integer.parseInt(s);
+      if (t < 0) {
+        this.out.append("\nEnter valid number.\n ");
+        return askWeights(ticker);
+      }
+      return s.trim();
+    } catch (NumberFormatException e) {
+      this.out.append("\nEnter valid number: ");
+      return askWeights(ticker);
+    }
   }
 
   /**
@@ -107,9 +179,11 @@ public class StockMarketViewImpl implements IStockMarketView {
     return "\nEnter Choice:" +
             "\n 1. Create new portfolio." +
             "\n 2. Buy Stock." +
-            "\n 3. View Composition of a portfolio." +
-            "\n 4. View total cost basis and evaluation of a portfolio on a particular date." +
-            "\n 5. Quit.\n";
+            "\n 3. Invest" +
+            "\n 4. Create Strategy" +
+            "\n 5. View Composition of a portfolio." +
+            "\n 6. View total cost basis and evaluation of a portfolio on a particular date." +
+            "\n 7. Quit.\n";
   }
 
   /**
@@ -131,6 +205,29 @@ public class StockMarketViewImpl implements IStockMarketView {
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number: ");
       return askNumberOfShares();
+    }
+  }
+
+  /**
+   * Helper method to take the commission amount as input from user.
+   *
+   * @return the commission amount.
+   * @throws IOException if the input is invalid.
+   */
+  private String askCommissionAmount() throws IOException {
+    this.out.append("\nEnter commission amount: ");
+
+    String s = scanner.next();
+    try {
+      double a = Double.parseDouble(s.trim());
+      if (a < 0) {
+        this.out.append("\nEnter a valid number");
+        return askCommissionAmount();
+      }
+      return s.trim();
+    } catch (NumberFormatException e) {
+      this.out.append("\nEnter valid number");
+      return askCommissionAmount();
     }
   }
 
@@ -164,7 +261,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @throws IOException if the input is invalid.
    */
   private String askDate() throws IOException {
-    this.out.append("\nEnter date(yyyy-mm-dd): ");
+    this.out.append("\nPlease enter date(yyyy-mm-dd): ");
     String s = scanner.next();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
@@ -182,6 +279,11 @@ public class StockMarketViewImpl implements IStockMarketView {
     }
   }
 
+  /**
+   * Gets out.
+   *
+   * @return the out
+   */
   public Appendable getOut() {
     return this.out;
   }

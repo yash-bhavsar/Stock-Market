@@ -5,13 +5,14 @@ package model;
  * date and current price. Intentionally kept package-private object of this class are not used
  * outside of this package.
  */
-class Stock {
+public class Stock {
 
   private final String ticker;
-  private int shares;
+  private double shares;
   private final float purchasePrice;
   private final String date;
   private final float currentPrice;
+  private final double commission;
 
   /**
    * Instantiates a new model.Stock.
@@ -21,13 +22,15 @@ class Stock {
    * @param purchasePrice the purchase price
    * @param date          the date time
    * @param currentPrice  the current price
+   * @param commission    the commission
    */
-  public Stock(String ticker, int shares, float purchasePrice, String date, float currentPrice) {
+  public Stock(String ticker, double shares, float purchasePrice, String date, float currentPrice, double commission) {
     this.ticker = ticker;
     this.shares = shares;
     this.purchasePrice = purchasePrice;
     this.date = date;
     this.currentPrice = currentPrice;
+    this.commission = commission;
   }
 
   /**
@@ -44,7 +47,7 @@ class Stock {
    *
    * @return the shares
    */
-  public int getShares() {
+  public double getShares() {
     return shares;
   }
 
@@ -91,7 +94,16 @@ class Stock {
    * @return the double
    */
   public double calculateCostBasis() {
-    return this.purchasePrice * this.shares;
+    return this.purchasePrice * this.shares + this.commission;
+  }
+
+  /**
+   * Gets commission.
+   *
+   * @return the commission
+   */
+  public double getCommission() {
+    return commission;
   }
 
   /**
@@ -103,7 +115,7 @@ class Stock {
   @Override
   public String toString() {
     return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDateTime() +
-            "\nPurchase price: " + this.purchasePrice + "\nNumber of shares: " + this.shares +
+            "\nPurchase price: $" + this.purchasePrice + "\nNumber of shares: " + this.shares +
             "\n";
   }
 }

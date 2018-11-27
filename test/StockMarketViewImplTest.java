@@ -17,8 +17,6 @@ public class StockMarketViewImplTest {
   IStockMarketController sc;
   IStockMarketModel sm;
   Readable rd;
-  Readable rd1;
-  Readable rd2;
   Appendable ap;
 
   /**
