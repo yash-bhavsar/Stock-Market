@@ -86,6 +86,15 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     return user.calculateCostBasis(portfolioNumber, date);
   }
 
+  /**
+   * Invest in a particular portfolio.
+   *
+   * @param ticker           the ticker
+   * @param investmentAmount the investment amount
+   * @param date             the date
+   * @param portfolioNumber  the portfolio number
+   * @param commission       the commission
+   */
   @Override
   public void invest(String ticker, double investmentAmount, String date, int portfolioNumber, double commission) {
     Services services = Services.getInstance();

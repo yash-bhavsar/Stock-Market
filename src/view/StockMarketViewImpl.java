@@ -76,6 +76,8 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\nEnter investment details. \n");
         input.append(" ").append(askPortfolioNumber());
         input.append(" ").append(askDate());
+        this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights.\n");
+        input.append(" ").append(scanner.next());
         break;
       case "4":
         input.append("4 ");
@@ -117,7 +119,15 @@ public class StockMarketViewImpl implements IStockMarketView {
     for (Stock stock : stockList) {
       input.append(" ").append(askWeights(stock.getTicker()));
     }
-    this.out.append("\nEnter Amount to be invested: ");
+    this.out.append("\nEnter Amount to be invested: $");
+    input.append(" ").append(scanner.next());
+    return input.toString();
+  }
+
+  @Override
+  public String getEqualWeightsAmount() throws IOException {
+    input = new StringBuilder();
+    this.out.append("\nEnter the amount you want to invest: $");
     input.append(" ").append(scanner.next());
     return input.toString();
   }
