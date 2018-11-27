@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+
 /**
  * The interface Strategy.
  */
@@ -10,10 +12,11 @@ public interface IStrategy {
    *
    * @param ticker           the ticker
    * @param investmentAmount the investment amount
-   * @param date             the date
+   * @param startDate        the date
+   * @param endDate          the date
    * @param portfolioNumber  the portfolio number
-   * @param commission       the commission
+   * @param frequency        the frequency
    */
-  void investmentStrategy(String ticker, double investmentAmount, String date, int portfolioNumber,
-              double commission);
+  void investmentStrategy(String ticker, double investmentAmount, String startDate, String endDate,
+                          int portfolioNumber, int frequency) throws ParseException;
 }
