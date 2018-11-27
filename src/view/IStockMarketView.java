@@ -35,4 +35,11 @@ public interface IStockMarketView {
    * @throws IOException the io exception if input is invalid.
    */
   String continueTakingWeights(List<Stock> stockList) throws IOException;
+
+  /**
+   * Gets amount to be invested for equal weights.
+   *
+   * @return the equal weights amount.
+   */
+  String getEqualWeightsAmount() throws IOException;
 }
