@@ -2,9 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.net.Inet4Address;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import model.IStockMarketModel;
 import model.Stock;
@@ -70,12 +72,14 @@ public class StockMarketControllerImpl implements IStockMarketController {
                 String date = inputs[2];
                 int portfolioNumber = Integer.parseInt(inputs[1]);
                 List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
                 //Write helper method.
                 if (stockList.size() == 0) {
                   result = "\n\nBuy stock first\n";
                   break;
                 }
-                String weights = this.iv.continueTakingWeights(stockList);
+                String weights = this.iv.continueTakingWeights(stockNames);
                 int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
                         .mapToInt(Integer::parseInt).toArray();
                 int amount = numbers[numbers.length - 1];
@@ -114,16 +118,19 @@ public class StockMarketControllerImpl implements IStockMarketController {
             break;
           case "4":
             try {
-              String date = inputs[2];
+              String sdate = inputs[2];
+              String edate = inputs[3];
               int portfolioNumber = Integer.parseInt(inputs[1]);
               int frequency = Integer.parseInt(inputs[4]);
-              List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+              List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
+              List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+              stockNames = stockNames.stream().distinct().collect(Collectors.toList());
               //Write helper method.
               if (stockList.size() == 0) {
                 result = "\n\nBuy stock first\n";
                 break;
               }
-              String weights = this.iv.continueTakingWeights(stockList);
+              String weights = this.iv.continueTakingWeights(stockNames);
               int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
                       .mapToInt(Integer::parseInt).toArray();
               int amount = numbers[numbers.length - 1];
@@ -134,6 +141,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
               }
               double[] numbers1 = Arrays.stream(weightsNumbers)
                       .mapToDouble(number -> number * 0.01 * amount).toArray();
+              for (int i = 0; i < stockList.size(); i++) {
+                this.im.DCassStrategy(stockList.get(i).getTicker(), numbers1[i], sdate, edate,
+                        portfolioNumber, frequency);
+              }
             } catch (IllegalArgumentException e) {
               result = e.getMessage();
             }
@@ -162,7 +173,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
         }
         this.iv.result(result);
       }
-    } catch (IOException e) {
+    } catch (IOException | ParseException e) {
       e.printStackTrace();
     }
   }

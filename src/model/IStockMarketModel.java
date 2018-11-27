@@ -1,5 +1,6 @@
 package model;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -66,4 +67,17 @@ public interface IStockMarketModel<T> {
    */
   void invest(String ticker, double investmentAmount, String date, int portfolioNumber,
               double commission);
+
+  /**
+   * D cass strategy.
+   *
+   * @param ticker           the ticker
+   * @param investmentAmount the investment amount
+   * @param startDate        the start date
+   * @param endDate          the end date
+   * @param portfolioNumber  the portfolio number
+   * @param frequency        the frequency
+   */
+  void DCassStrategy(String ticker, double investmentAmount, String startDate, String endDate, int portfolioNumber,
+                     int frequency) throws ParseException;
 }
