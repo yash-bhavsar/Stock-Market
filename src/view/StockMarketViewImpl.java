@@ -164,7 +164,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @throws IOException if the input is invalid.
    */
   private String askDate() throws IOException {
-    this.out.append("\nDate(yyyy-mm-dd) at which you want to buy stock: ");
+    this.out.append("\nEnter date(yyyy-mm-dd): ");
     String s = scanner.next();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     df.setLenient(false);
