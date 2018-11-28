@@ -30,16 +30,16 @@ public class DCAS implements IStrategy {
       double value = service.getValueForCompany(dateFormat.format(sdate), ticker);
       double numberOfShares = investmentAmount / value;
       Stock stock = null;
-      try {
-        stock = service.getDataForCompany(ticker, numberOfShares,
-                dateFormat.format(sdate), 0);
-      } catch (IllegalArgumentException e) {
-        String t = getNearestDate(dateFormat.format(sdate));
-        sdate = dateFormat.parse(t);
+      while(stock == null) {
+        try {
+          stock = service.getDataForCompany(ticker, numberOfShares,
+                  dateFormat.format(sdate), 0);
+        } catch (IllegalArgumentException e) {
+          String t = getNearestDate(dateFormat.format(sdate));
+          sdate = dateFormat.parse(t);
+        }
       }
-      if (stock != null) {
-        user.buyStock(portfolioNumber, stock);
-      }
+      user.buyStock(portfolioNumber, stock);
       Calendar c = Calendar.getInstance();
       c.setTime(sdate);
       c.add(Calendar.DATE, frequency);

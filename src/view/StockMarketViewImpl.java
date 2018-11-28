@@ -72,8 +72,8 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\nEnter investment details. \n");
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
         input.append(" ").append(askDate());
-        this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights\n");
-        input.append(" ").append(scanner.next());
+        input.append(" ").append(askChoice("\nSelect weights: \n1.Equal weights " +
+                "\n2.Custom weights\n"));
         break;
       case "4":
         input.append("4 ");
@@ -81,16 +81,17 @@ public class StockMarketViewImpl implements IStockMarketView {
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
         this.out.append("\nEnter start date: \n");
         input.append(" ").append(askDate());
-        this.out.append("\nEnter end Date\n1. Yes\n2. No");
-        if (askNumber("\nEnter choice:").equals("1")){
+        this.out.append("\nEnter end Date\n1. Yes\n2. No\n");
+        String choice1 = askChoice("");
+        if (choice1.equals("1")) {
           input.append(" ").append(askEndDate(true));
         } else {
           input.append(" ").append(askEndDate(false));
         }
         input.append(" ").append(askNumber("Please enter the frequency (in days) " +
                 "for the strategy\n"));
-        this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights\n");
-        input.append(" ").append(scanner.next());
+        input.append(" ").append(askChoice("\nSelect weights: \n1.Equal weights " +
+                "\n2.Custom weights\n"));
         break;
       case "5":
         input.append("5 ");
@@ -139,6 +140,7 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   /**
    * Private helper method to ask for end date.
+   *
    * @return the end date.
    * @throws IOException if input is invalid.
    */
@@ -166,6 +168,7 @@ public class StockMarketViewImpl implements IStockMarketView {
   }
 
   /**
+   * Private helper method which asks the user for number depending on the question.
    *
    * @param string is the number which the user wishes to enter.
    * @return the number, if it passes validations.
@@ -184,6 +187,29 @@ public class StockMarketViewImpl implements IStockMarketView {
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number: ");
       return askNumber(string);
+    }
+  }
+
+  /**
+   * Private helper method which asks the user for weights of each stock in the portfolio.
+   *
+   * @param string question as a String.
+   * @return return the valid choice (either 1 or 2) as a String.
+   * @throws IOException if append is not working.
+   */
+  private String askChoice(String string) throws IOException {
+    this.out.append(string);
+    String s = scanner.next();
+    try {
+      int t = Integer.parseInt(s);
+      if (t < 1 || t > 2) {
+        this.out.append("\nEnter valid number.\n ");
+        return askChoice(string);
+      }
+      return s.trim();
+    } catch (NumberFormatException e) {
+      this.out.append("\nEnter valid number: ");
+      return askChoice(string);
     }
   }
 

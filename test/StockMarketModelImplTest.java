@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.IStockMarketModel;
@@ -172,14 +173,12 @@ public class StockMarketModelImplTest {
     s.createPortfolio(2);
     s.buyStock("GOOG", 2, "2014-10-22", 1,5);
     s.buyStock("AAPL", 2, "2014-10-22", 2,5);
-    List<Stock> tempList = s.viewComposition(1, "2014-10-22");
-    List<Stock> tempList2 = s.viewComposition(2, "2014-10-22");
-    for (int i = 0; i < tempList.size(); i++) {
-      assertEquals(tempList.get(i).toString(), s.viewComposition(1, "2014-10-22").get(i).toString());
-    }
-    for (int i = 0; i < tempList.size(); i++) {
-      assertEquals(tempList2.get(i).toString(), s.viewComposition(2, "2014-10-22").get(i).toString());
-    }
+    List<Stock> tempList = new ArrayList<>();
+    tempList.add(new Stock("GOOG", 2, 532.71f, "2014-10-22", 0f, 5));
+    List<Stock> tempList2 = new ArrayList<>();
+    tempList2.add(new Stock("AAPL", 2, 102.99f, "2014-10-22", 0f, 5));
+    assertEquals(tempList.toString(), s.viewComposition(1,"2018-11-27").toString());
+    assertEquals(tempList2.toString(), s.viewComposition(2, "2014-10-22").toString());
   }
 
   /**
