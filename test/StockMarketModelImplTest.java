@@ -8,7 +8,6 @@ import model.IStockMarketModel;
 import model.Stock;
 import model.StockMarketModelImpl;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class StockMarketModelImplTest {
@@ -87,8 +86,8 @@ public class StockMarketModelImplTest {
     List<Stock> tempList = s.viewComposition(1, "2014-10-20");
     assertEquals(tempList.size(), s.viewComposition(1, "2014-10-20").size());
 
-    s.buyStock("AAPL", 2, "2014-10-22", 1,5);
-    s.buyStock("GOOG", 2, "2016-10-25", 1,5);
+    s.buyStock("AAPL", 2, "2014-10-22", 1, 5);
+    s.buyStock("GOOG", 2, "2016-10-25", 1, 5);
     List<Stock> tempList2 = s.viewComposition(1, "2016-10-25");
     assertEquals(tempList2.size(), s.viewComposition(1, "2016-10-25").size());
   }
@@ -100,7 +99,7 @@ public class StockMarketModelImplTest {
   public void testBuyStockHoliday() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("AAPL", 2, "2016-11-04", 1,5);
+    s.buyStock("AAPL", 2, "2016-11-04", 1, 5);
     assertEquals(217.68, s.evaluatePortfolio(1, "2016-11-06"), 0.1);
   }
 
@@ -111,8 +110,8 @@ public class StockMarketModelImplTest {
   public void testEvaluate() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-22", 1,5);
-    s.buyStock("AAPL", 2, "2014-10-22", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-22", 1, 5);
+    s.buyStock("AAPL", 2, "2014-10-22", 1, 5);
     assertEquals(1271.4, s.evaluatePortfolio(1, "2014-10-22"), 0.1);
     assertEquals(1290.0, s.evaluatePortfolio(1, "2014-10-26"), 0.1);
   }
@@ -124,7 +123,7 @@ public class StockMarketModelImplTest {
   public void testEvaluatefails() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-22", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-22", 1, 5);
     s.evaluatePortfolio(-1, "2014-10-28");
     s.evaluatePortfolio(2, "2014-10-28");
   }
@@ -136,7 +135,7 @@ public class StockMarketModelImplTest {
   public void testCostBasis() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-22", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-22", 1, 5);
     assertEquals(1070.4200439453125, s.calculateCostBasis(1, "2014-10-22"), 0.1);
   }
 
@@ -147,7 +146,7 @@ public class StockMarketModelImplTest {
   public void checkForNonExistentPortfolio() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-22", 2,5);
+    s.buyStock("GOOG", 2, "2014-10-22", 2, 5);
   }
 
   /**
@@ -158,8 +157,8 @@ public class StockMarketModelImplTest {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.createPortfolio(2);
-    s.buyStock("AAPL", 2, "2014-10-22", 2,5);
-    s.buyStock("GOOG", 2, "2014-10-22", 1,5);
+    s.buyStock("AAPL", 2, "2014-10-22", 2, 5);
+    s.buyStock("GOOG", 2, "2014-10-22", 1, 5);
     assertEquals(1065.42, s.evaluatePortfolio(1, "2014-10-22"), 0.1);
     assertEquals(210.44, s.evaluatePortfolio(2, "2014-10-24"), 0.1);
   }
@@ -172,13 +171,13 @@ public class StockMarketModelImplTest {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.createPortfolio(2);
-    s.buyStock("GOOG", 2, "2014-10-22", 1,5);
-    s.buyStock("AAPL", 2, "2014-10-22", 2,5);
+    s.buyStock("GOOG", 2, "2014-10-22", 1, 5);
+    s.buyStock("AAPL", 2, "2014-10-22", 2, 5);
     List<Stock> tempList = new ArrayList<>();
     tempList.add(new Stock("GOOG", 2, 532.71f, "2014-10-22", 0f, 5));
     List<Stock> tempList2 = new ArrayList<>();
     tempList2.add(new Stock("AAPL", 2, 102.99f, "2014-10-22", 0f, 5));
-    assertEquals(tempList.toString(), s.viewComposition(1,"2018-11-27").toString());
+    assertEquals(tempList.toString(), s.viewComposition(1, "2018-11-27").toString());
     assertEquals(tempList2.toString(), s.viewComposition(2, "2014-10-22").toString());
   }
 
@@ -189,7 +188,7 @@ public class StockMarketModelImplTest {
   public void testViewComposition() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("AAPL", 2, "2018-11-15", 1,5);
+    s.buyStock("AAPL", 2, "2018-11-15", 1, 5);
     List<Stock> tempList = s.viewComposition(1, "2018-11-20");
     assertEquals(tempList.size(), s.viewComposition(1, "2018-11-20").size());
   }
@@ -201,7 +200,7 @@ public class StockMarketModelImplTest {
   public void testController() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2018-11-15", 1,5);
+    s.buyStock("GOOG", 2, "2018-11-15", 1, 5);
     List<Stock> tempList = s.viewComposition(1, "2018-11-20");
     assertEquals(tempList.size(), s.viewComposition(1, "2018-11-20").size());
   }
@@ -213,8 +212,8 @@ public class StockMarketModelImplTest {
   public void testInvestCustomWeightsMultipleStocks() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
-    s.buyStock("AAPL", 2, "2014-10-15", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-24", 1, 5);
+    s.buyStock("AAPL", 2, "2014-10-15", 1, 5);
     assertEquals(1311.28, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
     s.invest("GOOG", 500, "2014-10-24", 1, 0);
     s.invest("AAPL", 600, "2014-10-15", 1, 0);
@@ -228,7 +227,7 @@ public class StockMarketModelImplTest {
   public void testInvestCustomWeightsSingleStock() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-24", 1, 5);
     assertEquals(1097.8, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
     s.invest("GOOG", 500, "2014-10-24", 1, 0);
     assertEquals(1606.2478861758493, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
@@ -242,8 +241,8 @@ public class StockMarketModelImplTest {
   public void testInvestEqualWeightsMultipleStocks() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
-    s.buyStock("AAPL", 2, "2014-10-15", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-24", 1, 5);
+    s.buyStock("AAPL", 2, "2014-10-15", 1, 5);
     assertEquals(1311.28, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
     s.invest("GOOG", 500, "2014-10-24", 1, 0);
     s.invest("AAPL", 500, "2014-10-15", 1, 0);
@@ -257,7 +256,7 @@ public class StockMarketModelImplTest {
   public void testInvestEqualWeightsSingleStock() {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    s.buyStock("GOOG", 2, "2014-10-24", 1, 5);
     assertEquals(1097.8, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
     s.invest("GOOG", 1000, "2014-10-24", 1, 0);
     assertEquals(2114.695772351699, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
@@ -270,23 +269,24 @@ public class StockMarketModelImplTest {
   public void testEndDateStrategy() throws ParseException {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
-    s.DCassStrategy("GOOG", 1000, "2014-10-24",
+    s.buyStock("GOOG", 2, "2014-10-24", 1, 5);
+    s.dCassStrategy("GOOG", 1000, "2014-10-24",
             "2014-10-27", 1,
-    1, s);
+            1, s);
     assertEquals(3085.2081611026715, s.evaluatePortfolio(1, "2014-10-27"), 0.1);
   }
 
   /**
    * Test to check if not passing an end date works as expected.
+   *
    * @throws ParseException if the string cannot be parsed.
    */
   @Test
   public void testNoEndDateStrategy() throws ParseException {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
-    s.buyStock("GOOG", 2, "2018-11-23", 1,5);
-    s.DCassStrategy("GOOG", 1000, "2018-11-23",
+    s.buyStock("GOOG", 2, "2018-11-23", 1, 5);
+    s.dCassStrategy("GOOG", 1000, "2018-11-23",
             "2018-11-28", 1,
             1, s);
     assertEquals(6334.293362262607, s.evaluatePortfolio(1, "2018-11-28"), 0.1);

@@ -11,12 +11,6 @@ import java.util.Date;
  */
 public class DCAS implements IStrategy {
 
-  /**
-   * Constructor which can be used for any instantiations required in the future.
-   */
-  public DCAS() {
-  }
-
   @Override
   public void investmentStrategy(String ticker, double investmentAmount, String startDate,
                                  String endDate, int portfolioNumber, int frequency,
@@ -30,7 +24,7 @@ public class DCAS implements IStrategy {
       double value = service.getValueForCompany(dateFormat.format(sdate), ticker);
       double numberOfShares = investmentAmount / value;
       Stock stock = null;
-      while(stock == null) {
+      while (stock == null) {
         try {
           stock = service.getDataForCompany(ticker, numberOfShares,
                   dateFormat.format(sdate), 0);

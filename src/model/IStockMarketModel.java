@@ -20,7 +20,8 @@ public interface IStockMarketModel<T> {
    * @param portfolioNumber the portfolio number
    * @param commission      the commission
    */
-  void buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber, double commission);
+  void buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber,
+                double commission);
 
   /**
    * View composition of a portfolio.
@@ -80,7 +81,7 @@ public interface IStockMarketModel<T> {
    * @param model            the model
    * @throws ParseException the parse exception
    */
-  void DCassStrategy(String ticker, double investmentAmount, String startDate,
+  void dCassStrategy(String ticker, double investmentAmount, String startDate,
                      String endDate, int portfolioNumber,
                      int frequency, IStockMarketModel model) throws ParseException;
 }

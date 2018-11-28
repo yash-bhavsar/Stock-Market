@@ -24,7 +24,8 @@ public class Stock {
    * @param currentPrice  the current price
    * @param commission    the commission
    */
-  public Stock(String ticker, double shares, float purchasePrice, String date, float currentPrice, double commission) {
+  public Stock(String ticker, double shares, float purchasePrice, String date, float currentPrice,
+               double commission) {
     this.ticker = ticker;
     this.shares = shares;
     this.purchasePrice = purchasePrice;

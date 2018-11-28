@@ -98,7 +98,8 @@ public class User {
     return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
             .mapToDouble(
-                    stock -> stock.evaluate(vantageService.getValueForCompany(date, stock.getTicker()))
+                    stock -> stock.evaluate(vantageService.getValueForCompany(date,
+                            stock.getTicker()))
             ).sum();
   }
 

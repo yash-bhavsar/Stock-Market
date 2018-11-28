@@ -237,7 +237,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @return the result string.
    * @throws IOException if input is invalid.
    */
-  private String investForEqualWeights(String result, String date, int portfolioNumber) throws IOException {
+  private String investForEqualWeights(String result, String date, int portfolioNumber)
+          throws IOException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
     if (checkForStocks(stockList)) {
       result = "\n\nBuy stock first\n";
@@ -265,7 +266,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @return the result string.
    * @throws IOException if input is invalid.
    */
-  private String investForCustomWeights(String result, String date, int portfolioNumber) throws IOException {
+  private String investForCustomWeights(String result, String date, int portfolioNumber)
+          throws IOException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
     stockNames = stockNames.stream().distinct().collect(Collectors.toList());
