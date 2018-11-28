@@ -291,4 +291,54 @@ public class StockMarketModelImplTest {
             1, s);
     assertEquals(6334.293362262607, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
   }
+
+  /**
+   * Test to check if strategy works for holiday as expected.
+   * @throws ParseException if the string cannot be parsed.
+   */
+  @Test
+  public void testStrategyForHoliday() throws ParseException {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2018-11-23", 1,5);
+    s.DCassStrategy("GOOG", 1000, "2018-11-23",
+            "2018-11-27", 1,
+            1, s);
+    assertEquals(5334.293362262607, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
+  }
+
+  /**
+   * Test to check if passing a holiday to invest throws IllegalArgumentException.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvestForHoliday() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2018-11-23", 1,5);
+    s.invest("GOOG", 1000, "2018-11-25", 1, 0);
+  }
+
+  /**
+   * Test to check if commission works as expected while buying a stock.
+   */
+  @Test
+  public void testCommission() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2018-11-23", 1,0);
+    assertEquals(2172.46, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
+    s.buyStock("GOOG", 2, "2018-11-23", 1,5);
+    assertEquals(4344.92, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
+  }
+
+  /**
+   * Test to check if buy stock takes commission into consideration now.
+   */
+  @Test
+  public void testBuyStockWithCommission() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2018-11-23", 1,5);
+    assertEquals(2172.46, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
+  }
 }
