@@ -33,7 +33,7 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     if (numberOfStocks < 0) {
       throw new IllegalArgumentException("\nNumber of stocks cannot be negative.\n");
     }
-    Services s = Services.getInstance();
+    Services s = VantageService.getInstance();
     Stock stock;
     try {
       stock = s.getDataForCompany(ticker, numberOfStocks, date, commission);
@@ -100,8 +100,8 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
   @Override
   public void invest(String ticker, double investmentAmount, String date,
                      int portfolioNumber, double commission) {
-    Services services = Services.getInstance();
-    double value = services.getValueForCompany(date, ticker);
+    Services vantageService = VantageService.getInstance();
+    double value = vantageService.getValueForCompany(date, ticker);
     double numberOfShares = investmentAmount / value;
     buyStock(ticker, numberOfShares, date, portfolioNumber, 0);
   }

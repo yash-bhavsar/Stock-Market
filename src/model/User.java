@@ -94,11 +94,11 @@ public class User {
    */
   public double evaluatePortfolio(int portfolioNumber, String date) {
     checkPortfolioNumber(portfolioNumber);
-    Services services = Services.getInstance();
+    Services vantageService = VantageService.getInstance();
     return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
             .mapToDouble(
-                    stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker()))
+                    stock -> stock.evaluate(vantageService.getValueForCompany(date, stock.getTicker()))
             ).sum();
   }
 

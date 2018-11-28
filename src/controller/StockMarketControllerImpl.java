@@ -112,7 +112,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
             try {
               List<Stock> stocks = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]);
               for (Stock stock : stocks) {
-                result += "\nTicker name: "+ stock.getTicker() + "\nDate of purchase: "
+                result += "\nTicker name: " + stock.getTicker() + "\nDate of purchase: "
                         + stock.getDateTime() + "\nPurchase price: " + stock.getPurchasePrice()
                         + "\nNumber of shares: " + stock.getShares() + "\n";
               }
@@ -144,6 +144,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
 
   /**
    * Helper method to check if stocks exist in the portfolio.
+   *
    * @param stockList is the list of stocks.
    * @return the result string.
    */
@@ -153,14 +154,15 @@ public class StockMarketControllerImpl implements IStockMarketController {
 
   /**
    * Helper method to invest using strategy and equal weights.
-   * @param result is the result string.
-   * @param sdate is the start date for the strategy.
+   *
+   * @param result          is the result string.
+   * @param sdate           is the start date for the strategy.
    * @param portfolioNumber is the portfolio number.
-   * @param edate is the end date for the strategy, which is optional. If not mentioned, then the
-   *              end date is assumed to be todays date.
-   * @param frequency is how frequently the user wants to invest in the strategy.
+   * @param edate           is the end date for the strategy, which is optional. If not mentioned,
+   *                        then the end date is assumed to be todays date.
+   * @param frequency       is how frequently the user wants to invest in the strategy.
    * @return the result string.
-   * @throws IOException if the input is invalid.
+   * @throws IOException    if the input is invalid.
    * @throws ParseException if parsing is invalid.
    */
   private String investInStrategyEqualWeights(String result, String sdate, int portfolioNumber,
@@ -188,18 +190,19 @@ public class StockMarketControllerImpl implements IStockMarketController {
 
   /**
    * Helper method to invest using strategy and custom weights.
-   * @param result is the result string.
-   * @param sdate is the start date for the strategy.
+   *
+   * @param result          is the result string.
+   * @param sdate           is the start date for the strategy.
    * @param portfolioNumber is the portfolio number.
-   * @param edate is the end date for the strategy, which is optional. If not mentioned, then the
-   *              end date is assumed to be todays date.
-   * @param frequency is how frequently the user wants to invest in the strategy.
+   * @param edate           is the end date for the strategy, which is optional. If not mentioned,
+   *                        then the end date is assumed to be todays date.
+   * @param frequency       is how frequently the user wants to invest in the strategy.
    * @return the result string.
-   * @throws IOException if the input is invalid.
+   * @throws IOException    if the input is invalid.
    * @throws ParseException if parsing is invalid.
    */
   private String investInStrategyCustomWeights(String result, String sdate, int portfolioNumber,
-                                              String edate, int frequency) throws IOException,
+                                               String edate, int frequency) throws IOException,
           ParseException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
@@ -216,7 +219,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
       result = "\n\nAmount cannot be less than or equal to 0\n";
       return result;
     }
-    int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
+    int[] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
     if (Arrays.stream(weightsNumbers).sum() != 100) {
       result = "\nSum of weights should be 100\n";
       return result;
@@ -233,8 +236,9 @@ public class StockMarketControllerImpl implements IStockMarketController {
   /**
    * Private helper method to calculate the number of shares the user can purchase using equal
    * weights.
-   * @param result is the result string.
-   * @param date is the date at which the user wants to invest.
+   *
+   * @param result          is the result string.
+   * @param date            is the date at which the user wants to invest.
    * @param portfolioNumber is the portfolio number in which the user wants to invest.
    * @return the result string.
    * @throws IOException if input is invalid.
@@ -260,8 +264,9 @@ public class StockMarketControllerImpl implements IStockMarketController {
   /**
    * Private helper method to calculate the number of shares the user can purchase using custom
    * weights.
-   * @param result is the result string.
-   * @param date is the date at which the user wants to invest.
+   *
+   * @param result          is the result string.
+   * @param date            is the date at which the user wants to invest.
    * @param portfolioNumber is the portfolio number in which the user wants to invest.
    * @return the result string.
    * @throws IOException if input is invalid.

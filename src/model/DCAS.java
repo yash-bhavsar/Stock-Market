@@ -22,7 +22,7 @@ public class DCAS implements IStrategy {
                                  String endDate, int portfolioNumber, int frequency,
                                  IStockMarketModel model, User user)
           throws ParseException {
-    Services service = Services.getInstance();
+    Services service = VantageService.getInstance();
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date sdate = dateFormat.parse(startDate);
     Date edate = dateFormat.parse(endDate);
