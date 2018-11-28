@@ -168,6 +168,8 @@ public class StockMarketViewImpl implements IStockMarketView {
   }
 
   /**
+   * Private helper method which asks the user for number depending on the question.
+   *
    * @param string is the number which the user wishes to enter.
    * @return the number, if it passes validations.
    * @throws IOException if input is invalid.
@@ -189,11 +191,11 @@ public class StockMarketViewImpl implements IStockMarketView {
   }
 
   /**
-   * 
+   * Private helper method which asks the user for weights of each stock in the portfolio.
    *
-   * @param string
-   * @return
-   * @throws IOException
+   * @param string question as a String.
+   * @return return the valid choice (either 1 or 2) as a String.
+   * @throws IOException if append is not working.
    */
   private String askChoice(String string) throws IOException {
     this.out.append(string);
