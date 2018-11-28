@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -260,5 +261,34 @@ public class StockMarketModelImplTest {
     assertEquals(1097.8, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
     s.invest("GOOG", 1000, "2014-10-24", 1, 0);
     assertEquals(2114.695772351699, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+  }
+
+  /**
+   * Test to check if adding end date in strategy works as expected.
+   */
+  @Test
+  public void testEndDateStrategy() throws ParseException {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    s.DCassStrategy("GOOG", 1000, "2014-10-24",
+            "2014-10-27", 1,
+    1, s);
+    assertEquals(3085.2081611026715, s.evaluatePortfolio(1, "2014-10-27"), 0.1);
+  }
+
+  /**
+   * Test to check if not passing an end date works as expected.
+   * @throws ParseException if the string cannot be parsed.
+   */
+  @Test
+  public void testNoEndDateStrategy() throws ParseException {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2018-11-23", 1,5);
+    s.DCassStrategy("GOOG", 1000, "2018-11-23",
+            "2018-11-28", 1,
+            1, s);
+    assertEquals(6334.293362262607, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
   }
 }
