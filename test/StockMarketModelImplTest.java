@@ -301,7 +301,7 @@ public class StockMarketModelImplTest {
     s = new StockMarketModelImpl();
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2018-11-23", 1,5);
-    s.DCassStrategy("GOOG", 1000, "2018-11-23",
+    s.dCassStrategy("GOOG", 1000, "2018-11-23",
             "2018-11-27", 1,
             1, s);
     List<Stock> tempList = s.viewComposition(1, "2018-11-28");
