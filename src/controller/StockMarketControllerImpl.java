@@ -107,7 +107,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
               List<Stock> stocks = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]);
               for (Stock stock : stocks) {
                 result += "\nTicker name: " + stock.getTicker() + "\nDate of purchase: "
-                        + stock.getDateTime() + "\nPurchase price: " + stock.getPurchasePrice()
+                        + stock.getDateTime() + "\nPurchase price: $" + stock.getPurchasePrice()
                         + "\nNumber of shares: " + stock.getShares() + "\n";
               }
             } catch (IllegalArgumentException e) {
