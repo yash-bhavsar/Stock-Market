@@ -31,7 +31,8 @@ public class DCAS implements IStrategy {
       double numberOfShares = investmentAmount / value;
       Stock stock = null;
       try {
-        stock = service.getDataForCompany(ticker, numberOfShares, dateFormat.format(sdate), 0);
+        stock = service.getDataForCompany(ticker, numberOfShares,
+                dateFormat.format(sdate), 0);
       } catch (IllegalArgumentException e) {
         String t = getNearestDate(dateFormat.format(sdate));
         sdate = dateFormat.parse(t);

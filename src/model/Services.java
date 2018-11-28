@@ -46,7 +46,8 @@ public class Services {
    * @param date        the date
    * @return the data for company
    */
-  public Stock getDataForCompany(String stockSymbol, double shares, String date, double commission) {
+  public Stock getDataForCompany(String stockSymbol, double shares,
+                                 String date, double commission) {
 
     String[] stockArray;
     float close = 0;

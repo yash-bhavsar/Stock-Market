@@ -28,7 +28,8 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
    * @param portfolioNumber the portfolio number
    */
   @Override
-  public void buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber, double commission) {
+  public void buyStock(String ticker, double numberOfStocks, String date,
+                       int portfolioNumber, double commission) {
     if (numberOfStocks < 0) {
       throw new IllegalArgumentException("\nNumber of stocks cannot be negative.\n");
     }
@@ -97,7 +98,8 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
    * @param commission       the commission
    */
   @Override
-  public void invest(String ticker, double investmentAmount, String date, int portfolioNumber, double commission) {
+  public void invest(String ticker, double investmentAmount, String date,
+                     int portfolioNumber, double commission) {
     Services services = Services.getInstance();
     double value = services.getValueForCompany(date, ticker);
     double numberOfShares = investmentAmount / value;
@@ -105,8 +107,11 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
   }
 
   @Override
-  public void DCassStrategy(String ticker, double investmentAmount, String startDate, String endDate, int portfolioNumber, int frequency, IStockMarketModel model) throws ParseException {
+  public void DCassStrategy(String ticker, double investmentAmount, String startDate,
+                            String endDate, int portfolioNumber,
+                            int frequency, IStockMarketModel model) throws ParseException {
     IStrategy strategy = new DCAS();
-    strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate, portfolioNumber, frequency, model, this.user);
+    strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate,
+            portfolioNumber, frequency, model, this.user);
   }
 }
