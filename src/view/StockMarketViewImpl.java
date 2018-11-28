@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
-import model.Stock;
 
 
 /**
@@ -76,16 +72,26 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\nEnter investment details. \n");
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
         input.append(" ").append(askDate());
-        this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights.\n");
+        this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights\n");
         input.append(" ").append(scanner.next());
         break;
       case "4":
         input.append("4 ");
         this.out.append("\nEnter strategy details: \n");
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
+        this.out.append("\nEnter start date: \n");
         input.append(" ").append(askDate());
-        input.append(" ").append(askDate());
-        input.append(" ").append(askNumber("\nPlease enter the frequency for the strategy\n"));
+        this.out.append("\nEnter end Date\n1. Yes\n2. No");
+        if (askNumber("\nEnter choice:").equals("1")){
+          input.append(" ").append(askEndDate(true));
+        } else {
+          input.append(" ").append(askEndDate(false));
+        }
+        /*this.out.append("\nEnter end date: \n");
+        input.append(" ").append(askDate());*/
+        input.append(" ").append(askNumber("Please enter the frequency for the strategy\n"));
+        this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights\n");
+        input.append(" ").append(scanner.next());
         break;
       case "5":
         input.append("5 ");
@@ -133,6 +139,34 @@ public class StockMarketViewImpl implements IStockMarketView {
   }
 
   /**
+   * Private helper method to ask for end date.
+   * @return the end date.
+   * @throws IOException if input is invalid.
+   */
+  private String askEndDate(boolean flag) throws IOException {
+    String endDate;
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    if (flag) {
+      this.out.append("\nPlease enter end date(yyyy-mm-dd): ");
+      String st = scanner.next();
+      df.setLenient(false);
+      try {
+        Date date = df.parse(st);
+        Date currentDate = new Date();
+        if (date.after(currentDate)) {
+          return df.format(currentDate);
+        }
+        return df.format(date);
+      } catch (ParseException e) {
+        this.out.append("\nEnter valid date in format (yyyy-mm-dd).\n ");
+        return askEndDate(true);
+      }
+    }
+    endDate = df.format(new Date());
+    return endDate;
+  }
+
+  /**
    *
    * @param string is the number which the user wishes to enter.
    * @return the number, if it passes validations.
@@ -145,12 +179,12 @@ public class StockMarketViewImpl implements IStockMarketView {
       int t = Integer.parseInt(s);
       if (t < 0) {
         this.out.append("\nEnter valid number.\n ");
-        return askWeights(string);
+        return askNumber(string);
       }
       return s.trim();
     } catch (NumberFormatException e) {
       this.out.append("\nEnter valid number: ");
-      return askWeights(string);
+      return askNumber(string);
     }
   }
 
@@ -234,5 +268,17 @@ public class StockMarketViewImpl implements IStockMarketView {
    */
   public Appendable getOut() {
     return this.out;
+  }
+
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String readString = scanner.nextLine();
+    System.out.println(readString);
+    if (readString.equals(""))
+      System.out.println("Enter Key pressed.");
+    if (scanner.hasNextLine())
+      readString = scanner.nextLine();
+    else
+      readString = null;
   }
 }

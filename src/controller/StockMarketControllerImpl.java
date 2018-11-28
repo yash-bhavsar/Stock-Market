@@ -67,11 +67,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
             }
             break;
           case "3":
+            //Helper method for entire if and else if.
             if (inputs[3].equals("2")) {
               try {
                 String date = inputs[2];
                 int portfolioNumber = Integer.parseInt(inputs[1]);
-                List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+                result = investForCustomWeights(result, date, portfolioNumber);
+                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
                 List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
                 stockNames = stockNames.stream().distinct().collect(Collectors.toList());
                 //Write helper method.
@@ -92,7 +94,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
                         .mapToDouble(number -> number * 0.01 * amount).toArray();
                 for (int i = 0; i < stockList.size(); i++) {
                   this.im.invest(stockList.get(i).getTicker(), numbers1[i], date, portfolioNumber, 0);
-                }
+                }*/
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
@@ -100,7 +102,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
               try {
                 String date = inputs[2];
                 int portfolioNumber = Integer.parseInt(inputs[1]);
-                List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+                result = investForEqualWeights(result, date, portfolioNumber);
+                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
                 //Write helper method.
                 if (stockList.size() == 0) {
                   result = "\n\nBuy stock first\n";
@@ -110,48 +113,83 @@ public class StockMarketControllerImpl implements IStockMarketController {
                 double investmentAmount = Double.parseDouble(amount) / stockList.size();
                 for (int i = 0; i < stockList.size(); i++) {
                   this.im.invest(stockList.get(i).getTicker(), investmentAmount, date, portfolioNumber, 0);
-                }
+                }*/
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             }
             break;
           case "4":
-            try {
-              String sdate = inputs[2];
-              String edate = inputs[3];
-              int portfolioNumber = Integer.parseInt(inputs[1]);
-              int frequency = Integer.parseInt(inputs[4]);
-              List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
-              List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
-              stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-              //Write helper method.
-              if (stockList.size() == 0) {
-                result = "\n\nBuy stock first\n";
-                break;
+            //Helper method for entire if and else if.
+            if (inputs[5].equals("2")) {
+              try {
+                String sdate = inputs[2];
+                String edate = inputs[3];
+                int portfolioNumber = Integer.parseInt(inputs[1]);
+                int frequency = Integer.parseInt(inputs[4]);
+                result = investInStrategyCustomWeights(result, sdate, portfolioNumber,
+                        edate, frequency);
+                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
+                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
+                //Write helper method.
+                if (stockList.size() == 0) {
+                  result = "\n\nBuy stock first\n";
+                  break;
+                }
+                String weights = this.iv.continueTakingWeights(stockNames);
+                int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
+                        .mapToInt(Integer::parseInt).toArray();
+                int amount = numbers[numbers.length - 1];
+                int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
+                if (Arrays.stream(weightsNumbers).sum() != 100) {
+                  result = "\nSum of weights should be 100\n";
+                  break;
+                }
+                double[] numbers1 = Arrays.stream(weightsNumbers)
+                        .mapToDouble(number -> number * 0.01 * amount).toArray();
+                for (int i = 0; i < stockNames.size(); i++) {
+                  this.im.DCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
+                          portfolioNumber, frequency, this.im);
+                }*/
+              } catch (IllegalArgumentException e) {
+                result = e.getMessage();
               }
-              String weights = this.iv.continueTakingWeights(stockNames);
-              int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
-                      .mapToInt(Integer::parseInt).toArray();
-              int amount = numbers[numbers.length - 1];
-              int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
-              if (Arrays.stream(weightsNumbers).sum() != 100) {
-                result = "\nSum of weights should be 100\n";
-                break;
+            } else if (inputs[5].equals("1")) {
+              try {
+                String sdate = inputs[2];
+                String edate = inputs[3];
+                int portfolioNumber = Integer.parseInt(inputs[1]);
+                int frequency = Integer.parseInt(inputs[4]);
+                result = investInStrategyEqualWeights(result, sdate, portfolioNumber,
+                        edate, frequency);
+                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
+                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
+                //Write helper method.
+                if (stockList.size() == 0) {
+                  result = "\n\nBuy stock first\n";
+                  break;
+                }
+                String amount = this.iv.getEqualWeightsAmount();
+                double investmentAmount = Double.parseDouble(amount) / stockList.size();
+                for (int i = 0; i < stockNames.size(); i++) {
+                  this.im.DCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
+                          portfolioNumber, frequency, this.im);
+                }*/
+              } catch (IllegalArgumentException e) {
+                result = e.getMessage();
               }
-              double[] numbers1 = Arrays.stream(weightsNumbers)
-                      .mapToDouble(number -> number * 0.01 * amount).toArray();
-              for (int i = 0; i < stockList.size(); i++) {
-                this.im.DCassStrategy(stockList.get(i).getTicker(), numbers1[i], sdate, edate,
-                        portfolioNumber, frequency);
-              }
-            } catch (IllegalArgumentException e) {
-              result = e.getMessage();
             }
             break;
           case "5":
             try {
-              result = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]).toString();
+              List<Stock> stocks = this.im.viewComposition(Integer.parseInt(inputs[1]), inputs[2]);
+              for (Stock stock : stocks) {
+                result += "\nTicker name: "+ stock.getTicker() + "\nDate of purchase: "
+                        + stock.getDateTime() + "\nPurchase price: " + stock.getPurchasePrice()
+                        + "\nNumber of shares: " + stock.getShares() + "\n";
+              }
             } catch (IllegalArgumentException e) {
               result = e.getMessage();
             }
@@ -176,5 +214,137 @@ public class StockMarketControllerImpl implements IStockMarketController {
     } catch (IOException | ParseException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * Helper method to invest using strategy and equal weights.
+   * @param result is the result string.
+   * @param sdate is the start date for the strategy.
+   * @param portfolioNumber is the portfolio number.
+   * @param edate is the end date for the strategy, which is optional. If not mentioned, then the
+   *              end date is assumed to be todays date.
+   * @param frequency is how frequently the user wants to invest in the strategy.
+   * @return the result string.
+   * @throws IOException if the input is invalid.
+   * @throws ParseException if parsing is invalid.
+   */
+  private String investInStrategyEqualWeights(String result, String sdate, int portfolioNumber,
+                                              String edate, int frequency) throws IOException,
+          ParseException {
+    List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
+    List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+    stockNames = stockNames.stream().distinct().collect(Collectors.toList());
+    //Write helper method.
+    if (stockList.size() == 0) {
+      result = "\n\nBuy stock first\n";
+      return result;
+    }
+    String amount = this.iv.getEqualWeightsAmount();
+    double investmentAmount = Double.parseDouble(amount) / stockList.size();
+    for (int i = 0; i < stockNames.size(); i++) {
+      this.im.DCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
+              portfolioNumber, frequency, this.im);
+    }
+    return "";
+  }
+
+  /**
+   * Helper method to invest using strategy and custom weights.
+   * @param result is the result string.
+   * @param sdate is the start date for the strategy.
+   * @param portfolioNumber is the portfolio number.
+   * @param edate is the end date for the strategy, which is optional. If not mentioned, then the
+   *              end date is assumed to be todays date.
+   * @param frequency is how frequently the user wants to invest in the strategy.
+   * @return the result string.
+   * @throws IOException if the input is invalid.
+   * @throws ParseException if parsing is invalid.
+   */
+  private String investInStrategyCustomWeights(String result, String sdate, int portfolioNumber,
+                                              String edate, int frequency) throws IOException,
+          ParseException {
+    List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
+    List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+    stockNames = stockNames.stream().distinct().collect(Collectors.toList());
+    //Write helper method.
+    if (stockList.size() == 0) {
+      result = "\n\nBuy stock first\n";
+      return result;
+    }
+    String weights = this.iv.continueTakingWeights(stockNames);
+    int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
+            .mapToInt(Integer::parseInt).toArray();
+    int amount = numbers[numbers.length - 1];
+    int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
+    if (Arrays.stream(weightsNumbers).sum() != 100) {
+      result = "\nSum of weights should be 100\n";
+      return result;
+    }
+    double[] numbers1 = Arrays.stream(weightsNumbers)
+            .mapToDouble(number -> number * 0.01 * amount).toArray();
+    for (int i = 0; i < stockNames.size(); i++) {
+      this.im.DCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
+              portfolioNumber, frequency, this.im);
+    }
+    return "";
+  }
+
+  /**
+   * Private helper method to calculate the number of shares the user can purchase using equal
+   * weights.
+   * @param result is the result string.
+   * @param date is the date at which the user wants to invest.
+   * @param portfolioNumber is the portfolio number in which the user wants to invest.
+   * @return the result string.
+   * @throws IOException if input is invalid.
+   */
+  private String investForEqualWeights(String result, String date, int portfolioNumber) throws IOException {
+    List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+    //Write helper method.
+    if (stockList.size() == 0) {
+      result = "\n\nBuy stock first\n";
+      return result;
+    }
+    String amount = this.iv.getEqualWeightsAmount();
+    double investmentAmount = Double.parseDouble(amount) / stockList.size();
+    for (int i = 0; i < stockList.size(); i++) {
+      this.im.invest(stockList.get(i).getTicker(), investmentAmount, date, portfolioNumber, 0);
+    }
+    return "";
+  }
+
+  /**
+   * Private helper method to calculate the number of shares the user can purchase using custom
+   * weights.
+   * @param result is the result string.
+   * @param date is the date at which the user wants to invest.
+   * @param portfolioNumber is the portfolio number in which the user wants to invest.
+   * @return the result string.
+   * @throws IOException if input is invalid.
+   */
+  private String investForCustomWeights(String result, String date, int portfolioNumber) throws IOException {
+    List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
+    List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
+    stockNames = stockNames.stream().distinct().collect(Collectors.toList());
+    //Write helper method.
+    if (stockList.size() == 0) {
+      result = "\n\nBuy stock first\n";
+      return result;
+    }
+    String weights = this.iv.continueTakingWeights(stockNames);
+    int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
+            .mapToInt(Integer::parseInt).toArray();
+    int amount = numbers[numbers.length - 1];
+    int[] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
+    if (Arrays.stream(weightsNumbers).sum() != 100) {
+      result = "\nSum of weights should be 100\n";
+      return result;
+    }
+    double[] numbers1 = Arrays.stream(weightsNumbers)
+            .mapToDouble(number -> number * 0.01 * amount).toArray();
+    for (int i = 0; i < stockList.size(); i++) {
+      this.im.invest(stockList.get(i).getTicker(), numbers1[i], date, portfolioNumber, 0);
+    }
+    return "";
   }
 }

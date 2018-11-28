@@ -1,10 +1,8 @@
 package model;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * The class User which has methods to buy stock, create portfolio, evaluate portfolio, calculate
@@ -100,7 +98,7 @@ public class User {
     return this.portfolios.get(portfolioNumber).getStocksBeforeDate(date)
             .stream()
             .mapToDouble(
-                    stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker(), false))
+                    stock -> stock.evaluate(services.getValueForCompany(date, stock.getTicker()))
             ).sum();
   }
 

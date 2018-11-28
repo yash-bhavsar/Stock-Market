@@ -99,14 +99,14 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
   @Override
   public void invest(String ticker, double investmentAmount, String date, int portfolioNumber, double commission) {
     Services services = Services.getInstance();
-    double value = services.getValueForCompany(date, ticker, true);
+    double value = services.getValueForCompany(date, ticker);
     double numberOfShares = investmentAmount / value;
     buyStock(ticker, numberOfShares, date, portfolioNumber, 0);
   }
 
   @Override
-  public void DCassStrategy(String ticker, double investmentAmount, String startDate, String endDate, int portfolioNumber, int frequency) throws ParseException {
+  public void DCassStrategy(String ticker, double investmentAmount, String startDate, String endDate, int portfolioNumber, int frequency, IStockMarketModel model) throws ParseException {
     IStrategy strategy = new DCAS();
-    strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate, portfolioNumber, frequency);
+    strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate, portfolioNumber, frequency, model);
   }
 }
