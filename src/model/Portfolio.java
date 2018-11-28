@@ -54,9 +54,10 @@ class Portfolio {
       if (s.getDateTime().equals(stock.getDateTime()) && s.getTicker().equals(stock.getTicker())) {
         exists = true;
         double totalShares = s.getShares() + stock.getShares();
+        double commission = s.getCommission() + stock.getCommission();
         this.stocks.remove(s);
         this.stocks.add(new Stock(stock.getTicker(), totalShares, stock.getPurchasePrice(),
-                stock.getDateTime(), stock.getCurrentPrice(),stock.getCommission()));
+                stock.getDateTime(), stock.getCurrentPrice(),commission));
         break;
       }
     }

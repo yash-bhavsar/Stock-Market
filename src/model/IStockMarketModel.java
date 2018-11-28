@@ -64,8 +64,6 @@ public interface IStockMarketModel<T> {
    * @param date             the date
    * @param portfolioNumber  the portfolio number
    * @param commission       the commission
-   * @param flag             the flag to see if invest was called by one time investment
-   *                         or strategy. True if called by invest else false.
    */
   void invest(String ticker, double investmentAmount, String date, int portfolioNumber,
               double commission);

@@ -89,7 +89,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         }
         /*this.out.append("\nEnter end date: \n");
         input.append(" ").append(askDate());*/
-        input.append(" ").append(askNumber("Please enter the frequency for the strategy\n"));
+        input.append(" ").append(askNumber("Please enter the frequency (in days) for the strategy\n"));
         this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights\n");
         input.append(" ").append(scanner.next());
         break;

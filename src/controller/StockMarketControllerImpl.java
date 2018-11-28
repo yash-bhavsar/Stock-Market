@@ -1,9 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.net.Inet4Address;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -163,20 +161,6 @@ public class StockMarketControllerImpl implements IStockMarketController {
                 int frequency = Integer.parseInt(inputs[4]);
                 result = investInStrategyEqualWeights(result, sdate, portfolioNumber,
                         edate, frequency);
-                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
-                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
-                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-                //Write helper method.
-                if (stockList.size() == 0) {
-                  result = "\n\nBuy stock first\n";
-                  break;
-                }
-                String amount = this.iv.getEqualWeightsAmount();
-                double investmentAmount = Double.parseDouble(amount) / stockList.size();
-                for (int i = 0; i < stockNames.size(); i++) {
-                  this.im.DCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
-                          portfolioNumber, frequency, this.im);
-                }*/
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
@@ -217,6 +201,15 @@ public class StockMarketControllerImpl implements IStockMarketController {
   }
 
   /**
+   * Helper method to check if stocks exist in the portfolio.
+   * @param stockList is the list of stocks.
+   * @return the result string.
+   */
+  private boolean checkForStocks(List<Stock> stockList) {
+    return stockList.size() == 0;
+  }
+
+  /**
    * Helper method to invest using strategy and equal weights.
    * @param result is the result string.
    * @param sdate is the start date for the strategy.
@@ -234,8 +227,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
     stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-    //Write helper method.
-    if (stockList.size() == 0) {
+    if (checkForStocks(stockList)) {
       result = "\n\nBuy stock first\n";
       return result;
     }
@@ -266,8 +258,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
     stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-    //Write helper method.
-    if (stockList.size() == 0) {
+    if (checkForStocks(stockList)) {
       result = "\n\nBuy stock first\n";
       return result;
     }
@@ -300,8 +291,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
    */
   private String investForEqualWeights(String result, String date, int portfolioNumber) throws IOException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
-    //Write helper method.
-    if (stockList.size() == 0) {
+    if (checkForStocks(stockList)) {
       result = "\n\nBuy stock first\n";
       return result;
     }
@@ -326,8 +316,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
     stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-    //Write helper method.
-    if (stockList.size() == 0) {
+    if (checkForStocks(stockList)) {
       result = "\n\nBuy stock first\n";
       return result;
     }
