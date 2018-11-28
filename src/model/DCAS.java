@@ -6,14 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * The class DCAS which implements methods of IStrategy interface.
+ * The class DCAS which implements methods of IStrategy interface. This represents one strategy
+ * which is Dollar Cost Averaging Strategy.
  */
 public class DCAS implements IStrategy {
 
-  private IStockMarketModel model;
-
   /**
-   * Instantiates a new model.
+   * Constructor which can be used for any instantiations required in the future.
    */
   public DCAS() {
   }

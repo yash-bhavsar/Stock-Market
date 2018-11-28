@@ -65,34 +65,11 @@ public class StockMarketControllerImpl implements IStockMarketController {
             }
             break;
           case "3":
-            //Helper method for entire if and else if.
             if (inputs[3].equals("2")) {
               try {
                 String date = inputs[2];
                 int portfolioNumber = Integer.parseInt(inputs[1]);
                 result = investForCustomWeights(result, date, portfolioNumber);
-                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
-                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
-                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-                //Write helper method.
-                if (stockList.size() == 0) {
-                  result = "\n\nBuy stock first\n";
-                  break;
-                }
-                String weights = this.iv.continueTakingWeights(stockNames);
-                int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
-                        .mapToInt(Integer::parseInt).toArray();
-                int amount = numbers[numbers.length - 1];
-                int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
-                if (Arrays.stream(weightsNumbers).sum() != 100) {
-                  result = "\nSum of weights should be 100\n";
-                  break;
-                }
-                double[] numbers1 = Arrays.stream(weightsNumbers)
-                        .mapToDouble(number -> number * 0.01 * amount).toArray();
-                for (int i = 0; i < stockList.size(); i++) {
-                  this.im.invest(stockList.get(i).getTicker(), numbers1[i], date, portfolioNumber, 0);
-                }*/
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
@@ -101,24 +78,12 @@ public class StockMarketControllerImpl implements IStockMarketController {
                 String date = inputs[2];
                 int portfolioNumber = Integer.parseInt(inputs[1]);
                 result = investForEqualWeights(result, date, portfolioNumber);
-                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, date);
-                //Write helper method.
-                if (stockList.size() == 0) {
-                  result = "\n\nBuy stock first\n";
-                  break;
-                }
-                String amount = this.iv.getEqualWeightsAmount();
-                double investmentAmount = Double.parseDouble(amount) / stockList.size();
-                for (int i = 0; i < stockList.size(); i++) {
-                  this.im.invest(stockList.get(i).getTicker(), investmentAmount, date, portfolioNumber, 0);
-                }*/
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             }
             break;
           case "4":
-            //Helper method for entire if and else if.
             if (inputs[5].equals("2")) {
               try {
                 String sdate = inputs[2];
@@ -127,29 +92,6 @@ public class StockMarketControllerImpl implements IStockMarketController {
                 int frequency = Integer.parseInt(inputs[4]);
                 result = investInStrategyCustomWeights(result, sdate, portfolioNumber,
                         edate, frequency);
-                /*List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
-                List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
-                stockNames = stockNames.stream().distinct().collect(Collectors.toList());
-                //Write helper method.
-                if (stockList.size() == 0) {
-                  result = "\n\nBuy stock first\n";
-                  break;
-                }
-                String weights = this.iv.continueTakingWeights(stockNames);
-                int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
-                        .mapToInt(Integer::parseInt).toArray();
-                int amount = numbers[numbers.length - 1];
-                int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
-                if (Arrays.stream(weightsNumbers).sum() != 100) {
-                  result = "\nSum of weights should be 100\n";
-                  break;
-                }
-                double[] numbers1 = Arrays.stream(weightsNumbers)
-                        .mapToDouble(number -> number * 0.01 * amount).toArray();
-                for (int i = 0; i < stockNames.size(); i++) {
-                  this.im.DCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
-                          portfolioNumber, frequency, this.im);
-                }*/
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
@@ -232,6 +174,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
       return result;
     }
     String amount = this.iv.getEqualWeightsAmount();
+    if (Integer.parseInt(amount.trim()) <= 0) {
+      result = "\n\nAmount cannot be less than or equal to 0\n";
+      return result;
+    }
     double investmentAmount = Double.parseDouble(amount) / stockList.size();
     for (int i = 0; i < stockNames.size(); i++) {
       this.im.DCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
@@ -266,6 +212,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
     int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
             .mapToInt(Integer::parseInt).toArray();
     int amount = numbers[numbers.length - 1];
+    if (amount <= 0) {
+      result = "\n\nAmount cannot be less than or equal to 0\n";
+      return result;
+    }
     int [] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
     if (Arrays.stream(weightsNumbers).sum() != 100) {
       result = "\nSum of weights should be 100\n";
@@ -296,6 +246,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
       return result;
     }
     String amount = this.iv.getEqualWeightsAmount();
+    if (Integer.parseInt(amount.trim()) <= 0) {
+      result = "\n\nAmount cannot be less than or equal to 0\n";
+      return result;
+    }
     double investmentAmount = Double.parseDouble(amount) / stockList.size();
     for (int i = 0; i < stockList.size(); i++) {
       this.im.invest(stockList.get(i).getTicker(), investmentAmount, date, portfolioNumber, 0);
@@ -324,6 +278,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
     int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
             .mapToInt(Integer::parseInt).toArray();
     int amount = numbers[numbers.length - 1];
+    if (amount <= 0) {
+      result = "\n\nAmount cannot be less than or equal to 0\n";
+      return result;
+    }
     int[] weightsNumbers = Arrays.copyOf(numbers, numbers.length - 1);
     if (Arrays.stream(weightsNumbers).sum() != 100) {
       result = "\nSum of weights should be 100\n";

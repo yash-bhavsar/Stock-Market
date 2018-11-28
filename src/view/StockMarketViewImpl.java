@@ -87,8 +87,6 @@ public class StockMarketViewImpl implements IStockMarketView {
         } else {
           input.append(" ").append(askEndDate(false));
         }
-        /*this.out.append("\nEnter end date: \n");
-        input.append(" ").append(askDate());*/
         input.append(" ").append(askNumber("Please enter the frequency (in days) for the strategy\n"));
         this.out.append("\nSelect weights: \n1.Equal weights \n2.Custom weights\n");
         input.append(" ").append(scanner.next());
@@ -268,17 +266,5 @@ public class StockMarketViewImpl implements IStockMarketView {
    */
   public Appendable getOut() {
     return this.out;
-  }
-
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    String readString = scanner.nextLine();
-    System.out.println(readString);
-    if (readString.equals(""))
-      System.out.println("Enter Key pressed.");
-    if (scanner.hasNextLine())
-      readString = scanner.nextLine();
-    else
-      readString = null;
   }
 }
