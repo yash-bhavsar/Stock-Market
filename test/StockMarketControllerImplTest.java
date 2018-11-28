@@ -37,7 +37,7 @@ public class StockMarketControllerImplTest {
    */
   @Test
   public void testController() {
-    rd = new StringReader("1 1 2 AAPL 2 2016-10-21 1 3 1 4 1 2018-11-15");
+    rd = new StringReader("1 1 2 AAPL 2 2016-10-21 1 5 5 1 2018-11-15");
     ap = new StringBuffer();
     sv = new StockMarketViewImpl(rd, ap);
     sm = new StockMarketModelImpl();
@@ -47,50 +47,53 @@ public class StockMarketControllerImplTest {
             "Enter Choice:\n" +
             " 1. Create new portfolio.\n" +
             " 2. Buy Stock.\n" +
-            " 3. View Composition of a portfolio.\n" +
-            " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-            " 5. Quit.\n" +
+            " 3. Invest\n" +
+            " 4. Create Strategy\n" +
+            " 5. View Composition of a portfolio.\n" +
+            " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
+            " 7. Quit.\n" +
             "\n" +
             "Enter portfolio number: \n" +
             "Enter Choice:\n" +
             " 1. Create new portfolio.\n" +
             " 2. Buy Stock.\n" +
-            " 3. View Composition of a portfolio.\n" +
-            " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-            " 5. Quit.\n" +
+            " 3. Invest\n" +
+            " 4. Create Strategy\n" +
+            " 5. View Composition of a portfolio.\n" +
+            " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
+            " 7. Quit.\n" +
             "\n" +
             "Enter Stock details: \n" +
             "Stock symbol(Ticker): \n" +
             "The number of shares you want to buy: \n" +
-            "Date(yyyy-mm-dd) at which you want to buy stock: \n" +
+            "Please enter date(yyyy-mm-dd): \n" +
             "Enter portfolio number: \n" +
+            "Enter commission amount: \n" +
+            "Stock bought successfully\n" +
+            "\n" +
             "Enter Choice:\n" +
             " 1. Create new portfolio.\n" +
             " 2. Buy Stock.\n" +
-            " 3. View Composition of a portfolio.\n" +
-            " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-            " 5. Quit.\n" +
+            " 3. Invest\n" +
+            " 4. Create Strategy\n" +
+            " 5. View Composition of a portfolio.\n" +
+            " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
+            " 7. Quit.\n" +
             "\n" +
-            "Enter portfolio number: Company name: AAPL\n" +
+            "Enter portfolio number: \n" +
+            "Please enter date(yyyy-mm-dd): \n" +
+            "Ticker name: AAPL\n" +
             "Date of purchase: 2016-10-21\n" +
-            "Purchase price: 116.28\n" +
-            "Number of shares: 2\n" +
+            "Purchase price: $116.6\n" +
+            "Number of shares: 2.0\n" +
             "\n" +
             "Enter Choice:\n" +
             " 1. Create new portfolio.\n" +
             " 2. Buy Stock.\n" +
-            " 3. View Composition of a portfolio.\n" +
-            " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-            " 5. Quit.\n" +
-            "\n" +
-            "Enter portfolio number: \n" +
-            "Date(yyyy-mm-dd) at which you want to buy stock: Total basis: 232.55999755859375\n" +
-            "Total Evaluation: 383.94\n" +
-            "Enter Choice:\n" +
-            " 1. Create new portfolio.\n" +
-            " 2. Buy Stock.\n" +
-            " 3. View Composition of a portfolio.\n" +
-            " 4. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-            " 5. Quit.\n", ap.toString());
+            " 3. Invest\n" +
+            " 4. Create Strategy\n" +
+            " 5. View Composition of a portfolio.\n" +
+            " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
+            " 7. Quit.\n", ap.toString());
   }
 }
