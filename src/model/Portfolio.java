@@ -57,7 +57,7 @@ class Portfolio {
         double commission = s.getCommission() + stock.getCommission();
         this.stocks.remove(s);
         this.stocks.add(new Stock(stock.getTicker(), totalShares, stock.getPurchasePrice(),
-                stock.getDateTime(), stock.getCurrentPrice(),commission));
+                stock.getDateTime(), stock.getCurrentPrice(), commission));
         break;
       }
     }

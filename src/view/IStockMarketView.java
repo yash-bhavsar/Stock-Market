@@ -3,8 +3,6 @@ package view;
 import java.io.IOException;
 import java.util.List;
 
-import model.Stock;
-
 /**
  * The interface Stock market view which has methods like enterCommand which is used to read an
  * input from the user and result which is used to append the result.

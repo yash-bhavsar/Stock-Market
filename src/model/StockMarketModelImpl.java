@@ -107,7 +107,7 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
   }
 
   @Override
-  public void DCassStrategy(String ticker, double investmentAmount, String startDate,
+  public void dCassStrategy(String ticker, double investmentAmount, String startDate,
                             String endDate, int portfolioNumber,
                             int frequency, IStockMarketModel model) throws ParseException {
     IStrategy strategy = new DCAS();
