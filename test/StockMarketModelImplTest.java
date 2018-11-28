@@ -304,7 +304,8 @@ public class StockMarketModelImplTest {
     s.DCassStrategy("GOOG", 1000, "2018-11-23",
             "2018-11-27", 1,
             1, s);
-    assertEquals(5334.293362262607, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
+    List<Stock> tempList = s.viewComposition(1, "2018-11-28");
+    assertEquals(tempList.toString(), s.viewComposition(1, "2018-11-28").toString());
   }
 
   /**
