@@ -174,8 +174,12 @@ public class StockMarketModelImplTest {
     s.buyStock("AAPL", 2, "2014-10-22", 2,5);
     List<Stock> tempList = s.viewComposition(1, "2014-10-22");
     List<Stock> tempList2 = s.viewComposition(2, "2014-10-22");
-    assertEquals(tempList.size(), s.viewComposition(1, "2014-10-22").size());
-    assertEquals(tempList2.size(), s.viewComposition(2, "2014-10-22").size());
+    for (int i = 0; i < tempList.size(); i++) {
+      assertEquals(tempList.get(i).toString(), s.viewComposition(1, "2014-10-22").get(i).toString());
+    }
+    for (int i = 0; i < tempList.size(); i++) {
+      assertEquals(tempList2.get(i).toString(), s.viewComposition(2, "2014-10-22").get(i).toString());
+    }
   }
 
   /**
@@ -200,5 +204,49 @@ public class StockMarketModelImplTest {
     s.buyStock("GOOG", 2, "2018-11-15", 1,5);
     List<Stock> tempList = s.viewComposition(1, "2018-11-20");
     assertEquals(tempList.size(), s.viewComposition(1, "2018-11-20").size());
+  }
+
+  /**
+   * Test to check if investing using custom weights works as expected.
+   */
+  @Test
+  public void testInvestCustomWeightsMultipleStocks() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    s.buyStock("AAPL", 2, "2014-10-15", 1,5);
+    assertEquals(1311.28, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+    s.invest("GOOG", 500, "2014-10-24", 1, 0);
+    s.invest("AAPL", 600, "2014-10-15", 1, 0);
+    assertEquals(2476.3200534918224, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+  }
+
+  /**
+   * Test to check if investing using custom weights works as expected for single stock.
+   */
+  @Test
+  public void testInvestCustomWeightsSingleStock() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    assertEquals(1097.8, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+    s.invest("GOOG", 500, "2014-10-24", 1, 0);
+    assertEquals(2476.3200534918224, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+  }
+
+
+  /**
+   * Test to check if investing using equal weights works as expected.
+   */
+  @Test
+  public void testInvestEqualWeightsMultipleStocks() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    s.buyStock("AAPL", 2, "2014-10-15", 1,5);
+    assertEquals(1311.28, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+    s.invest("GOOG", 500, "2014-10-24", 1, 0);
+    s.invest("AAPL", 500, "2014-10-15", 1, 0);
+    assertEquals(2366.8880256058264, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
   }
 }
