@@ -231,7 +231,7 @@ public class StockMarketModelImplTest {
     s.buyStock("GOOG", 2, "2014-10-24", 1,5);
     assertEquals(1097.8, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
     s.invest("GOOG", 500, "2014-10-24", 1, 0);
-    assertEquals(2476.3200534918224, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+    assertEquals(1606.2478861758493, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
   }
 
 
@@ -248,5 +248,18 @@ public class StockMarketModelImplTest {
     s.invest("GOOG", 500, "2014-10-24", 1, 0);
     s.invest("AAPL", 500, "2014-10-15", 1, 0);
     assertEquals(2366.8880256058264, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+  }
+
+  /**
+   * Test to check if investing using equal weights works as expected for single stock.
+   */
+  @Test
+  public void testInvestEqualWeightsSingleStock() {
+    s = new StockMarketModelImpl();
+    s.createPortfolio(1);
+    s.buyStock("GOOG", 2, "2014-10-24", 1,5);
+    assertEquals(1097.8, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
+    s.invest("GOOG", 1000, "2014-10-24", 1, 0);
+    assertEquals(2114.695772351699, s.evaluatePortfolio(1, "2014-10-28"), 0.1);
   }
 }
