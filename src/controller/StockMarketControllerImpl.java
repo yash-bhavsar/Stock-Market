@@ -176,7 +176,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     }
     double investmentAmount = Double.parseDouble(amount) / stockList.size();
     for (int i = 0; i < stockNames.size(); i++) {
-      this.im.DCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
+      this.im.dCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
               portfolioNumber, frequency, this.im);
     }
     return "";
@@ -221,7 +221,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     double[] numbers1 = Arrays.stream(weightsNumbers)
             .mapToDouble(number -> number * 0.01 * amount).toArray();
     for (int i = 0; i < stockNames.size(); i++) {
-      this.im.DCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
+      this.im.dCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
               portfolioNumber, frequency, this.im);
     }
     return "";
