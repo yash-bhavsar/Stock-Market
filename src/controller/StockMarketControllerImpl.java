@@ -65,18 +65,16 @@ public class StockMarketControllerImpl implements IStockMarketController {
             }
             break;
           case "3":
+            String date = inputs[2];
+            int portfolioNumber = Integer.parseInt(inputs[1]);
             if (inputs[3].equals("2")) {
               try {
-                String date = inputs[2];
-                int portfolioNumber = Integer.parseInt(inputs[1]);
                 result = investForCustomWeights(result, date, portfolioNumber);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             } else if (inputs[3].equals("1")) {
               try {
-                String date = inputs[2];
-                int portfolioNumber = Integer.parseInt(inputs[1]);
                 result = investForEqualWeights(result, date, portfolioNumber);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
@@ -84,24 +82,20 @@ public class StockMarketControllerImpl implements IStockMarketController {
             }
             break;
           case "4":
+            String sdate = inputs[2];
+            String edate = inputs[3];
+            int portfolioNumber1 = Integer.parseInt(inputs[1]);
+            int frequency = Integer.parseInt(inputs[4]);
             if (inputs[5].equals("2")) {
               try {
-                String sdate = inputs[2];
-                String edate = inputs[3];
-                int portfolioNumber = Integer.parseInt(inputs[1]);
-                int frequency = Integer.parseInt(inputs[4]);
-                result = investInStrategyCustomWeights(result, sdate, portfolioNumber,
+                result = investInStrategyCustomWeights(result, sdate, portfolioNumber1,
                         edate, frequency);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             } else if (inputs[5].equals("1")) {
               try {
-                String sdate = inputs[2];
-                String edate = inputs[3];
-                int portfolioNumber = Integer.parseInt(inputs[1]);
-                int frequency = Integer.parseInt(inputs[4]);
-                result = investInStrategyEqualWeights(result, sdate, portfolioNumber,
+                result = investInStrategyEqualWeights(result, sdate, portfolioNumber1,
                         edate, frequency);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();

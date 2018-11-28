@@ -80,13 +80,14 @@ public class StockMarketViewImpl implements IStockMarketView {
         this.out.append("\nEnter strategy details: \n");
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
         this.out.append("\nEnter start date: \n");
-        input.append(" ").append(askDate());
+        String startdate = askDate();
+        input.append(" ").append(startdate);
         this.out.append("\nEnter end Date\n1. Yes\n2. No\n");
         String choice1 = askChoice("");
         if (choice1.equals("1")) {
-          input.append(" ").append(askEndDate(true));
+          input.append(" ").append(askEndDate(true, startdate));
         } else {
-          input.append(" ").append(askEndDate(false));
+          input.append(" ").append(askEndDate(false, startdate));
         }
         input.append(" ").append(askNumber("Please enter the frequency (in days) " +
                 "for the strategy\n"));
@@ -144,7 +145,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @return the end date.
    * @throws IOException if input is invalid.
    */
-  private String askEndDate(boolean flag) throws IOException {
+  private String askEndDate(boolean flag, String startdate) throws IOException {
     String endDate;
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     if (flag) {
@@ -153,14 +154,19 @@ public class StockMarketViewImpl implements IStockMarketView {
       df.setLenient(false);
       try {
         Date date = df.parse(st);
+        Date sdate = df.parse(startdate);
         Date currentDate = new Date();
         if (date.after(currentDate)) {
           return df.format(currentDate);
         }
+        if (sdate.after(date)) {
+          this.out.append("\nEnd Date cannot be before start Date.\n ");
+          return askEndDate(true, startdate);
+        }
         return df.format(date);
       } catch (ParseException e) {
         this.out.append("\nEnter valid date in format (yyyy-mm-dd).\n ");
-        return askEndDate(true);
+        return askEndDate(true, startdate);
       }
     }
     endDate = df.format(new Date());
