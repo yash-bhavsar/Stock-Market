@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="investBtn" alignment="0" max="32767" attributes="0"/>
+                  <Component id="investWeightsComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="investPortfolioField" max="32767" attributes="0"/>
+                          <Component id="investDateField" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="investPortfolioNumberLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="investDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="investWeightsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="amountToInvestLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Component id="amountToinvesttextField" alignment="1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="investPortfolioNumberLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="investPortfolioField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="investDateLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="investDateField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="investWeightsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="investWeightsComboBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="amountToInvestLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="amountToinvesttextField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="investBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="investPortfolioNumberLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the portfolio number."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="investPortfolioField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter the portfolio number here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="investDateLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the date (yyyy-mm-dd)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="investDateField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter date here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="investWeightsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please select the weight distribution."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="investWeightsComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Equal Weights"/>
+            <StringItem index="1" value="Custom Weights"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="amountToInvestLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the amount you would like to invest."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="amountToinvesttextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter amount here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="investBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Invest"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

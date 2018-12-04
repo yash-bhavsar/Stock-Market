@@ -9,12 +9,14 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import controller.IStockMarketController;
+
 
 /**
  * The class StockMarketView which has methods to get the input from the user. These include helper
  * methods like askDate, askNumberOfShares etc.
  */
-public class StockMarketViewImpl implements IStockMarketView {
+public class StockMarketViewImpl extends AbstractView implements IStockMarketView {
 
   private Appendable out;
   private Scanner scanner;
@@ -139,13 +141,18 @@ public class StockMarketViewImpl implements IStockMarketView {
     return input.toString();
   }
 
+  @Override
+  public void setFeatures(IStockMarketController c) {
+
+  }
+
   /**
    * Private helper method to ask for end date.
    *
    * @return the end date.
    * @throws IOException if input is invalid.
    */
-  private String askEndDate(boolean flag, String startdate) throws IOException {
+  protected String askEndDate(boolean flag, String startdate) throws IOException {
     String endDate;
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     if (flag) {
@@ -180,7 +187,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @return the number, if it passes validations.
    * @throws IOException if input is invalid.
    */
-  private String askNumber(String string) throws IOException {
+  protected String askNumber(String string) throws IOException {
     this.out.append(string);
     String s = scanner.next();
     try {
@@ -203,7 +210,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @return return the valid choice (either 1 or 2) as a String.
    * @throws IOException if append is not working.
    */
-  private String askChoice(String string) throws IOException {
+  protected String askChoice(String string) throws IOException {
     this.out.append(string);
     String s = scanner.next();
     try {
@@ -224,7 +231,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    *
    * @return the weight entered by the user.
    */
-  private String askWeights(String ticker) throws IOException {
+  protected String askWeights(String ticker) throws IOException {
     this.out.append("\nEnter weight for: " + ticker + "\n");
     String s = scanner.next();
     try {
@@ -273,7 +280,7 @@ public class StockMarketViewImpl implements IStockMarketView {
    * @return returns the date which is a string.
    * @throws IOException if the input is invalid.
    */
-  private String askDate() throws IOException {
+  protected String askDate() throws IOException {
     this.out.append("\nPlease enter date(yyyy-mm-dd): ");
     String s = scanner.next();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

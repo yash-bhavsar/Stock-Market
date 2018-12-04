@@ -26,12 +26,16 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @param im IStockMarketModel object.
    * @param iv the IStockMarketView object.
    */
-  public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
-    if (im == null || iv == null) {
+  public StockMarketControllerImpl(IStockMarketModel im) {
+    if (im == null) {
       throw new IllegalArgumentException("Model or View is null");
     }
     this.im = im;
-    this.iv = iv;
+  }
+
+  public void setView(IStockMarketView view) {
+    iv = view;
+    iv.setFeatures(this);
   }
 
   /**
@@ -133,6 +137,15 @@ public class StockMarketControllerImpl implements IStockMarketController {
       }
     } catch (IOException | ParseException e) {
       e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void createPortfolio(String portfolioNumber) {
+    try {
+      this.im.createPortfolio(Integer.parseInt(portfolioNumber));
+    } catch (IllegalArgumentException e) {
+//      result = e.getMessage();
     }
   }
 

@@ -9,4 +9,9 @@ public interface IStockMarketController {
    * Method to start stock market simulator.
    */
   void startStockMarketSimulator();
+
+  /**
+   * Method to create portfolio.
+   */
+  void createPortfolio(String portfolioNumber);
 }

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="strategyWeightsComboBox" max="32767" attributes="0"/>
+          <Component id="strategyCustomWeightsField" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyAmountLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Component id="strategyAmountField" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="strategyPortfolioNumberField" max="32767" attributes="0"/>
+                  <Component id="strategyStartDateField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="strategyEndDateComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="strategyEndDateField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="strategyFrequencyField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="strategyInvestBtn" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="strategyPortfolioNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="strategyEndDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="strategyEndDateLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="strategyFrequencyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="strategyWeightsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="strategyCustomWeightsLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyPortfolioNumberLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyPortfolioNumberField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyStartDateField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyEndDateLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyEndDateComboBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyEndDateLbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyEndDateField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyFrequencyLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyFrequencyField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyWeightsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyWeightsComboBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyCustomWeightsLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyCustomWeightsField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyAmountLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyAmountField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="strategyInvestBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="strategyPortfolioNumberLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the portfolio number."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="strategyPortfolioNumberField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter the portfolio number here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the start date (yyyy-mm-dd)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="strategyStartDateField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter start date here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="strategyEndDateLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Would you like to enter the end date."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="strategyEndDateComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Yes"/>
+            <StringItem index="1" value="No"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="strategyEndDateLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the end date."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="strategyEndDateField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter the end date here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="strategyFrequencyLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the frequency (in days)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="strategyFrequencyField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter the frequency here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="strategyWeightsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select the weight distribution."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="strategyWeightsComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Equal"/>
+            <StringItem index="1" value="Custom"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="strategyCustomWeightsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the custom weights below (weight1, weight2)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="strategyCustomWeightsField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter comma separated weights here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="strategyAmountLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Please enter the amount you would like to invest ($)."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="strategyAmountField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter the amount here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="strategyInvestBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Create Strategy"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
