@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.*;
+
 import model.IStockMarketModel;
 import model.Stock;
 import view.IStockMarketView;
@@ -24,7 +26,6 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * Constructor which initializes stock market model and view objects.
    *
    * @param im IStockMarketModel object.
-   * @param iv the IStockMarketView object.
    */
   public StockMarketControllerImpl(IStockMarketModel im) {
     if (im == null) {
@@ -33,9 +34,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
     this.im = im;
   }
 
+  @Override
   public void setView(IStockMarketView view) {
     iv = view;
-    iv.setFeatures(this);
+    iv.setFeatures();
   }
 
   /**
@@ -141,11 +143,67 @@ public class StockMarketControllerImpl implements IStockMarketController {
   }
 
   @Override
-  public void createPortfolio(String portfolioNumber) {
+  public String createPortfolio(String portfolioNumber) {
     try {
       this.im.createPortfolio(Integer.parseInt(portfolioNumber));
+      return "pass";
     } catch (IllegalArgumentException e) {
-//      result = e.getMessage();
+      return e.getMessage();
+    }
+  }
+
+  @Override
+  public String buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber,
+                         int commission) {
+    try {
+      this.im.buyStock(ticker, numberOfStocks, date, portfolioNumber, commission);
+      return "pass";
+    } catch (IllegalArgumentException e) {
+      return e.getMessage();
+    }
+  }
+
+  @Override
+  public String buyStockByAmount(String ticker, double amount, String date, int portfolioNumber, double commission) {
+    try {
+      this.im.invest(ticker, amount, date, portfolioNumber, commission);
+      return "pass";
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
+  }
+
+  @Override
+  public List<Stock> viewComposition(int portfolioNumber, String date) {
+    try {
+      List<Stock> stocks = this.im.viewComposition(portfolioNumber, date);
+      return stocks;
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
+  }
+
+  @Override
+  public String costBasisAndEvaluation(int portfolioNumber, String date) {
+    try {
+      Double costBasis = this.im.calculateCostBasis(portfolioNumber, date);
+      Double valuation = this.im.evaluatePortfolio(portfolioNumber, date);
+      return "Cost Basis: " + costBasis.toString() + "\nEvaluation: " + valuation.toString();
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
+  }
+
+  @Override
+  public String executeStrategy(String ticker, double investmentAmount, String startDate,
+                                String endDate, int portfolioNumber,
+                                int frequency) throws ParseException {
+    try {
+      this.im.dCassStrategy(ticker, investmentAmount, startDate, endDate, portfolioNumber,
+              frequency, this.im);
+      return "pass";
+    } catch (IllegalArgumentException ie) {
+      throw new IllegalArgumentException(ie.getMessage());
     }
   }
 
@@ -188,10 +246,15 @@ public class StockMarketControllerImpl implements IStockMarketController {
       return result;
     }
     double investmentAmount = Double.parseDouble(amount) / stockList.size();
-    for (int i = 0; i < stockNames.size(); i++) {
-      this.im.dCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
-              portfolioNumber, frequency, this.im);
+    try {
+      for (int i = 0; i < stockNames.size(); i++) {
+        this.im.dCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
+                portfolioNumber, frequency, this.im);
+      }
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
     }
+
     return "";
   }
 
@@ -233,9 +296,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
     }
     double[] numbers1 = Arrays.stream(weightsNumbers)
             .mapToDouble(number -> number * 0.01 * amount).toArray();
-    for (int i = 0; i < stockNames.size(); i++) {
-      this.im.dCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
-              portfolioNumber, frequency, this.im);
+    try {
+      for (int i = 0; i < stockNames.size(); i++) {
+        this.im.dCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
+                portfolioNumber, frequency, this.im);
+      }
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
     }
     return "";
   }

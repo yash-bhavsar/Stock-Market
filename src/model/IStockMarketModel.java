@@ -83,5 +83,5 @@ public interface IStockMarketModel<T> {
    */
   void dCassStrategy(String ticker, double investmentAmount, String startDate,
                      String endDate, int portfolioNumber,
-                     int frequency, IStockMarketModel model) throws ParseException;
+                     int frequency, IStockMarketModel model);
 }

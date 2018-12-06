@@ -47,8 +47,6 @@ public interface IStockMarketView {
 
   /**
    * Sets features.
-   *
-   * @param c is the controller object.
    */
-  void setFeatures(IStockMarketController c);
+  void setFeatures();
 }

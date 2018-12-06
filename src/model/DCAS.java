@@ -14,31 +14,36 @@ public class DCAS implements IStrategy {
   @Override
   public void investmentStrategy(String ticker, double investmentAmount, String startDate,
                                  String endDate, int portfolioNumber, int frequency,
-                                 IStockMarketModel model, User user)
-          throws ParseException {
-    Services service = VantageService.getInstance();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    Date sdate = dateFormat.parse(startDate);
-    Date edate = dateFormat.parse(endDate);
-    while (sdate.compareTo(edate) <= 0) {
-      double value = service.getValueForCompany(dateFormat.format(sdate), ticker);
-      double numberOfShares = investmentAmount / value;
-      Stock stock = null;
-      while (stock == null) {
-        try {
-          stock = service.getDataForCompany(ticker, numberOfShares,
-                  dateFormat.format(sdate), 0);
-        } catch (IllegalArgumentException e) {
-          String t = getNearestDate(dateFormat.format(sdate));
-          sdate = dateFormat.parse(t);
+                                 IStockMarketModel model, User user) {
+    try {
+      Services service = VantageService.getInstance();
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      Date sdate = dateFormat.parse(startDate);
+      Date edate = dateFormat.parse(endDate);
+      while (sdate.compareTo(edate) <= 0) {
+        double value = service.getValueForCompany(dateFormat.format(sdate), ticker);
+        double numberOfShares = investmentAmount / value;
+        Stock stock = null;
+        while (stock == null) {
+          try {
+            stock = service.getDataForCompany(ticker, numberOfShares,
+                    dateFormat.format(sdate), 0);
+          } catch (IllegalArgumentException e) {
+            String t = getNearestDate(dateFormat.format(sdate));
+            sdate = dateFormat.parse(t);
+          }
         }
+        try {
+          user.buyStock(portfolioNumber, stock);
+        } catch (IllegalArgumentException e) {
+          throw new IllegalArgumentException(e.getMessage());
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(sdate);
+        c.add(Calendar.DATE, frequency);
+        sdate = dateFormat.parse(dateFormat.format(c.getTime()));
       }
-      user.buyStock(portfolioNumber, stock);
-      Calendar c = Calendar.getInstance();
-      c.setTime(sdate);
-      c.add(Calendar.DATE, frequency);
-      sdate = dateFormat.parse(dateFormat.format(c.getTime()));
-    }
+    } catch (ParseException ignored) {}
   }
 
   /**

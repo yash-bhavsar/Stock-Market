@@ -16,7 +16,7 @@ import controller.IStockMarketController;
  * The class StockMarketView which has methods to get the input from the user. These include helper
  * methods like askDate, askNumberOfShares etc.
  */
-public class StockMarketViewImpl extends AbstractView implements IStockMarketView {
+public class StockMarketViewImpl implements IStockMarketView {
 
   private Appendable out;
   private Scanner scanner;
@@ -142,7 +142,7 @@ public class StockMarketViewImpl extends AbstractView implements IStockMarketVie
   }
 
   @Override
-  public void setFeatures(IStockMarketController c) {
+  public void setFeatures() {
 
   }
 

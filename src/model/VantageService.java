@@ -171,6 +171,7 @@ public class VantageService implements Services {
         String[] temp = stockArray[i].split(",");
         if (temp[0].equals(date)) {
           value = Double.parseDouble(temp[4].trim());
+          break;
         }
       }
       if (value == 0) {

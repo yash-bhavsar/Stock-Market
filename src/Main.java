@@ -14,16 +14,19 @@ public class Main {
 
   /**
    * This is the main method which tests if the controller works.
+   *
    * @param args are the command line arguments.
    */
   public static void main(String[] args) {
-    /*IStockMarketController sc = new StockMarketControllerImpl(new StockMarketModelImpl(),
-            new StockMarketViewImpl(new InputStreamReader(System.in), System.out));
-
-    sc.startStockMarketSimulator();*/
-
-    StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
-    IStockMarketView view = new WelcomeFrame();
-    controller.setView(view);
+//    if (args[1].equals("console")) {
+//      IStockMarketController sc = new StockMarketControllerImpl(new StockMarketModelImpl());
+//      IStockMarketView sv = new StockMarketViewImpl(new InputStreamReader(System.in), System.out);
+//      sc.setView(sv);
+//      sc.startStockMarketSimulator();
+//    } else if (args[1].equals("gui")) {
+      StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
+      IStockMarketView view = new WelcomeFrame(controller);
+      controller.setView(view);
+//    }
   }
 }

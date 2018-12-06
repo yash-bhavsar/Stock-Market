@@ -109,9 +109,13 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
   @Override
   public void dCassStrategy(String ticker, double investmentAmount, String startDate,
                             String endDate, int portfolioNumber,
-                            int frequency, IStockMarketModel model) throws ParseException {
+                            int frequency, IStockMarketModel model) {
     IStrategy strategy = new DCAS();
-    strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate,
-            portfolioNumber, frequency, model, this.user);
+    try {
+      strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate,
+              portfolioNumber, frequency, model, this.user);
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
   }
 }
