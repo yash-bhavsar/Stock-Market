@@ -131,13 +131,6 @@ public class SampleGraphFrame extends javax.swing.JFrame {
         e.printStackTrace();
       }
     }
-
-    /*dataset.addValue( 15 , "schools" , "1970" );
-    dataset.addValue( 30 , "schools" , "1980" );
-    dataset.addValue( 60 , "schools" ,  "1990" );
-    dataset.addValue( 120 , "schools" , "2000" );
-    dataset.addValue( 240 , "schools" , "2010" );
-    dataset.addValue( 300 , "schools" , "2014" );*/
     return dataset;
   }
 
@@ -153,6 +146,11 @@ public class SampleGraphFrame extends javax.swing.JFrame {
     return Double.parseDouble(temp2[1]);
   }
 
+  /**
+   * Private helper method to get evaluation.
+   * @param costValue is the costValue.
+   * @return the value.
+   */
   private double getEvaluation(String costValue) {
     String[] temp = costValue.split("\n");
     String[] temp2 = temp[1].split(":");
@@ -216,7 +214,6 @@ public class SampleGraphFrame extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-//                new SampleGraphFrame("1", "abc", "xyz", "2018-11-23", "2018-11-28", "5").setVisible(true);
       }
     });
   }

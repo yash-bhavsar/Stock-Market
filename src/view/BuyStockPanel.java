@@ -79,7 +79,8 @@ public class BuyStockPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                    .Alignment.LEADING)
                                     .addComponent(tickerLabel,
                                             javax.swing.GroupLayout.DEFAULT_SIZE,
                                             javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,7 +166,8 @@ public class BuyStockPanel extends javax.swing.JPanel {
       } else if (date1.after(new Date())) {
         resultLabel.setText("Future dates are not valid.");
       } else {
-        String response = stockMarketController.buyStock(ticker, numberOfStock, date, pn, commission);
+        String response = stockMarketController.buyStock(ticker, numberOfStock, date, pn,
+                commission);
         if (response.equals("pass")) {
           resultLabel.setText("Stock bought successfully.");
         } else {

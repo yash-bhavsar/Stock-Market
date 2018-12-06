@@ -20,6 +20,8 @@ import controller.IStockMarketController;
 import model.Stock;
 
 /**
+ * The class Create strategy panel.
+ *
  * @author ojaspatwardhan
  */
 public class CreateStrategyPanel extends javax.swing.JPanel {
@@ -30,6 +32,8 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form CreateStrategypanel
+   *
+   * @param stockMarketController the stock market controller
    */
   public CreateStrategyPanel(IStockMarketController stockMarketController) {
     initComponents();
@@ -151,14 +155,16 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
     customWeightsBtn.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        executeStrategy(actionEvent, true);
+        executeStrategy(actionEvent,
+                true);
       }
     });
 
     equalWeightsBtn.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        executeStrategy(actionEvent, false);
+        executeStrategy(actionEvent,
+                false);
       }
     });
 

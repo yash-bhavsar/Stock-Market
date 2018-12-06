@@ -190,6 +190,11 @@ public class User {
     strategyList.add(strategyNumber);
   }
 
+  /**
+   * Method to get the strategy details.
+   * @param strategyNumber is the strategy number.
+   * @return the array of strategy details.
+   */
   public String[] strategyDetails(String strategyNumber) {
     String path = "./src/strategies/";
     String[] details = new String[4];

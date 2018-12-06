@@ -102,14 +102,16 @@ public class StockMarketControllerImpl implements IStockMarketController {
             int frequency = Integer.parseInt(inputs[5]);
             if (inputs[7].equals("2")) {
               try {
-                result = investInStrategyCustomWeights(saveStrategy, result, sdate, portfolioNumber1,
+                result = investInStrategyCustomWeights(saveStrategy, result, sdate,
+                        portfolioNumber1,
                         edate, frequency, amount1);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             } else if (inputs[7].equals("1")) {
               try {
-                result = investInStrategyEqualWeights(saveStrategy, result, sdate, portfolioNumber1,
+                result = investInStrategyEqualWeights(saveStrategy, result, sdate,
+                        portfolioNumber1,
                         edate, frequency, amount1);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
@@ -156,14 +158,16 @@ public class StockMarketControllerImpl implements IStockMarketController {
             List<Stock> stocks = this.im.viewComposition(portfolioNumber1, startdate);
             if (inputs[3].equals("2")) {
               try {
-                result = investInStrategyCustomWeights("no", result, startdate, portfolioNumber1,
+                result = investInStrategyCustomWeights("no", result, startdate,
+                        portfolioNumber1,
                         endDate, frequency1, amount);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             } else if (inputs[5].equals("1")) {
               try {
-                result = investInStrategyEqualWeights("no", result, startdate, portfolioNumber1,
+                result = investInStrategyEqualWeights("no", result, startdate,
+                        portfolioNumber1,
                         endDate, frequency1, amount);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
@@ -205,7 +209,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
   }
 
   @Override
-  public String buyStockByAmount(String ticker, double amount, String date, int portfolioNumber, double commission) {
+  public String buyStockByAmount(String ticker, double amount, String date, int portfolioNumber,
+                                 double commission) {
     try {
       this.im.invest(ticker, amount, date, portfolioNumber, commission);
       return "pass";
@@ -259,7 +264,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
   }
 
   @Override
-  public String saveStrategy(String strategyNumber, double amount, String sdate, String edate, int frequency) {
+  public String saveStrategy(String strategyNumber, double amount, String sdate, String edate,
+                             int frequency) {
     try {
       this.im.saveDcassStrategy(strategyNumber, amount, sdate, edate, frequency);
       return "pass";
@@ -291,8 +297,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @throws IOException    if the input is invalid.
    * @throws ParseException if parsing is invalid.
    */
-  private String investInStrategyEqualWeights(String saveStrategy, String result, String sdate, int portfolioNumber,
-                                              String edate, int frequency, int amount) throws IOException,
+  private String investInStrategyEqualWeights(String saveStrategy, String result, String sdate,
+                                              int portfolioNumber,
+                                              String edate, int frequency, int amount)
+          throws IOException,
           ParseException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
@@ -404,7 +412,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
     }
     double investmentAmount = Double.parseDouble(amount) / stockList.size();
     for (int i = 0; i < stockList.size(); i++) {
-      this.im.invest(stockList.get(i).getTicker(), investmentAmount, date, portfolioNumber, 0);
+      this.im.invest(stockList.get(i).getTicker(), investmentAmount, date, portfolioNumber,
+              0);
     }
     return "";
   }
@@ -444,7 +453,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
     double[] numbers1 = Arrays.stream(weightsNumbers)
             .mapToDouble(number -> number * 0.01 * amount).toArray();
     for (int i = 0; i < stockList.size(); i++) {
-      this.im.invest(stockList.get(i).getTicker(), numbers1[i], date, portfolioNumber, 0);
+      this.im.invest(stockList.get(i).getTicker(), numbers1[i], date, portfolioNumber,
+              0);
     }
     return "";
   }

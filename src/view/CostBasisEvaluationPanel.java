@@ -118,7 +118,8 @@ public class CostBasisEvaluationPanel extends javax.swing.JPanel {
                             .addComponent(costBasisEvaluationBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextArea2,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, 299,
+                                    Short.MAX_VALUE)
                             .addContainerGap())
     );
   }// </editor-fold>//GEN-END:initComponents
