@@ -70,6 +70,13 @@ public interface IStockMarketModel<T> {
               double commission);
 
   /**
+   * Used to save a portfolio to a csv file.
+   *
+   * @param portfolioNumber is the portfolio number.
+   */
+  void save(int portfolioNumber);
+
+  /**
    * DCAS strategy.
    *
    * @param ticker           the ticker
@@ -84,4 +91,17 @@ public interface IStockMarketModel<T> {
   void dCassStrategy(String ticker, double investmentAmount, String startDate,
                      String endDate, int portfolioNumber,
                      int frequency, IStockMarketModel model);
+
+
+  /**
+   * Save dcass strategy.
+   *
+   * @param strategyNumber   the strategy number
+   * @param investmentAmount the investment amount
+   * @param startDate        the start date
+   * @param endDate          the end date
+   * @param frequency        the frequency
+   */
+  void saveDcassStrategy(String strategyNumber, double investmentAmount, String startDate,
+                         String endDate, int frequency);
 }

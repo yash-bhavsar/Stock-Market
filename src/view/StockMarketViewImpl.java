@@ -95,6 +95,13 @@ public class StockMarketViewImpl implements IStockMarketView {
                 "for the strategy\n"));
         input.append(" ").append(askChoice("\nSelect weights: \n1.Equal weights " +
                 "\n2.Custom weights\n"));
+        this.out.append("Would you like to save the strategy?\n1. Yes\n2. No\n");
+        String choice2 = askChoice("");
+        if (choice2.equals("1")) {
+          input.append(" ").append(askNumber("\nEnter strategy number: "));
+        } else {
+          input.append(" ").append("no");
+        }
         break;
       case "5":
         input.append("5 ");
@@ -108,6 +115,10 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
       case "7":
         input.append("7 ");
+        input.append(" ").append(askNumber("\nEnter portfolio number: "));
+        break;
+      case "8":
+        input.append("8 ");
         this.out.append("Quitting.....");
         try {
           TimeUnit.SECONDS.sleep(3);
@@ -271,7 +282,8 @@ public class StockMarketViewImpl implements IStockMarketView {
             "\n 4. Create Strategy" +
             "\n 5. View Composition of a portfolio." +
             "\n 6. View total cost basis and evaluation of a portfolio on a particular date." +
-            "\n 7. Quit.\n";
+            "\n 7. Save." +
+            "\n 8. Quit.\n";
   }
 
   /**

@@ -1,5 +1,10 @@
 package model;
 
+import com.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,6 +68,27 @@ class Portfolio {
     }
     if (!exists) {
       this.stocks.add(stock);
+    }
+  }
+
+  /**
+   * Method to save the portfolio.
+   */
+  void save(int pNumber) {
+    if (stocks.size() == 0) {
+      throw new IllegalArgumentException("No stocks in the portfolio");
+    }
+    try {
+      File file = new File("./src/portfolios/portfolio-" + pNumber + ".csv");
+      FileWriter output = new FileWriter(file);
+      CSVWriter writer = new CSVWriter(output);
+      for (Stock stock : this.stocks) {
+        String[] stockArray = stock.convertToCSV();
+        writer.writeNext(stockArray);
+      }
+      writer.close();
+    } catch(IOException e) {
+      e.printStackTrace();
     }
   }
 }
