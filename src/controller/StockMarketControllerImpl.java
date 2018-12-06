@@ -98,18 +98,19 @@ public class StockMarketControllerImpl implements IStockMarketController {
             String edate = inputs[3];
             String saveStrategy = inputs[6];
             int portfolioNumber1 = Integer.parseInt(inputs[1]);
-            int frequency = Integer.parseInt(inputs[4]);
-            if (inputs[5].equals("2")) {
+            int amount1 = Integer.parseInt(inputs[4]);
+            int frequency = Integer.parseInt(inputs[5]);
+            if (inputs[6].equals("2")) {
               try {
                 result = investInStrategyCustomWeights(saveStrategy, result, sdate, portfolioNumber1,
-                        edate, frequency);
+                        edate, frequency, amount1);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             } else if (inputs[5].equals("1")) {
               try {
                 result = investInStrategyEqualWeights(saveStrategy, result, sdate, portfolioNumber1,
-                        edate, frequency);
+                        edate, frequency, amount1);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
@@ -144,6 +145,32 @@ public class StockMarketControllerImpl implements IStockMarketController {
             }
             break;
           case "8":
+            String strategyNumber = inputs[1];
+            portfolioNumber1 = Integer.parseInt(inputs[2]);
+            String[] details = this.im.strategyDetails(strategyNumber);
+            int amount = Integer.parseInt(details[0]);
+            String startdate = details[1];
+            String endDate = details[2];
+            int frequency1 = Integer.parseInt(details[3]);
+
+            List<Stock> stocks = this.im.viewComposition(portfolioNumber1, startdate);
+            if (inputs[3].equals("2")) {
+              try {
+                result = investInStrategyCustomWeights("no", result, startdate, portfolioNumber1,
+                        endDate, frequency1, amount);
+              } catch (IllegalArgumentException e) {
+                result = e.getMessage();
+              }
+            } else if (inputs[5].equals("1")) {
+              try {
+                result = investInStrategyEqualWeights("no", result, startdate, portfolioNumber1,
+                        endDate, frequency1, amount);
+              } catch (IllegalArgumentException e) {
+                result = e.getMessage();
+              }
+            }
+            break;
+          case "9":
             System.exit(0);
             break;
           default:
@@ -221,6 +248,26 @@ public class StockMarketControllerImpl implements IStockMarketController {
     }
   }
 
+  @Override
+  public String savePortfolio(int portfolioNumber) {
+    try {
+      this.im.save(portfolioNumber);
+      return "pass";
+    } catch (IllegalArgumentException ie) {
+      throw new IllegalArgumentException(ie.getMessage());
+    }
+  }
+
+  @Override
+  public String saveStrategy(String strategyNumber, double amount, String sdate, String edate, int frequency) {
+    try {
+      this.im.saveDcassStrategy(strategyNumber, amount, sdate, edate, frequency);
+      return "pass";
+    } catch (IllegalArgumentException ie) {
+      throw new IllegalArgumentException(ie.getMessage());
+    }
+  }
+
   /**
    * Helper method to check if stocks exist in the portfolio.
    *
@@ -245,7 +292,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @throws ParseException if parsing is invalid.
    */
   private String investInStrategyEqualWeights(String saveStrategy, String result, String sdate, int portfolioNumber,
-                                              String edate, int frequency) throws IOException,
+                                              String edate, int frequency, int amount) throws IOException,
           ParseException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
@@ -254,12 +301,11 @@ public class StockMarketControllerImpl implements IStockMarketController {
       result = "\n\nBuy stock first\n";
       return result;
     }
-    String amount = this.iv.getEqualWeightsAmount();
-    if (Integer.parseInt(amount.trim()) <= 0) {
+    if (amount <= 0) {
       result = "\n\nAmount cannot be less than or equal to 0\n";
       return result;
     }
-    double investmentAmount = Double.parseDouble(amount) / stockList.size();
+    double investmentAmount = (double) amount / stockList.size();
     try {
       for (int i = 0; i < stockNames.size(); i++) {
         this.im.dCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
@@ -270,7 +316,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     }
     if (!saveStrategy.equals("no")) {
       try {
-        this.im.saveDcassStrategy(saveStrategy, Double.parseDouble(amount), sdate, edate, frequency);
+        this.im.saveDcassStrategy(saveStrategy, (double) amount, sdate, edate, frequency);
       } catch (IllegalArgumentException e) {
         throw new IllegalArgumentException(e.getMessage());
       }
@@ -289,11 +335,10 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @param frequency       is how frequently the user wants to invest in the strategy.
    * @return the result string.
    * @throws IOException    if the input is invalid.
-   * @throws ParseException if parsing is invalid.
    */
-  private String investInStrategyCustomWeights(String saveStrategy, String result, String sdate, int portfolioNumber,
-                                               String edate, int frequency) throws IOException,
-          ParseException {
+  private String investInStrategyCustomWeights(String saveStrategy, String result, String sdate,
+                                               int portfolioNumber, String edate, int frequency,
+                                               int amount) throws IOException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
     List<String> stockNames = stockList.stream().map(Stock::getTicker).collect(Collectors.toList());
     stockNames = stockNames.stream().distinct().collect(Collectors.toList());
@@ -304,7 +349,6 @@ public class StockMarketControllerImpl implements IStockMarketController {
     String weights = this.iv.continueTakingWeights(stockNames);
     int[] numbers = Arrays.stream(weights.trim().split("\\s+"))
             .mapToInt(Integer::parseInt).toArray();
-    int amount = numbers[numbers.length - 1];
     if (amount <= 0) {
       result = "\n\nAmount cannot be less than or equal to 0\n";
       return result;
@@ -333,6 +377,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
     }
     return "";
   }
+
+
 
   /**
    * Private helper method to calculate the number of shares the user can purchase using equal

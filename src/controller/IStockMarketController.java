@@ -82,4 +82,22 @@ public interface IStockMarketController {
   String executeStrategy(String ticker, double investmentAmount, String startDate,
                          String endDate, int portfolioNumber,
                          int frequency) throws ParseException;
+
+  /**
+   *
+   * @param portfolioNumber
+   * @return
+   */
+  String savePortfolio(int portfolioNumber);
+
+  /**
+   *
+   * @param strategyNumber
+   * @param amount
+   * @param sdate
+   * @param edate
+   * @param frequency
+   * @return
+   */
+  String saveStrategy(String strategyNumber, double amount, String sdate, String edate, int frequency);
 }

@@ -23,7 +23,37 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
    */
   public StockMarketModelImpl() {
     this.user = new User();
+    loadStrategies();
     loadPortfolios();
+  }
+
+  private void loadStrategies() {
+    String path = "./src/strategies/";
+    File f = new File(path);
+    File[] listOfFiles = f.listFiles();
+    if (listOfFiles.length != 0) {
+      File[] files = new File(path).listFiles(new FileFilter() {
+        @Override
+        public boolean accept(File path) {
+          if (path.isFile()) {
+            try (FileReader f = new FileReader(path)) {
+              Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(f);
+              for (CSVRecord r : records) {
+                try {
+                  user.addStrategy(r.get(0));
+                } catch (IllegalArgumentException ie) {
+                  throw new IllegalArgumentException(ie.getMessage());
+                }
+              }
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+            return true;
+          }
+          return false;
+        }
+      });
+    }
   }
 
   /**
@@ -43,7 +73,7 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
               int portfolioNumber = getPortfolioNumber(path.getPath());
               createPortfolio(portfolioNumber);
               getRecordDetails(records, portfolioNumber);
-            } catch (Exception e){
+            } catch (Exception e) {
               e.printStackTrace();
             }
             return true;
@@ -67,11 +97,12 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
 
   /**
    * Private helper method to get the portfolio number from the file name.
+   *
    * @param path is the path of the file.
    * @return the number.
    */
   private int getPortfolioNumber(String path) {
-    String portfolioNumber= path.replaceAll("[^0-9]", "");
+    String portfolioNumber = path.replaceAll("[^0-9]", "");
     return Integer.parseInt(portfolioNumber);
   }
 
@@ -191,5 +222,10 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     } catch (IllegalArgumentException e) {
       throw new IllegalArgumentException(e.getMessage());
     }
+  }
+
+  @Override
+  public String[] strategyDetails(String strategyNumber) {
+    return new String[0];
   }
 }

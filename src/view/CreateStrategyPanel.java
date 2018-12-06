@@ -159,6 +159,13 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
       }
     });
 
+    saveStrategyBtn.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        saveStrategy(actionEvent);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
@@ -350,6 +357,52 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
       }
     } catch (NumberFormatException e) {
       resultLbl.setText("Enter a valid number for amount");
+    } catch (IllegalArgumentException ie) {
+      resultLbl.setText(ie.getMessage());
+    } catch (ParseException pe) {
+      resultLbl.setText("Enter valid date of format (yyyy-MM-dd).");
+    }
+  }
+
+  private void saveStrategy(ActionEvent actionEvent) {
+    String strategyNumber = strategyNumberField.getText();
+    String startDate = strategyStartDateField.getText();
+    String investmentAmount = strategyAmountField.getText();
+    String frequency = strategyFrequencyField.getText();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String endDate;
+    if (strategyEndDateComboBox.getSelectedIndex() == 1) {
+      endDate = strategyEndDateField.getText();
+    } else {
+      endDate = dateFormat.format(new Date());
+    }
+    double amount;
+    try {
+      int sn = Integer.parseInt(strategyNumber);
+      int freqNumber = Integer.parseInt(frequency);
+      amount = Double.parseDouble(investmentAmount);
+      Date sdate = dateFormat.parse(startDate);
+      Date edate = dateFormat.parse(endDate);
+      if (sn < 0) {
+        resultLbl.setText("Strategy number cannot be negative");
+        return;
+      } else if (freqNumber < 0) {
+        resultLbl.setText("Frequency cannot be negative.");
+        return;
+      } else if (sdate.after(edate)) {
+        resultLbl.setText("Start date cannot be after end date.");
+        return;
+      } else if (amount < 0) {
+        resultLbl.setText("Amount cannot be negative");
+        return;
+      }
+
+      String response = this.stockMarketController.saveStrategy(strategyNumber, amount, startDate, endDate, freqNumber);
+      if (response.equals("pass")) {
+        resultLbl.setText("Strategy saved.");
+      }
+    } catch (NumberFormatException ne) {
+      resultLbl.setText("Enter a valid number.");
     } catch (IllegalArgumentException ie) {
       resultLbl.setText(ie.getMessage());
     } catch (ParseException pe) {
