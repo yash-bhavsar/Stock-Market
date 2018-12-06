@@ -82,6 +82,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     savePortfolioButton.addActionListener(l -> jSplitPane1.setRightComponent(savePortfolioPanel));
     plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
     applyStrategyButton.addActionListener(l -> jSplitPane1.setRightComponent(applyStrategyPanel));
+    plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
     exitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {

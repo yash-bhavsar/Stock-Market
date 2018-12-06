@@ -12,7 +12,7 @@ import controller.IStockMarketController;
  */
 public class GraphPanel extends javax.swing.JPanel {
 
-    private IStockMarketController stockMarketController;
+  private IStockMarketController stockMarketController;
 
     /**
      * Creates new form GraphPanel
@@ -42,8 +42,13 @@ public class GraphPanel extends javax.swing.JPanel {
         portfolioNumberTextField.setText("Enter number here");
 
         plotGraphBtn.setText("Plot");
+        plotGraphBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plotGraphBtnActionPerformed(evt);
+            }
+        });
 
-        dateLbl.setText("Enter start date");
+        dateLbl.setText("Enter start date (yyyy-mm-dd)");
 
         dateTextField.setText("Enter date");
 
@@ -77,6 +82,12 @@ public class GraphPanel extends javax.swing.JPanel {
                 .addContainerGap(656, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void plotGraphBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotGraphBtnActionPerformed
+        // TODO add your handling code here:
+      new SampleGraphFrame(portfolioNumberTextField.getText(), "Portfolio Graph", "Portfolio Graph Chart", dateTextField.getText(), this.stockMarketController);
+
+    }//GEN-LAST:event_plotGraphBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

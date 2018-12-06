@@ -67,7 +67,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         input.append(" ").append(askNumber("\nThe number of shares you want to buy: "));
         input.append(" ").append(askDate());
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
-        input.append(" ").append(askNumber("\nEnter commission amount: "));
+        input.append(" ").append(askNumber("\nEnter commission amount (%): "));
         break;
       case "3":
         input.append("3 ");

@@ -129,8 +129,8 @@ public class StockMarketControllerImpl implements IStockMarketController {
             break;
           case "6":
             try {
-              result += "Total basis: " + this.im.calculateCostBasis(Integer.parseInt(inputs[1])
-                      , inputs[2]) + "\nTotal Evaluation: " + this.im.evaluatePortfolio(
+              result += "Total basis: $" + this.im.calculateCostBasis(Integer.parseInt(inputs[1])
+                      , inputs[2]) + "\nTotal Evaluation: $" + this.im.evaluatePortfolio(
                       Integer.parseInt(inputs[1]), inputs[2]);
             } catch (Exception e) {
               result = e.getMessage();

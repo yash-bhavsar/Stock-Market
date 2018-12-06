@@ -54,6 +54,11 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     }
   }
 
+  /**
+   * Private helper method to get details of individual records.
+   * @param records is the iterable.
+   * @param portfolioNumber is the portfolio number.
+   */
   private void getRecordDetails(Iterable<CSVRecord> records, int portfolioNumber) {
     Iterator i = records.iterator();
     for (CSVRecord r : records) {
