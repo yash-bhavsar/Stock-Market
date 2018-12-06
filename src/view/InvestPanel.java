@@ -15,13 +15,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import controller.IStockMarketController;
 import model.Stock;
 
 /**
+ * The class Invest panel.
+ *
  * @author ojaspatwardhan
  */
 public class InvestPanel extends javax.swing.JPanel {
@@ -32,6 +32,8 @@ public class InvestPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form InvestPanel
+   *
+   * @param stockMarketController the stock market controller
    */
   public InvestPanel(IStockMarketController stockMarketController) {
     initComponents();
@@ -139,35 +141,79 @@ public class InvestPanel extends javax.swing.JPanel {
     layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(investBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(
+                                    javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(investBtn,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                             .addContainerGap()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(
+                                                    javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(investPortfolioField)
                                                     .addComponent(investDateField)
                                                     .addGroup(layout.createSequentialGroup()
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                    .addComponent(investPortfolioNumberLabel)
+                                                            .addGroup(layout.createParallelGroup(
+                                                                    javax.swing.GroupLayout.
+                                                                            Alignment.LEADING)
+                                                                    .addComponent(
+                                                                        investPortfolioNumberLabel)
                                                                     .addComponent(investDateLabel)
-                                                                    .addComponent(amountToInvestLabel)
+                                                                    .addComponent(
+                                                                            amountToInvestLabel)
                                                                     .addComponent(resultLabel))
-                                                            .addGap(0, 416, Short.MAX_VALUE))
+                                                            .addGap(0, 416,
+                                                                    Short.MAX_VALUE))
                                                     .addComponent(amountToinvesttextField)))
                                     .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(customWeightsBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(
+                                                    javax.swing.GroupLayout.Alignment.TRAILING,
+                                                    false)
+                                                    .addComponent(customWeightsBtn,
+                                                            javax.swing.GroupLayout.Alignment.
+                                                                    LEADING,
+                                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                            251, Short.MAX_VALUE)
                                                     .addGroup(layout.createSequentialGroup()
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                    .addComponent(tickersComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                            .addGroup(layout.createParallelGroup(
+                                                                    javax.swing.GroupLayout.
+                                                                            Alignment.TRAILING,
+                                                                    false)
+                                                                    .addComponent(tickersComboBox,
+                                                                            javax.swing.GroupLayout.
+                                                                                    Alignment.
+                                                                                    LEADING,
+                                                                            0,
+                                                                            javax.swing.GroupLayout.
+                                                                                    DEFAULT_SIZE,
+                                                                            Short.MAX_VALUE)
+                                                                    .addGroup(javax.swing.
+                                                                                    GroupLayout.
+                                                                            Alignment.
+                                                                            LEADING,
+                                                                            layout.
+                                                                            createSequentialGroup()
                                                                             .addContainerGap()
-                                                                            .addComponent(weightsLabel)))
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                            .addComponent(
+                                                                                    weightsLabel)))
+                                                            .addPreferredGap(
+                                                                    javax.swing.LayoutStyle.
+                                                                            ComponentPlacement.
+                                                                            RELATED)
+                                                            .addComponent(weightsTextField,
+                                                                    javax.swing.GroupLayout.
+                                                                            PREFERRED_SIZE,
+                                                                    145, javax.swing.
+                                                                            GroupLayout.
+                                                                            PREFERRED_SIZE)))
                                             .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(equalWeightsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(
+                                                    javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(equalWeightsBtn,
+                                                            javax.swing.GroupLayout.
+                                                                    PREFERRED_SIZE,
+                                                            247, javax.swing.GroupLayout.
+                                                                    PREFERRED_SIZE)
                                                     .addComponent(updateWeightsBtn))
                                             .addGap(0, 0, Short.MAX_VALUE)))
                             .addContainerGap())
@@ -177,34 +223,55 @@ public class InvestPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                             .addComponent(investPortfolioNumberLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(investPortfolioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(investPortfolioField, javax.swing.GroupLayout.
+                                    PREFERRED_SIZE, javax.swing.GroupLayout.
+                                    DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(investDateLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(investDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(investDateField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(amountToInvestLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(amountToinvesttextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(amountToinvesttextField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(weightsLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tickersComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(
+                                    javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tickersComboBox,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(weightsTextField,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(updateWeightsBtn))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(layout.createParallelGroup(
+                                    javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(customWeightsBtn)
                                     .addComponent(equalWeightsBtn))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                    140, Short.MAX_VALUE)
                             .addComponent(resultLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                    140, Short.MAX_VALUE)
                             .addComponent(investBtn)
                             .addContainerGap())
     );
   }// </editor-fold>
 
+  /**
+   * Private helper method to get stocks.
+   * @param l is the event object.
+   */
   private void getStocks(FocusEvent l) {
     tickersComboBox.removeAllItems();
     String pNumber = investPortfolioField.getText();
@@ -231,6 +298,10 @@ public class InvestPanel extends javax.swing.JPanel {
     }
   }
 
+  /**
+   * Private helper method used to update weights.
+   * @param actionEvent is the event object.
+   */
   private void updateWeights(ActionEvent actionEvent) {
     resultLabel.setText("");
     String ticker = (String) tickersComboBox.getSelectedItem();
@@ -244,6 +315,11 @@ public class InvestPanel extends javax.swing.JPanel {
     }
   }
 
+  /**
+   * Private helper method to invest.
+   * @param actionEvent is the event object.
+   * @param custom is the flag for equal and custom weights.
+   */
   private void invest(ActionEvent actionEvent, boolean custom) {
     String pNumber = investPortfolioField.getText();
     String date = investDateField.getText();
@@ -264,7 +340,8 @@ public class InvestPanel extends javax.swing.JPanel {
         boolean flag = true;
         for (Map.Entry<String, Integer> entry : weights.entrySet()) {
           double investAmount = (entry.getValue() / 100.0) * amount;
-          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount, date, pn, 0);
+          response = this.stockMarketController.buyStockByAmount(entry.getKey(),
+                  investAmount, date, pn, 0);
           if (!response.trim().equals("pass")) {
             flag = false;
           }
@@ -277,7 +354,8 @@ public class InvestPanel extends javax.swing.JPanel {
         boolean flag = true;
         for (Map.Entry<String, Integer> entry : weights.entrySet()) {
           double investAmount = (100.0 / weights.size()) * amount;
-          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount, date, pn, 0);
+          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount,
+                  date, pn, 0);
           if (!response.trim().equals("pass")) {
             flag = false;
           }

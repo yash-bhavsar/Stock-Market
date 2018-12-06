@@ -17,69 +17,96 @@ public interface IStockMarketController {
   void startStockMarketSimulator();
 
   /**
+   * Sets the view.
    *
-   * @param sv
+   * @param sv is the view object.
    */
   void setView(IStockMarketView sv);
 
   /**
+   * Creates portfolio.
    *
-   * @param portfolioNumber
-   * @return
+   * @param portfolioNumber is the portfoilio number.
+   * @return the portfolio number.
    */
   String createPortfolio(String portfolioNumber);
 
   /**
-   * M
+   * Used to buy stock.
    *
-   * @param ticker
-   * @param numberOfStocks
-   * @param date
-   * @param portfolioNumber
-   * @param commission
-   * @return
+   * @param ticker          the ticker
+   * @param numberOfStocks  the number of stocks
+   * @param date            the date
+   * @param portfolioNumber the portfolio number
+   * @param commission      the commission
+   * @return string
    */
   String buyStock(String ticker, double numberOfStocks, String date, int portfolioNumber,
                   int commission);
 
   /**
+   * View composition list.
    *
-   * @param portfolioNumber
-   * @param date
-   * @return
+   * @param portfolioNumber the portfolio number
+   * @param date            the date
+   * @return list
    */
   List<Stock> viewComposition(int portfolioNumber, String date);
 
   /**
+   * Cost basis and evaluation string.
    *
-   * @param portfolioNumber
-   * @param date
-   * @return
+   * @param portfolioNumber the portfolio number
+   * @param date            the date
+   * @return string
    */
   String costBasisAndEvaluation(int portfolioNumber, String date);
 
   /**
+   * Buy stock by amount.
    *
-   * @param ticker
-   * @param amount
-   * @param date
-   * @param portfolioNumber
-   * @param commission
-   * @return
+   * @param ticker          the ticker
+   * @param amount          the amount
+   * @param date            the date
+   * @param portfolioNumber the portfolio number
+   * @param commission      the commission
+   * @return string
    */
   String buyStockByAmount(String ticker, double amount, String date, int portfolioNumber, double commission);
 
   /**
+   * Execute strategy string.
    *
-   * @param ticker
-   * @param investmentAmount
-   * @param startDate
-   * @param endDate
-   * @param portfolioNumber
-   * @param frequency
-   * @return
+   * @param ticker           the ticker
+   * @param investmentAmount the investment amount
+   * @param startDate        the start date
+   * @param endDate          the end date
+   * @param portfolioNumber  the portfolio number
+   * @param frequency        the frequency
+   * @return string
+   * @throws ParseException the parse exception
    */
   String executeStrategy(String ticker, double investmentAmount, String startDate,
                          String endDate, int portfolioNumber,
                          int frequency) throws ParseException;
+
+  /**
+   * Save portfolio string.
+   *
+   * @param portfolioNumber the portfolio number
+   * @return string
+   */
+  String savePortfolio(int portfolioNumber);
+
+  /**
+   * Save strategy string.
+   *
+   * @param strategyNumber the strategy number
+   * @param amount         the amount
+   * @param sdate          the sdate
+   * @param edate          the edate
+   * @param frequency      the frequency
+   * @return string
+   */
+  String saveStrategy(String strategyNumber, double amount, String sdate, String edate, int frequency);
 }

@@ -5,7 +5,6 @@ package view;/*
  */
 
 import controller.IStockMarketController;
-import controller.StockMarketControllerImpl;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
@@ -20,12 +19,20 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * The class Sample graph frame.
+ *
  * @author ojaspatwardhan
  */
 public class SampleGraphFrame extends javax.swing.JFrame {
 
   /**
    * Creates new form SampleGraphFrame
+   *
+   * @param portfolioNumber  the portfolio number
+   * @param applicationTitle the application title
+   * @param chartTitle       the chart title
+   * @param startDate        the start date
+   * @param ic               the ic
    */
   public SampleGraphFrame(String portfolioNumber, String applicationTitle, String chartTitle,
                           String startDate,
@@ -178,6 +185,8 @@ public class SampleGraphFrame extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   /**
+   * Main.
+   *
    * @param args the command line arguments
    */
   public static void main(String args[]) {

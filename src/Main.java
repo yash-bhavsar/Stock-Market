@@ -19,14 +19,14 @@ public class Main {
    */
   public static void main(String[] args) {
 //    if (args[1].equals("console")) {
-//      IStockMarketController sc = new StockMarketControllerImpl(new StockMarketModelImpl());
-//      IStockMarketView sv = new StockMarketViewImpl(new InputStreamReader(System.in), System.out);
-//      sc.setView(sv);
-//      sc.startStockMarketSimulator();
+      IStockMarketController sc = new StockMarketControllerImpl(new StockMarketModelImpl());
+      IStockMarketView sv = new StockMarketViewImpl(new InputStreamReader(System.in), System.out);
+      sc.setView(sv);
+      sc.startStockMarketSimulator();
 //    } else if (args[1].equals("gui")) {
-      StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
-      IStockMarketView view = new WelcomeFrame(controller);
-      controller.setView(view);
+//      StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
+//      IStockMarketView view = new WelcomeFrame(controller);
+//      controller.setView(view);
 //    }
   }
 }

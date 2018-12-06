@@ -2,7 +2,12 @@ package model;
 
 import com.opencsv.CSVWriter;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,7 +34,7 @@ public class User {
   }
 
   /**
-   * Method to get portfolios.
+   * Method to get portfolio s.
    *
    * @return the portfolios
    */
@@ -68,8 +73,8 @@ public class User {
   }
 
   /**
-   *
-   * @param portfolioNumber
+   * Method which is used to save a portfolio.
+   * @param portfolioNumber is the portfolio number.
    */
   public void save(int portfolioNumber) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
@@ -145,31 +150,75 @@ public class User {
   /**
    * Method to save strategy to a csv file. Saves the strategy in the format investment amount,
    * start date, end date, frequency.
-   * @param strategyNumber is the name of the strategy the user wishes to save.
+   *
+   * @param strategyNumber   is the name of the strategy the user wishes to save.
    * @param investmentAmount is the investment amount.
-   * @param startDate is the strategy start date.
-   * @param endDate is the strategy end date.
-   * @param frequency is the frequency for the strategy.
+   * @param startDate        is the strategy start date.
+   * @param endDate          is the strategy end date.
+   * @param frequency        is the frequency for the strategy.
    */
   public void saveStrategy(String strategyNumber, double investmentAmount, String startDate,
                            String endDate, int frequency) {
     if (strategyList.contains(strategyNumber)) {
-      throw new IllegalArgumentException("Strategy already exists.");
+      throw new IllegalArgumentException("Strategy number already exists.");
     }
     strategyList.add(strategyNumber);
-    String[] strategyArray = new String[4];
-    strategyArray[0] = Double.toString(investmentAmount);
-    strategyArray[1] = startDate;
-    strategyArray[2] = endDate;
-    strategyArray[3] = Integer.toString(frequency);
+    String[] strategyArray = new String[5];
+    strategyArray[0] = strategyNumber;
+    strategyArray[1] = Double.toString(investmentAmount);
+    strategyArray[2] = startDate;
+    strategyArray[3] = endDate;
+    strategyArray[4] = Integer.toString(frequency);
     try {
       File file = new File("./src/strategies/strategy_" + strategyNumber + ".csv");
       FileWriter output = new FileWriter(file);
       CSVWriter writer = new CSVWriter(output);
       writer.writeNext(strategyArray);
       writer.close();
-    } catch(IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  /**
+   *
+   */
+  public void addStrategy(String strategyNumber) {
+    if (strategyList.contains(strategyNumber)) {
+      throw new IllegalArgumentException("Strategy number already exists.");
+    }
+    strategyList.add(strategyNumber);
+  }
+
+  public String[] strategyDetails(String strategyNumber) {
+    String path = "./src/strategies/";
+    String[] details = new String[4];
+    File f = new File(path);
+    File[] listOfFiles = f.listFiles();
+    if (listOfFiles.length != 0) {
+      File[] files = new File(path).listFiles(new FileFilter() {
+        @Override
+        public boolean accept(File path) {
+          if (path.isFile()) {
+            try (FileReader f = new FileReader(path)) {
+              Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(f);
+              for (CSVRecord r : records) {
+                if (r.get(0).equals(strategyNumber)) {
+                  details[0] = r.get(1);
+                  details[1] = r.get(2);
+                  details[2] = r.get(3);
+                  details[3] = r.get(4);
+                }
+              }
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+            return true;
+          }
+          return false;
+        }
+      });
+    }
+    return details;
   }
 }

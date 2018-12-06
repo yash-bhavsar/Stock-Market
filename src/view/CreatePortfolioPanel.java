@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import controller.IStockMarketController;
 
 /**
+ * The class Create portfolio panel.
+ *
  * @author ojaspatwardhan
  */
 public class CreatePortfolioPanel extends javax.swing.JPanel {
@@ -20,6 +22,11 @@ public class CreatePortfolioPanel extends javax.swing.JPanel {
 
   private IStockMarketController stockMarketController;
 
+  /**
+   * Instantiates a new Create portfolio panel.
+   *
+   * @param stockMarketController the stock market controller
+   */
   public CreatePortfolioPanel(IStockMarketController stockMarketController) {
     initComponents();
     this.stockMarketController = stockMarketController;
@@ -64,12 +71,17 @@ public class CreatePortfolioPanel extends javax.swing.JPanel {
     layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(
+                                    javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                             .addContainerGap()
-                                            .addComponent(createPortfolioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                                            .addComponent(createPortfolioLabel,
+                                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                    388, Short.MAX_VALUE))
                                     .addComponent(createPortfolioTextField)
-                                    .addComponent(createPortfolioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(createPortfolioBtn,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -78,23 +90,32 @@ public class CreatePortfolioPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(createPortfolioLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(createPortfolioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(createPortfolioTextField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(createPortfolioBtn)
                             .addContainerGap(211, Short.MAX_VALUE))
     );
   }// </editor-fold>//GEN-END:initComponents
 
-  private void createPortfolioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPortfolioTextFieldActionPerformed
+  private void createPortfolioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    //GEN-FIRST:event_createPortfolioTextFieldActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_createPortfolioTextFieldActionPerformed
 
-  private void createPortfolioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPortfolioBtnActionPerformed
+  private void createPortfolioBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    //GEN-FIRST:event_createPortfolioBtnActionPerformed
     // TODO add your handling code here:
     createPortfolio(createPortfolioTextField.getText());
   }//GEN-LAST:event_createPortfolioBtnActionPerformed
 
 
+  /**
+   * Private helper method used to create a portfolio.
+   * @param n is the number of the portfolio to be created.
+   */
   private void createPortfolio(String n) {
     try {
       int a = Integer.parseInt(n);

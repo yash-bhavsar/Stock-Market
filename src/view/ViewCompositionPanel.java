@@ -14,6 +14,8 @@ import controller.IStockMarketController;
 import model.Stock;
 
 /**
+ * The type View composition panel.
+ *
  * @author ojaspatwardhan
  */
 public class ViewCompositionPanel extends javax.swing.JPanel {
@@ -22,6 +24,8 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form ViewCompositionPanel
+   *
+   * @param stockMarketController the stock market controller
    */
   public ViewCompositionPanel(IStockMarketController stockMarketController) {
     initComponents();
@@ -67,16 +71,27 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
     this.setLayout(layout);
     layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                            layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                                    .addComponent(viewCompositionBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.
+                                    Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.
+                                                    DEFAULT_SIZE,
+                                            658, Short.MAX_VALUE)
+                                    .addComponent(viewCompositionBtn,
+                                            javax.swing.GroupLayout.Alignment.LEADING,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(viewCompositionPortfolioNumberField)
-                                    .addComponent(viewCompositionDateField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(viewCompositionPortfolioNumberLabel)
+                                    .addComponent(viewCompositionDateField,
+                                            javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                            layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(
+                                                    javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(
+                                                            viewCompositionPortfolioNumberLabel)
                                                     .addComponent(viewCompositionDateLabel)
                                                     .addComponent(resultLabel))
                                             .addGap(0, 0, Short.MAX_VALUE)))
@@ -88,22 +103,31 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(viewCompositionPortfolioNumberLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(viewCompositionPortfolioNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewCompositionPortfolioNumberField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(viewCompositionDateLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(viewCompositionDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewCompositionDateField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(resultLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(viewCompositionBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    161, Short.MAX_VALUE)
                             .addContainerGap())
     );
   }// </editor-fold>//GEN-END:initComponents
 
-  private void viewCompositionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCompositionBtnActionPerformed
+
+  private void viewCompositionBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    //GEN-FIRST:event_viewCompositionBtnActionPerformed
     // TODO add your handling code here:
     String pNumber = viewCompositionPortfolioNumberField.getText();
     String date = viewCompositionDateField.getText();

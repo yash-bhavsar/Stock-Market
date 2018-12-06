@@ -104,4 +104,12 @@ public interface IStockMarketModel<T> {
    */
   void saveDcassStrategy(String strategyNumber, double investmentAmount, String startDate,
                          String endDate, int frequency);
+
+  /**
+   * Strategy details string [ ].
+   *
+   * @param strategyNumber the strategy number
+   * @return string [ ]
+   */
+  String[] strategyDetails(String strategyNumber);
 }

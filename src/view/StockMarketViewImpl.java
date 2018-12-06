@@ -9,8 +9,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import controller.IStockMarketController;
-
 
 /**
  * The class StockMarketView which has methods to get the input from the user. These include helper
@@ -91,10 +89,9 @@ public class StockMarketViewImpl implements IStockMarketView {
         } else {
           input.append(" ").append(askEndDate(false, startdate));
         }
+        input.append(" ").append(askNumber("\nEnter Amount to be invested: $"));
         input.append(" ").append(askNumber("Please enter the frequency (in days) " +
                 "for the strategy\n"));
-        input.append(" ").append(askChoice("\nSelect weights: \n1.Equal weights " +
-                "\n2.Custom weights\n"));
         this.out.append("Would you like to save the strategy?\n1. Yes\n2. No\n");
         String choice2 = askChoice("");
         if (choice2.equals("1")) {
@@ -102,6 +99,8 @@ public class StockMarketViewImpl implements IStockMarketView {
         } else {
           input.append(" ").append("no");
         }
+        input.append(" ").append(askChoice("\nSelect weights: \n1.Equal weights " +
+                "\n2.Custom weights\n"));
         break;
       case "5":
         input.append("5 ");
@@ -119,6 +118,13 @@ public class StockMarketViewImpl implements IStockMarketView {
         break;
       case "8":
         input.append("8 ");
+        input.append(" ").append(askNumber("\nEnter strategy number"));
+        input.append(" ").append(askNumber("\nEnter portfolio number"));
+        input.append(" ").append(askChoice("\nSelect weights: \n1.Equal weights " +
+                "\n2.Custom weights\n"));
+        break;
+      case "9":
+        input.append("9 ");
         this.out.append("Quitting.....");
         try {
           TimeUnit.SECONDS.sleep(3);
@@ -139,8 +145,6 @@ public class StockMarketViewImpl implements IStockMarketView {
     for (String stock : stockList) {
       input.append(" ").append(askWeights(stock));
     }
-    this.out.append("\nEnter Amount to be invested: $");
-    input.append(" ").append(scanner.next());
     return input.toString();
   }
 
@@ -160,6 +164,8 @@ public class StockMarketViewImpl implements IStockMarketView {
   /**
    * Private helper method to ask for end date.
    *
+   * @param flag      the flag
+   * @param startdate the startdate
    * @return the end date.
    * @throws IOException if input is invalid.
    */
@@ -227,12 +233,12 @@ public class StockMarketViewImpl implements IStockMarketView {
     try {
       int t = Integer.parseInt(s);
       if (t < 1 || t > 2) {
-        this.out.append("\nEnter valid number.\n ");
+        this.out.append("\nEnter valid choice.\n ");
         return askChoice(string);
       }
       return s.trim();
     } catch (NumberFormatException e) {
-      this.out.append("\nEnter valid number: ");
+      this.out.append("\nEnter valid choice: ");
       return askChoice(string);
     }
   }
@@ -240,15 +246,17 @@ public class StockMarketViewImpl implements IStockMarketView {
   /**
    * Private helper method which asks the user for weights of each stock in the portfolio.
    *
+   * @param ticker the ticker
    * @return the weight entered by the user.
+   * @throws IOException the io exception
    */
   protected String askWeights(String ticker) throws IOException {
-    this.out.append("\nEnter weight for: " + ticker + "\n");
+    this.out.append("\nEnter weight(%) for: " + ticker + "\n");
     String s = scanner.next();
     try {
       int t = Integer.parseInt(s);
       if (t < 0) {
-        this.out.append("\nEnter valid number.\n ");
+        this.out.append("\nNegative weight not valid.\n ");
         return askWeights(ticker);
       }
       return s.trim();
@@ -283,7 +291,8 @@ public class StockMarketViewImpl implements IStockMarketView {
             "\n 5. View Composition of a portfolio." +
             "\n 6. View total cost basis and evaluation of a portfolio on a particular date." +
             "\n 7. Save Portfolio." +
-            "\n 8. Quit.\n";
+            "\n 8. Apply Existing Strategy." +
+            "\n 9. Quit.\n";
   }
 
   /**

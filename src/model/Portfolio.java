@@ -73,6 +73,8 @@ class Portfolio {
 
   /**
    * Method to save the portfolio.
+   *
+   * @param pNumber the p number
    */
   void save(int pNumber) {
     if (stocks.size() == 0) {

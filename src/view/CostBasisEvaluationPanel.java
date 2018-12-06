@@ -13,6 +13,8 @@ import java.util.Date;
 import controller.IStockMarketController;
 
 /**
+ * The class Cost basis evaluation panel.
+ *
  * @author ojaspatwardhan
  */
 public class CostBasisEvaluationPanel extends javax.swing.JPanel {
@@ -21,6 +23,8 @@ public class CostBasisEvaluationPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form CostBasisEvaluationPanel
+   *
+   * @param stockMarketController the stock market controller
    */
   public CostBasisEvaluationPanel(IStockMarketController stockMarketController) {
     initComponents();
@@ -66,16 +70,29 @@ public class CostBasisEvaluationPanel extends javax.swing.JPanel {
     this.setLayout(layout);
     layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                            layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextArea2, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
-                                    .addComponent(costBasisEvaluationBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(costBasisEvaluationPortfolioNumberTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(costBasisEvaluationDateField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(costBasisEvaluationPortfolioNumber)
+                            .addGroup(layout.createParallelGroup(
+                                    javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextArea2,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            661, Short.MAX_VALUE)
+                                    .addComponent(costBasisEvaluationBtn,
+                                            javax.swing.GroupLayout.Alignment.LEADING,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(costBasisEvaluationPortfolioNumberTextField,
+                                            javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(costBasisEvaluationDateField,
+                                            javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                            layout.createSequentialGroup()
+                                            .addGroup(
+                                                    layout.createParallelGroup(javax.swing.
+                                                            GroupLayout.Alignment.LEADING)
+                                                    .addComponent(
+                                                            costBasisEvaluationPortfolioNumber)
                                                     .addComponent(costBasisEvaluationDateLabel))
                                             .addGap(0, 0, Short.MAX_VALUE)))
                             .addContainerGap())
@@ -86,19 +103,30 @@ public class CostBasisEvaluationPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(costBasisEvaluationPortfolioNumber)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(costBasisEvaluationPortfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costBasisEvaluationPortfolioNumberTextField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(costBasisEvaluationDateLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(costBasisEvaluationDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costBasisEvaluationDateField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(costBasisEvaluationBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextArea2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                            .addComponent(jTextArea2,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                             .addContainerGap())
     );
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+   * Private helper method to calculate cost basis and evaluation of a portfolio.
+   * @param event is the event object to track event of the panel.
+   */
   private void costBasisAndEvaluate(ActionEvent event) {
     String pNumber = costBasisEvaluationPortfolioNumberTextField.getText();
     String date = costBasisEvaluationDateField.getText();

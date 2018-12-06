@@ -7,6 +7,7 @@ package view;/*
 import controller.IStockMarketController;
 
 /**
+ * The class Graph panel.
  *
  * @author ojaspatwardhan
  */
@@ -14,10 +15,12 @@ public class GraphPanel extends javax.swing.JPanel {
 
   private IStockMarketController stockMarketController;
 
-    /**
-     * Creates new form GraphPanel
-     */
-    public GraphPanel(IStockMarketController stockMarketController) {
+  /**
+   * Creates new form GraphPanel
+   *
+   * @param stockMarketController the stock market controller
+   */
+  public GraphPanel(IStockMarketController stockMarketController) {
         initComponents();
         this.stockMarketController = stockMarketController;
     }
@@ -64,7 +67,8 @@ public class GraphPanel extends javax.swing.JPanel {
                     .addComponent(portfolioNumberLbl)
                     .addComponent(dateLbl))
                 .addContainerGap(1096, Short.MAX_VALUE))
-            .addComponent(plotGraphBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(plotGraphBtn, javax.swing.GroupLayout.DEFAULT_SIZE,
+                    javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,20 +76,27 @@ public class GraphPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(portfolioNumberLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(portfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(portfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.
+                                PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.
+                                PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(plotGraphBtn)
                 .addContainerGap(656, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void plotGraphBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotGraphBtnActionPerformed
+    private void plotGraphBtnActionPerformed(java.awt.event.ActionEvent evt) {
+      //GEN-FIRST:event_plotGraphBtnActionPerformed
         // TODO add your handling code here:
-      new SampleGraphFrame(portfolioNumberTextField.getText(), "Portfolio Graph", "Portfolio Graph Chart", dateTextField.getText(), this.stockMarketController);
+      new SampleGraphFrame(portfolioNumberTextField.getText(), "Portfolio Graph",
+              "Portfolio Graph Chart", dateTextField.getText(),
+              this.stockMarketController);
 
     }//GEN-LAST:event_plotGraphBtnActionPerformed
 

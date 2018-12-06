@@ -7,6 +7,7 @@ package view;/*
 import controller.IStockMarketController;
 
 /**
+ * The class Apply Strategy panel which loads the apply strategy panel.
  *
  * @author ojaspatwardhan
  */
@@ -16,6 +17,8 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ApplyStrategyPanel
+     *
+     * @param stockMarketController the stock market controller
      */
     public ApplyStrategyPanel(IStockMarketController stockMarketController) {
         initComponents();
@@ -46,7 +49,8 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
 
         weightsLbl.setText("Select Weights.");
 
-        weightsComoboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        weightsComoboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]
+                { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         weightsTextField.setText("Enter weight");
 
@@ -70,9 +74,11 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(weightsComoboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(weightsComoboBox, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updateWeightBtn))
                     .addGroup(layout.createSequentialGroup()
@@ -87,13 +93,19 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(portfolioNumberLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(portfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(portfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(weightsLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(weightsComoboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weightsComoboBox, javax.swing.GroupLayout.PREFERRED_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateWeightBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
