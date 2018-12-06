@@ -1,10 +1,7 @@
-import java.io.InputStreamReader;
-
 import controller.IStockMarketController;
 import controller.StockMarketControllerImpl;
 import model.StockMarketModelImpl;
 import view.IStockMarketView;
-import view.StockMarketViewImpl;
 import view.WelcomeFrame;
 
 /**
@@ -24,9 +21,9 @@ public class Main {
 //      sc.setView(sv);
 //      sc.startStockMarketSimulator();
 //    } else if (args[1].equals("gui")) {
-      StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
-      IStockMarketView view = new WelcomeFrame(controller);
-      controller.setView(view);
+    IStockMarketController controller = new StockMarketControllerImpl(new StockMarketModelImpl());
+    IStockMarketView view = new WelcomeFrame(controller);
+    controller.setView(view);
 //    }
   }
 }

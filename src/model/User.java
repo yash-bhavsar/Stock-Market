@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,6 +30,7 @@ public class User {
    */
   public User() {
     this.portfolios = new HashMap<>();
+    this.strategyList = new HashSet<>();
   }
 
   /**
@@ -188,6 +190,9 @@ public class User {
   }
 
   public String[] strategyDetails(String strategyNumber) {
+    if (!strategyList.contains(strategyNumber)) {
+      throw new IllegalArgumentException("Create strategy first.");
+    }
     String path = "./src/strategies/";
     String[] details = new String[4];
     File f = new File(path);

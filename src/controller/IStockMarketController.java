@@ -100,4 +100,11 @@ public interface IStockMarketController {
    * @return
    */
   String saveStrategy(String strategyNumber, double amount, String sdate, String edate, int frequency);
+
+  /**
+   *
+   * @param strategyNumber
+   * @return
+   */
+  String[] getStrategyDetails(String strategyNumber);
 }

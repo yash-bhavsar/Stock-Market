@@ -226,6 +226,10 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
 
   @Override
   public String[] strategyDetails(String strategyNumber) {
-    return new String[0];
+    try {
+      return user.strategyDetails(strategyNumber);
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
   }
 }

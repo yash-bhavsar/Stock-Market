@@ -100,14 +100,14 @@ public class StockMarketControllerImpl implements IStockMarketController {
             int portfolioNumber1 = Integer.parseInt(inputs[1]);
             int amount1 = Integer.parseInt(inputs[4]);
             int frequency = Integer.parseInt(inputs[5]);
-            if (inputs[6].equals("2")) {
+            if (inputs[7].equals("2")) {
               try {
                 result = investInStrategyCustomWeights(saveStrategy, result, sdate, portfolioNumber1,
                         edate, frequency, amount1);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
-            } else if (inputs[5].equals("1")) {
+            } else if (inputs[7].equals("1")) {
               try {
                 result = investInStrategyEqualWeights(saveStrategy, result, sdate, portfolioNumber1,
                         edate, frequency, amount1);
@@ -147,8 +147,14 @@ public class StockMarketControllerImpl implements IStockMarketController {
           case "8":
             String strategyNumber = inputs[1];
             portfolioNumber1 = Integer.parseInt(inputs[2]);
-            String[] details = this.im.strategyDetails(strategyNumber);
-            int amount = Integer.parseInt(details[0]);
+            String[] details = new String[4];
+            try {
+              details = this.im.strategyDetails(strategyNumber);
+            } catch (IllegalArgumentException e) {
+              result = e.getMessage();
+              break;
+            }
+            int amount = (int) Double.parseDouble(details[0]);
             String startdate = details[1];
             String endDate = details[2];
             int frequency1 = Integer.parseInt(details[3]);
@@ -161,7 +167,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
-            } else if (inputs[5].equals("1")) {
+            } else if (inputs[3].equals("1")) {
               try {
                 result = investInStrategyEqualWeights("no", result, startdate, portfolioNumber1,
                         endDate, frequency1, amount);
@@ -265,6 +271,15 @@ public class StockMarketControllerImpl implements IStockMarketController {
       return "pass";
     } catch (IllegalArgumentException ie) {
       throw new IllegalArgumentException(ie.getMessage());
+    }
+  }
+
+  @Override
+  public String[] getStrategyDetails(String strategyNumber) {
+    try {
+      return this.im.strategyDetails(strategyNumber);
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
     }
   }
 
