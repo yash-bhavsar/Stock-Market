@@ -1,6 +1,13 @@
 package model;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileReader;
 import java.text.ParseException;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,6 +24,57 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
    */
   public StockMarketModelImpl() {
     this.user = new User();
+    loadPortfolios();
+  }
+
+  /**
+   * Helper method to load all the portfolios.
+   */
+  private void loadPortfolios() {
+    String path = "./src/portfolios/";
+    File f = new File(path);
+    File[] listOfFiles = f.listFiles();
+    System.out.println(listOfFiles.length);
+    if (listOfFiles.length != 0) {
+      File[] files = new File(path).listFiles(new FileFilter() {
+        @Override
+        public boolean accept(File path) {
+          if (path.isFile()) {
+            try (FileReader f = new FileReader(path)) {
+              Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(f);
+              int portfolioNumber = getPortfolioNumber(path.getPath());
+              createPortfolio(portfolioNumber);
+              getRecordDetails(records, portfolioNumber);
+            } catch (Exception e){
+              e.printStackTrace();
+            }
+            return true;
+          }
+          return false;
+        }
+      });
+    }
+  }
+
+  private void getRecordDetails(Iterable<CSVRecord> records, int portfolioNumber) {
+    Iterator i = records.iterator();
+    for (CSVRecord r : records) {
+      String ticker = r.get(0);
+      double numberOfStocks = Double.parseDouble(r.get(2));
+      String date = r.get(3);
+      double commission = Double.parseDouble(r.get(4));
+      buyStock(ticker, numberOfStocks, date, portfolioNumber, commission);
+    }
+  }
+
+  /**
+   * Private helper method to get the portfolio number from the file name.
+   * @param path is the path of the file.
+   * @return the number.
+   */
+  private int getPortfolioNumber(String path) {
+    String portfolioNumber= path.replaceAll("[^0-9]", "");
+    return Integer.parseInt(portfolioNumber);
   }
 
   /**
@@ -106,6 +164,14 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     buyStock(ticker, numberOfShares, date, portfolioNumber, 0);
   }
 
+  /**
+   * Used to save a portfolio to a csv file.
+   */
+  @Override
+  public void save(int portfolioNumber) {
+    user.save(portfolioNumber);
+  }
+
   @Override
   public void dCassStrategy(String ticker, double investmentAmount, String startDate,
                             String endDate, int portfolioNumber,
@@ -113,5 +179,15 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     IStrategy strategy = new DCAS();
     strategy.investmentStrategy(ticker, investmentAmount, startDate, endDate,
             portfolioNumber, frequency, model, this.user);
+  }
+
+  @Override
+  public void saveDcassStrategy(String strategyNumber, double investmentAmount, String startDate,
+                                String endDate, int frequency) {
+    try {
+      user.saveStrategy(strategyNumber, investmentAmount, startDate, endDate, frequency);
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
   }
 }

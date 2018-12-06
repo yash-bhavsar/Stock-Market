@@ -28,8 +28,8 @@ public class StockMarketControllerImplTest {
     ap = new StringBuilder();
     sv = new StockMarketViewImpl(rd, ap);
     sm = new StockMarketModelImpl();
-    s = new StockMarketControllerImpl(null);
-    s = new StockMarketControllerImpl(sm);
+    s = new StockMarketControllerImpl(null, null);
+    s = new StockMarketControllerImpl(sm, sv);
   }
 
   /**
@@ -41,7 +41,7 @@ public class StockMarketControllerImplTest {
     ap = new StringBuffer();
     sv = new StockMarketViewImpl(rd, ap);
     sm = new StockMarketModelImpl();
-    s = new StockMarketControllerImpl(sm);
+    s = new StockMarketControllerImpl(sm, sv);
     s.startStockMarketSimulator();
     assertEquals("\n" +
             "Enter Choice:\n" +

@@ -17,13 +17,13 @@ public class Main {
    * @param args are the command line arguments.
    */
   public static void main(String[] args) {
-    /*IStockMarketController sc = new StockMarketControllerImpl(new StockMarketModelImpl(),
+    IStockMarketController sc = new StockMarketControllerImpl(new StockMarketModelImpl(),
             new StockMarketViewImpl(new InputStreamReader(System.in), System.out));
 
-    sc.startStockMarketSimulator();*/
+    sc.startStockMarketSimulator();
 
-    StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
+   /* StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
     IStockMarketView view = new WelcomeFrame();
-    controller.setView(view);
+    controller.setView(view);*/
   }
 }

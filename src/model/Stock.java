@@ -1,5 +1,11 @@
 package model;
 
+import com.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * The class model.Stock which has getter and setter methods for ticker, shares, purchase price,
  * date and current price. Intentionally kept package-private object of this class are not used
@@ -118,5 +124,19 @@ public class Stock {
     return "Company name: " + this.ticker + "\nDate of purchase: " + this.getDateTime() +
             "\nPurchase price: $" + this.purchasePrice + "\nNumber of shares: " + this.shares +
             "\n";
+  }
+
+  /**
+   * Used to get an array of String to write to a csv file.
+   * @return the array of String.
+   */
+  String[] convertToCSV() {
+    String[] st = new String[5];
+    st[0] = this.getTicker();
+    st[1] = Float.toString(this.getPurchasePrice());
+    st[2] = Double.toString(this.getShares());
+    st[3] = this.getDateTime();
+    st[4] = Double.toString(this.getCommission());
+    return st;
   }
 }

@@ -24,13 +24,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * Constructor which initializes stock market model and view objects.
    *
    * @param im IStockMarketModel object.
-   * @param iv the IStockMarketView object.
    */
-  public StockMarketControllerImpl(IStockMarketModel im) {
+  public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
     if (im == null) {
       throw new IllegalArgumentException("Model or View is null");
     }
     this.im = im;
+    this.iv = iv;
   }
 
   public void setView(IStockMarketView view) {
@@ -88,18 +88,19 @@ public class StockMarketControllerImpl implements IStockMarketController {
           case "4":
             String sdate = inputs[2];
             String edate = inputs[3];
+            String saveStrategy = inputs[6];
             int portfolioNumber1 = Integer.parseInt(inputs[1]);
             int frequency = Integer.parseInt(inputs[4]);
             if (inputs[5].equals("2")) {
               try {
-                result = investInStrategyCustomWeights(result, sdate, portfolioNumber1,
+                result = investInStrategyCustomWeights(saveStrategy, result, sdate, portfolioNumber1,
                         edate, frequency);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
               }
             } else if (inputs[5].equals("1")) {
               try {
-                result = investInStrategyEqualWeights(result, sdate, portfolioNumber1,
+                result = investInStrategyEqualWeights(saveStrategy, result, sdate, portfolioNumber1,
                         edate, frequency);
               } catch (IllegalArgumentException e) {
                 result = e.getMessage();
@@ -128,6 +129,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
             }
             break;
           case "7":
+            try {
+              this.im.save(Integer.parseInt(inputs[1]));
+            } catch(IllegalArgumentException e) {
+              result = e.getMessage();
+            }
+            break;
+          case "8":
             System.exit(0);
             break;
           default:
@@ -172,7 +180,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @throws IOException    if the input is invalid.
    * @throws ParseException if parsing is invalid.
    */
-  private String investInStrategyEqualWeights(String result, String sdate, int portfolioNumber,
+  private String investInStrategyEqualWeights(String saveStrategy, String result, String sdate, int portfolioNumber,
                                               String edate, int frequency) throws IOException,
           ParseException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
@@ -192,6 +200,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
       this.im.dCassStrategy(stockNames.get(i), investmentAmount, sdate, edate,
               portfolioNumber, frequency, this.im);
     }
+    if (!saveStrategy.equals("no")) {
+      try {
+        this.im.saveDcassStrategy(saveStrategy, Double.parseDouble(amount), sdate, edate, frequency);
+      } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException(e.getMessage());
+      }
+    }
     return "";
   }
 
@@ -208,7 +223,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
    * @throws IOException    if the input is invalid.
    * @throws ParseException if parsing is invalid.
    */
-  private String investInStrategyCustomWeights(String result, String sdate, int portfolioNumber,
+  private String investInStrategyCustomWeights(String saveStrategy, String result, String sdate, int portfolioNumber,
                                                String edate, int frequency) throws IOException,
           ParseException {
     List<Stock> stockList = this.im.viewComposition(portfolioNumber, sdate);
@@ -236,6 +251,13 @@ public class StockMarketControllerImpl implements IStockMarketController {
     for (int i = 0; i < stockNames.size(); i++) {
       this.im.dCassStrategy(stockNames.get(i), numbers1[i], sdate, edate,
               portfolioNumber, frequency, this.im);
+    }
+    if (!saveStrategy.equals("no")) {
+      try {
+        this.im.saveDcassStrategy(saveStrategy, amount, sdate, edate, frequency);
+      } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException(e.getMessage());
+      }
     }
     return "";
   }

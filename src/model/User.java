@@ -1,8 +1,14 @@
 package model;
 
+import com.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * The class User which has methods to buy stock, create portfolio, evaluate portfolio, calculate
@@ -11,6 +17,7 @@ import java.util.Map;
 public class User {
 
   private Map<Integer, Portfolio> portfolios;
+  private Set<String> strategyList;
 
   /**
    * Instantiates a new User and the portfolios hash map.
@@ -55,6 +62,23 @@ public class User {
     } else {
       Portfolio userPortfolio = this.portfolios.get(portfolioNumber);
       userPortfolio.addStock(stock);
+    }
+  }
+
+  /**
+   *
+   * @param portfolioNumber
+   */
+  public void save(int portfolioNumber) {
+    if (!this.portfolios.containsKey(portfolioNumber)) {
+      throw new IllegalArgumentException("\nCreate portfolio first.\n");
+    } else {
+      try {
+        Portfolio userPortfolio = this.portfolios.get(portfolioNumber);
+        userPortfolio.save(portfolioNumber);
+      } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException(e.getMessage());
+      }
     }
   }
 
@@ -113,6 +137,37 @@ public class User {
       throw new IllegalArgumentException("\nInvalid number entered.\n");
     } else if (!this.portfolios.containsKey(portfolioNumber)) {
       throw new IllegalArgumentException("\nCreate portfolio first.\n");
+    }
+  }
+
+  /**
+   * Method to save strategy to a csv file. Saves the strategy in the format investment amount,
+   * start date, end date, frequency.
+   * @param strategyNumber is the name of the strategy the user wishes to save.
+   * @param investmentAmount is the investment amount.
+   * @param startDate is the strategy start date.
+   * @param endDate is the strategy end date.
+   * @param frequency is the frequency for the strategy.
+   */
+  public void saveStrategy(String strategyNumber, double investmentAmount, String startDate,
+                           String endDate, int frequency) {
+    if (strategyList.contains(strategyNumber)) {
+      throw new IllegalArgumentException("Strategy already exists.");
+    }
+    strategyList.add(strategyNumber);
+    String[] strategyArray = new String[4];
+    strategyArray[0] = Double.toString(investmentAmount);
+    strategyArray[1] = startDate;
+    strategyArray[2] = endDate;
+    strategyArray[3] = Integer.toString(frequency);
+    try {
+      File file = new File("./src/strategies/strategy_" + strategyNumber + ".csv");
+      FileWriter output = new FileWriter(file);
+      CSVWriter writer = new CSVWriter(output);
+      writer.writeNext(strategyArray);
+      writer.close();
+    } catch(IOException e) {
+      e.printStackTrace();
     }
   }
 }
