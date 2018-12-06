@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.*;
-
 import model.IStockMarketModel;
 import model.Stock;
 import view.IStockMarketView;
@@ -32,6 +30,14 @@ public class StockMarketControllerImpl implements IStockMarketController {
       throw new IllegalArgumentException("Model or View is null");
     }
     this.im = im;
+  }
+
+  public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
+    if (im == null || iv == null) {
+      throw new IllegalArgumentException("Model or View is null");
+    }
+    this.im = im;
+    this.iv = iv;
   }
 
   @Override
@@ -133,7 +139,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
           case "7":
             try {
               this.im.save(Integer.parseInt(inputs[1]));
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
               result = e.getMessage();
             }
             break;

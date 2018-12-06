@@ -27,6 +27,9 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
   private ViewCompositionPanel viewCompositionPanel;
   private CostBasisEvaluationPanel costBasisEvaluationPanel;
   private CreateStrategyPanel createStrategyPanel;
+  private SavePortfolioPanel savePortfolioPanel;
+  private ApplyStrategyPanel applyStrategyPanel;
+  private GraphPanel graphPanel;
   private InvestPanel investPanel;
   private Object WelcomeFrame = this;
 
@@ -35,7 +38,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
    */
   public WelcomeFrame(IStockMarketController stockMarketController) {
     initComponents();
-    super.setSize(1200,600);
+    super.setSize(1200, 600);
     this.stockMarketController = stockMarketController;
     createPortfolioPanel = new CreatePortfolioPanel(stockMarketController);
     buyStockPanel = new BuyStockPanel(stockMarketController);
@@ -43,6 +46,9 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     costBasisEvaluationPanel = new CostBasisEvaluationPanel(stockMarketController);
     createStrategyPanel = new CreateStrategyPanel(stockMarketController);
     investPanel = new InvestPanel(stockMarketController);
+    savePortfolioPanel = new SavePortfolioPanel(stockMarketController);
+    graphPanel = new GraphPanel(stockMarketController);
+    applyStrategyPanel = new ApplyStrategyPanel(stockMarketController);
   }
 
   @Override
@@ -73,6 +79,9 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     costbasisEvaluationButton.addActionListener(l -> jSplitPane1.setRightComponent(costBasisEvaluationPanel));
     investButton.addActionListener(l -> jSplitPane1.setRightComponent(investPanel));
     createStrategyButton.addActionListener(l -> jSplitPane1.setRightComponent(createStrategyPanel));
+    savePortfolioButton.addActionListener(l -> jSplitPane1.setRightComponent(savePortfolioPanel));
+    plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
+    applyStrategyButton.addActionListener(l -> jSplitPane1.setRightComponent(applyStrategyPanel));
     exitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
@@ -96,6 +105,9 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     buyStockButton = new javax.swing.JButton();
     investButton = new javax.swing.JButton();
     viewCompositionButton = new javax.swing.JButton();
+    plotGraphButton = new javax.swing.JButton();
+    applyStrategyButton = new javax.swing.JButton();
+    savePortfolioButton = new javax.swing.JButton();
     exitButton = new javax.swing.JButton();
     createStrategyButton = new javax.swing.JButton();
     costbasisEvaluationButton = new javax.swing.JButton();
@@ -109,11 +121,17 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
 
     investButton.setText("Invest");
 
-    viewCompositionButton.setText("Composition");
+    viewCompositionButton.setText("View Composition");
+
+    savePortfolioButton.setText("Save Portfolio");
+
+    plotGraphButton.setText("Plot Graph");
+
+    applyStrategyButton.setText("Apply Existing Strategy");
 
     exitButton.setText("Exit");
 
-    createStrategyButton.setText("Create Strategy");
+    createStrategyButton.setText("Create and Save Strategy");
 
     costbasisEvaluationButton.setText("Cost Basis & Evaluation");
 
@@ -130,6 +148,9 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
                             .addContainerGap())
                     .addComponent(costbasisEvaluationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewCompositionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotGraphButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(savePortfolioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(applyStrategyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,6 +167,12 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
                             .addComponent(viewCompositionButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(costbasisEvaluationButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(savePortfolioButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(applyStrategyButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(plotGraphButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(exitButton)
                             .addContainerGap(51, Short.MAX_VALUE))
@@ -192,5 +219,8 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
   private javax.swing.JPanel jPanel2;
   private javax.swing.JSplitPane jSplitPane1;
   private javax.swing.JButton viewCompositionButton;
+  private javax.swing.JButton plotGraphButton;
+  private javax.swing.JButton savePortfolioButton;
+  private javax.swing.JButton applyStrategyButton;
   // End of variables declaration//GEN-END:variables
 }

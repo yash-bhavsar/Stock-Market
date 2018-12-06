@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="portfolioNumberTextField" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="portfolioNumberLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="weightsLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="weightsComoboBox" min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="weightsTextField" min="-2" pref="105" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="updateWeightBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="executeCustomWeightsBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="executeEqualWeightsBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="0" pref="338" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="portfolioNumberLbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="portfolioNumberTextField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="weightsLbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="weightsComoboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="weightsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="updateWeightBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="executeCustomWeightsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="executeEqualWeightsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="370" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="portfolioNumberLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter portfolio number."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="portfolioNumberTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter number here."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="weightsLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select Weights."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="weightsComoboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="weightsTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter weight"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="updateWeightBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update weight"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="executeCustomWeightsBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Execute using custom weights"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="executeEqualWeightsBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Execute using equal weights"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

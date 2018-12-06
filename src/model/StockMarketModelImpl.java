@@ -6,7 +6,6 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileReader;
-import java.text.ParseException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,7 +33,6 @@ public class StockMarketModelImpl implements IStockMarketModel<Stock> {
     String path = "./src/portfolios/";
     File f = new File(path);
     File[] listOfFiles = f.listFiles();
-    System.out.println(listOfFiles.length);
     if (listOfFiles.length != 0) {
       File[] files = new File(path).listFiles(new FileFilter() {
         @Override
