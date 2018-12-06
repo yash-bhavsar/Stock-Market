@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import controller.IStockMarketController;
 
 /**
+ * The class Save portfolio panel.
+ *
  * @author ojaspatwardhan
  */
 public class SavePortfolioPanel extends javax.swing.JPanel {
@@ -19,6 +21,8 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form SavePortfolioPanel
+   *
+   * @param stockMarketController the stock market controller
    */
   public SavePortfolioPanel(IStockMarketController stockMarketController) {
     initComponents();
@@ -53,10 +57,12 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
     this.setLayout(layout);
     layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(savePortfolioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(savePortfolioBtn, javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(
+                                    javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(portfolioNumberTextField)
                                     .addGroup(layout.createSequentialGroup()
                                             .addComponent(portfolioNumberLbl)
@@ -70,7 +76,10 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(portfolioNumberLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(portfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(portfolioNumberTextField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(savePortfolioBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -79,6 +88,10 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
     );
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+   * Private method used to save a portfolio.
+   * @param actionEvent is the event object.
+   */
   private void savePortfolio(ActionEvent actionEvent) {
     String pNumber = portfolioNumberTextField.getText();
     try {

@@ -21,6 +21,9 @@ import controller.IStockMarketController;
  */
 public class WelcomeFrame extends JFrame implements IStockMarketView {
 
+  /**
+   * The Stock market controller.
+   */
   protected IStockMarketController stockMarketController;
   private CreatePortfolioPanel createPortfolioPanel;
   private BuyStockPanel buyStockPanel;
@@ -35,6 +38,8 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
 
   /**
    * Creates new form WelcomeFrame
+   *
+   * @param stockMarketController the stock market controller
    */
   public WelcomeFrame(IStockMarketController stockMarketController) {
     initComponents();
@@ -73,15 +78,20 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
 
   @Override
   public void setFeatures() {
-    createPortfolioButton.addActionListener(l -> jSplitPane1.setRightComponent(createPortfolioPanel));
-    buyStockButton.addActionListener(l -> jSplitPane1.setRightComponent(buyStockPanel));
-    viewCompositionButton.addActionListener(l -> jSplitPane1.setRightComponent(viewCompositionPanel));
-    costbasisEvaluationButton.addActionListener(l -> jSplitPane1.setRightComponent(costBasisEvaluationPanel));
+    createPortfolioButton.addActionListener(l -> jSplitPane1.setRightComponent(
+            createPortfolioPanel));
+    buyStockButton.addActionListener(l -> jSplitPane1.setRightComponent(
+            buyStockPanel));
+    viewCompositionButton.addActionListener(l -> jSplitPane1.setRightComponent(
+            viewCompositionPanel));
+    costbasisEvaluationButton.addActionListener(l -> jSplitPane1.setRightComponent(
+            costBasisEvaluationPanel));
     investButton.addActionListener(l -> jSplitPane1.setRightComponent(investPanel));
     createStrategyButton.addActionListener(l -> jSplitPane1.setRightComponent(createStrategyPanel));
     savePortfolioButton.addActionListener(l -> jSplitPane1.setRightComponent(savePortfolioPanel));
     plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
     applyStrategyButton.addActionListener(l -> jSplitPane1.setRightComponent(applyStrategyPanel));
+    plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
     exitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
@@ -139,18 +149,37 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(investButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(createPortfolioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buyStockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(createStrategyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(investButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createPortfolioButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buyStockButton, javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createStrategyButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exitButton,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addContainerGap())
-                    .addComponent(costbasisEvaluationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewCompositionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plotGraphButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(savePortfolioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(applyStrategyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(costbasisEvaluationButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewCompositionButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotGraphButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(savePortfolioButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(applyStrategyButton,
+                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

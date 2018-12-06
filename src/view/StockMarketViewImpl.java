@@ -65,7 +65,7 @@ public class StockMarketViewImpl implements IStockMarketView {
         input.append(" ").append(askNumber("\nThe number of shares you want to buy: "));
         input.append(" ").append(askDate());
         input.append(" ").append(askNumber("\nEnter portfolio number: "));
-        input.append(" ").append(askNumber("\nEnter commission amount: "));
+        input.append(" ").append(askNumber("\nEnter commission amount (%): "));
         break;
       case "3":
         input.append("3 ");
@@ -164,6 +164,8 @@ public class StockMarketViewImpl implements IStockMarketView {
   /**
    * Private helper method to ask for end date.
    *
+   * @param flag      the flag
+   * @param startdate the startdate
    * @return the end date.
    * @throws IOException if input is invalid.
    */
@@ -244,7 +246,9 @@ public class StockMarketViewImpl implements IStockMarketView {
   /**
    * Private helper method which asks the user for weights of each stock in the portfolio.
    *
+   * @param ticker the ticker
    * @return the weight entered by the user.
+   * @throws IOException the io exception
    */
   protected String askWeights(String ticker) throws IOException {
     this.out.append("\nEnter weight(%) for: " + ticker + "\n");

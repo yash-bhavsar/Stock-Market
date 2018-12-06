@@ -13,6 +13,8 @@ import java.util.Date;
 import controller.IStockMarketController;
 
 /**
+ * The class Buy stock panel which has the components of buy stock.
+ *
  * @author ojaspatwardhan
  */
 public class BuyStockPanel extends javax.swing.JPanel {
@@ -21,6 +23,8 @@ public class BuyStockPanel extends javax.swing.JPanel {
 
   /**
    * Creates new form buyStockPanel
+   *
+   * @param stockMarketController the stock market controller
    */
   public BuyStockPanel(IStockMarketController stockMarketController) {
     this.stockMarketController = stockMarketController;
@@ -75,15 +79,19 @@ public class BuyStockPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tickerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                    .Alignment.LEADING)
+                                    .addComponent(tickerLabel,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(tickerTextField)
                                     .addComponent(numberOfStockTextField)
                                     .addComponent(dateField)
                                     .addComponent(portfolioNumberField)
                                     .addComponent(commissionAmountField)
                                     .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(
+                                                    javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(dateLabel)
                                                     .addComponent(portfolioNumberLabel)
                                                     .addComponent(commissionAmountLabel)
@@ -91,7 +99,8 @@ public class BuyStockPanel extends javax.swing.JPanel {
                                                     .addComponent(numberOfStocksLabel))
                                             .addGap(0, 115, Short.MAX_VALUE)))
                             .addContainerGap())
-                    .addComponent(buyStockBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buyStockBtn, javax.swing.GroupLayout.DEFAULT_SIZE,
+                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,23 +108,37 @@ public class BuyStockPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(tickerLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tickerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tickerTextField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(numberOfStocksLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numberOfStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numberOfStockTextField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(dateLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(portfolioNumberLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(portfolioNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(portfolioNumberField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(commissionAmountLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(commissionAmountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(commissionAmountField,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                    javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(resultLabel)
                             .addComponent(buyStockBtn)
@@ -123,7 +146,9 @@ public class BuyStockPanel extends javax.swing.JPanel {
     );
   }// </editor-fold>//GEN-END:initComponents
 
-
+  /**
+   * Private buyStock method which buys stocks.
+   */
   private void buyStock() {
     String pNumber = portfolioNumberField.getText();
     String date = dateField.getText();
@@ -141,7 +166,8 @@ public class BuyStockPanel extends javax.swing.JPanel {
       } else if (date1.after(new Date())) {
         resultLabel.setText("Future dates are not valid.");
       } else {
-        String response = stockMarketController.buyStock(ticker, numberOfStock, date, pn, commission);
+        String response = stockMarketController.buyStock(ticker, numberOfStock, date, pn,
+                commission);
         if (response.equals("pass")) {
           resultLabel.setText("Stock bought successfully.");
         } else {

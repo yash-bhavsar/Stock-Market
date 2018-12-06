@@ -73,7 +73,8 @@ public class User {
   }
 
   /**
-   *
+   * Method which is used to save a portfolio.
+   * @param portfolioNumber is the portfolio number.
    */
   public void save(int portfolioNumber) {
     if (!this.portfolios.containsKey(portfolioNumber)) {
@@ -189,6 +190,11 @@ public class User {
     strategyList.add(strategyNumber);
   }
 
+  /**
+   * Method to get the strategy details.
+   * @param strategyNumber is the strategy number.
+   * @return the array of strategy details.
+   */
   public String[] strategyDetails(String strategyNumber) {
     if (!strategyList.contains(strategyNumber)) {
       throw new IllegalArgumentException("Create strategy first.");

@@ -24,6 +24,9 @@ public class Main {
     IStockMarketController controller = new StockMarketControllerImpl(new StockMarketModelImpl());
     IStockMarketView view = new WelcomeFrame(controller);
     controller.setView(view);
+//      StockMarketControllerImpl controller = new StockMarketControllerImpl(new StockMarketModelImpl());
+//      IStockMarketView view = new WelcomeFrame(controller);
+//      controller.setView(view);
 //    }
   }
 }

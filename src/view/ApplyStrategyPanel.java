@@ -20,6 +20,10 @@ import controller.IStockMarketController;
 import model.Stock;
 
 /**
+ * <<<<<<< HEAD ======= The class Apply Strategy panel which loads the apply strategy panel.
+ *
+ * >>>>>>> 9f69248b1cde9e12293cbd6aaf946ab9c378fe1b
+ *
  * @author ojaspatwardhan
  */
 public class ApplyStrategyPanel extends javax.swing.JPanel {

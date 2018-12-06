@@ -41,16 +41,31 @@ public class StockMarketViewImplTest {
       ap = new StringBuffer();
       sv = new StockMarketViewImpl(rd, ap);
       sv.enterCommand();
-      assertEquals("\nEnter Choice:\n" +
+      assertEquals("\n" +
+              "Enter Choice:\n" +
               " 1. Create new portfolio.\n" +
               " 2. Buy Stock.\n" +
               " 3. Invest\n" +
               " 4. Create Strategy\n" +
               " 5. View Composition of a portfolio.\n" +
               " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-              " 7. Quit.\n" +
+              " 7. Save Portfolio.\n" +
+              " 8. Apply Existing Strategy.\n" +
+              " 9. Quit.\n" +
               "\n" +
-              "\t\t\t\t\t\tEnter valid choice.\n", ap.toString());
+              "Enter strategy number\n" +
+              "Enter valid number.\n" +
+              " \n" +
+              "Enter strategy number\n" +
+              "Enter portfolio number\n" +
+              "Select weights: \n" +
+              "1.Equal weights \n" +
+              "2.Custom weights\n" +
+              "\n" +
+              "Enter valid choice: \n" +
+              "Select weights: \n" +
+              "1.Equal weights \n" +
+              "2.Custom weights\n", ap.toString());
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -66,15 +81,16 @@ public class StockMarketViewImplTest {
       ap = new StringBuffer();
       sv = new StockMarketViewImpl(rd, ap);
       sv.enterCommand();
-      assertEquals("\n" +
-              "Enter Choice:\n" +
+      assertEquals("\nEnter Choice:\n" +
               " 1. Create new portfolio.\n" +
               " 2. Buy Stock.\n" +
               " 3. Invest\n" +
               " 4. Create Strategy\n" +
               " 5. View Composition of a portfolio.\n" +
               " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-              " 7. Quit.\n" +
+              " 7. Save Portfolio.\n" +
+              " 8. Apply Existing Strategy.\n" +
+              " 9. Quit.\n" +
               "\n" +
               "Enter portfolio number: \n" +
               "Enter valid number.\n" +
@@ -103,7 +119,9 @@ public class StockMarketViewImplTest {
               " 4. Create Strategy\n" +
               " 5. View Composition of a portfolio.\n" +
               " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-              " 7. Quit.\n" +
+              " 7. Save Portfolio.\n" +
+              " 8. Apply Existing Strategy.\n" +
+              " 9. Quit.\n" +
               "\n" +
               "Enter Stock details: \n" +
               "Stock symbol(Ticker): \n" +
@@ -113,7 +131,7 @@ public class StockMarketViewImplTest {
               "The number of shares you want to buy: \n" +
               "Please enter date(yyyy-mm-dd): \n" +
               "Enter portfolio number: \n" +
-              "Enter commission amount: ", ap.toString());
+              "Enter commission amount (%): ", ap.toString());
     } catch (Exception e) {
       e.printStackTrace();
     }

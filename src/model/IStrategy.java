@@ -19,7 +19,7 @@ public interface IStrategy {
    * @param frequency        the frequency
    * @param model            the model
    * @param user             the user
-   * @throws ParseException the parse exception
+   * @throws ParseException the parse exception if parsing fails.
    */
   void investmentStrategy(String ticker, double investmentAmount, String startDate, String endDate,
                           int portfolioNumber, int frequency, IStockMarketModel model, User user);

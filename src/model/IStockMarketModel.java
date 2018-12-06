@@ -106,9 +106,10 @@ public interface IStockMarketModel<T> {
                          String endDate, int frequency);
 
   /**
+   * Strategy details string [ ].
    *
-   * @param strategyNumber
-   * @return
+   * @param strategyNumber the strategy number
+   * @return string [ ]
    */
   String[] strategyDetails(String strategyNumber);
 }
