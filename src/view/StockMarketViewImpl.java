@@ -282,7 +282,7 @@ public class StockMarketViewImpl implements IStockMarketView {
             "\n 4. Create Strategy" +
             "\n 5. View Composition of a portfolio." +
             "\n 6. View total cost basis and evaluation of a portfolio on a particular date." +
-            "\n 7. Save." +
+            "\n 7. Save Portfolio." +
             "\n 8. Quit.\n";
   }
 
