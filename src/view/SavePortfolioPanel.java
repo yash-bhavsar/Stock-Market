@@ -20,7 +20,7 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
   private IStockMarketController stockMarketController;
 
   /**
-   * Creates new form SavePortfolioPanel
+   * Creates new form SavePortfolioPanel.
    *
    * @param stockMarketController the stock market controller
    */
@@ -37,9 +37,10 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    portfolioNumberLbl = new javax.swing.JLabel();
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JLabel portfolioNumberLbl = new javax.swing.JLabel();
     portfolioNumberTextField = new javax.swing.JTextField();
-    savePortfolioBtn = new javax.swing.JButton();
+    javax.swing.JButton savePortfolioBtn = new javax.swing.JButton();
     resultLabel = new javax.swing.JLabel();
 
     portfolioNumberLbl.setText("Enter portfolio number.");
@@ -86,10 +87,11 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
                             .addComponent(resultLabel)
                             .addContainerGap(715, Short.MAX_VALUE))
     );
-  }// </editor-fold>//GEN-END:initComponents
+  } // </editor-fold>//GEN-END:initComponents
 
   /**
    * Private method used to save a portfolio.
+   *
    * @param actionEvent is the event object.
    */
   private void savePortfolio(ActionEvent actionEvent) {
@@ -111,10 +113,7 @@ public class SavePortfolioPanel extends javax.swing.JPanel {
     }
   }
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JLabel portfolioNumberLbl;
   private javax.swing.JTextField portfolioNumberTextField;
-  private javax.swing.JButton savePortfolioBtn;
   private javax.swing.JLabel resultLabel;
   // End of variables declaration//GEN-END:variables
 }

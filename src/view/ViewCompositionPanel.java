@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.GroupLayout.Alignment;
+
 import controller.IStockMarketController;
 import model.Stock;
 
@@ -23,7 +25,7 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
   private IStockMarketController stockMarketController;
 
   /**
-   * Creates new form ViewCompositionPanel
+   * Creates new form ViewCompositionPanel.
    *
    * @param stockMarketController the stock market controller
    */
@@ -40,16 +42,17 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    viewCompositionPortfolioNumberLabel = new javax.swing.JLabel();
+    javax.swing.JLabel viewCompositionPortfolNumberLbl = new javax.swing.JLabel();
     viewCompositionPortfolioNumberField = new javax.swing.JTextField();
-    viewCompositionDateLabel = new javax.swing.JLabel();
+    javax.swing.JLabel viewCompositionDateLabel = new javax.swing.JLabel();
     viewCompositionDateField = new javax.swing.JTextField();
-    viewCompositionBtn = new javax.swing.JButton();
-    jScrollPane1 = new javax.swing.JScrollPane();
+    javax.swing.JButton viewCompositionBtn = new javax.swing.JButton();
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
     viewCompositionTextArea = new javax.swing.JTextArea();
-    resultLabel = new javax.swing.JLabel();
+    javax.swing.JLabel resultLabel = new javax.swing.JLabel();
 
-    viewCompositionPortfolioNumberLabel.setText("Please enter the portfolio number.");
+    viewCompositionPortfolNumberLbl.setText("Please enter the portfolio number.");
 
     viewCompositionPortfolioNumberField.setText("");
 
@@ -70,38 +73,40 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+            layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(Alignment.TRAILING,
                             layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.
-                                    Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.
-                                                    DEFAULT_SIZE,
-                                            658, Short.MAX_VALUE)
-                                    .addComponent(viewCompositionBtn,
-                                            javax.swing.GroupLayout.Alignment.LEADING,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(viewCompositionPortfolioNumberField)
-                                    .addComponent(viewCompositionDateField,
-                                            javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                            layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(
-                                                    javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(
-                                                            viewCompositionPortfolioNumberLabel)
-                                                    .addComponent(viewCompositionDateLabel)
-                                                    .addComponent(resultLabel))
-                                            .addGap(0, 0, Short.MAX_VALUE)))
-                            .addContainerGap())
+                                    .addContainerGap()
+                                    .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.
+                                                            DEFAULT_SIZE,
+                                                    658, Short.MAX_VALUE)
+                                            .addComponent(viewCompositionBtn,
+                                                    Alignment.LEADING,
+                                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                    javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                    Short.MAX_VALUE)
+                                            .addComponent(viewCompositionPortfolioNumberField)
+                                            .addComponent(viewCompositionDateField,
+                                                    Alignment.LEADING)
+                                            .addGroup(Alignment.LEADING,
+                                                    layout.createParallelGroup(
+                                                            Alignment.LEADING)
+                                                            .addComponent(
+                                                                    viewCompositionPortfolNumberLbl)
+                                                            .addComponent(viewCompositionDateLabel)
+                                                            .addComponent(resultLabel)
+                                                            .addGroup(layout.createSequentialGroup()
+                                                            ).addGap(0, 0, Short.MAX_VALUE)
+                                            )
+                                    )
+                                    .addContainerGap())
     );
     layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(viewCompositionPortfolioNumberLabel)
+                            .addComponent(viewCompositionPortfolNumberLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(viewCompositionPortfolioNumberField,
                                     javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -123,7 +128,7 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
                                     161, Short.MAX_VALUE)
                             .addContainerGap())
     );
-  }// </editor-fold>//GEN-END:initComponents
+  } // </editor-fold>//GEN-END:initComponents
 
 
   private void viewCompositionBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,17 +162,11 @@ public class ViewCompositionPanel extends javax.swing.JPanel {
     } catch (IllegalArgumentException e) {
       this.viewCompositionTextArea.setText(e.getMessage());
     }
-  }//GEN-LAST:event_viewCompositionBtnActionPerformed
+  } //GEN-LAST:event_viewCompositionBtnActionPerformed
 
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JButton viewCompositionBtn;
   private javax.swing.JTextField viewCompositionDateField;
-  private javax.swing.JLabel viewCompositionDateLabel;
   private javax.swing.JTextField viewCompositionPortfolioNumberField;
-  private javax.swing.JLabel viewCompositionPortfolioNumberLabel;
-  private javax.swing.JLabel resultLabel;
   private javax.swing.JTextArea viewCompositionTextArea;
   // End of variables declaration//GEN-END:variables
 }

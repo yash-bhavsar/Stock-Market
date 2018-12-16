@@ -74,6 +74,7 @@ public class User {
 
   /**
    * Method which is used to save a portfolio.
+   *
    * @param portfolioNumber is the portfolio number.
    */
   public void save(int portfolioNumber) {
@@ -170,7 +171,7 @@ public class User {
     strategyArray[3] = endDate;
     strategyArray[4] = Integer.toString(frequency);
     try {
-      File file = new File("./src/strategies/strategy_" + strategyNumber + ".csv");
+      File file = new File("../src/strategies/strategy_" + strategyNumber + ".csv");
       FileWriter output = new FileWriter(file);
       CSVWriter writer = new CSVWriter(output);
       writer.writeNext(strategyArray);
@@ -181,7 +182,10 @@ public class User {
   }
 
   /**
+   * Add Strategy in the map so it initiates the map on start. Intentionally public because called
+   * outside this class also.
    *
+   * @param strategyNumber number of strategy to uniquely identify strategy.
    */
   public void addStrategy(String strategyNumber) {
     if (strategyList.contains(strategyNumber)) {
@@ -192,6 +196,7 @@ public class User {
 
   /**
    * Method to get the strategy details.
+   *
    * @param strategyNumber is the strategy number.
    * @return the array of strategy details.
    */

@@ -20,11 +20,7 @@ import controller.IStockMarketController;
 import model.Stock;
 
 /**
- * <<<<<<< HEAD ======= The class Apply Strategy panel which loads the apply strategy panel.
- *
- * >>>>>>> 9f69248b1cde9e12293cbd6aaf946ab9c378fe1b
- *
- * @author ojaspatwardhan
+ * The class Apply Strategy panel which loads the apply strategy panel.
  */
 public class ApplyStrategyPanel extends javax.swing.JPanel {
 
@@ -37,7 +33,7 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
   private Map<String, Integer> weights;
 
   /**
-   * Creates new form ApplyStrategyPanel
+   * Creates new form ApplyStrategyPanel.
    */
   public ApplyStrategyPanel(IStockMarketController stockMarketController) {
     initComponents();
@@ -58,15 +54,16 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    portfolioNumberLbl = new javax.swing.JLabel();
+    javax.swing.JLabel portfolioNumberLbl = new javax.swing.JLabel();
     portfolioNumberTextField = new javax.swing.JTextField();
-    weightsLbl = new javax.swing.JLabel();
+    javax.swing.JLabel weightsLbl = new javax.swing.JLabel();
     weightsComoboBox = new javax.swing.JComboBox<>();
     weightsTextField = new javax.swing.JTextField();
-    updateWeightBtn = new javax.swing.JButton();
-    executeCustomWeightsBtn = new javax.swing.JButton();
-    executeEqualWeightsBtn = new javax.swing.JButton();
-    strategyLabel = new javax.swing.JLabel();
+    javax.swing.JButton updateWeightBtn = new javax.swing.JButton();
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton executeCustomWeightsBtn = new javax.swing.JButton();
+    javax.swing.JButton executeEqualWeightsBtn = new javax.swing.JButton();
+    javax.swing.JLabel strategyLabel = new javax.swing.JLabel();
     strategyTextField = new javax.swing.JTextField();
     resultLabel = new javax.swing.JLabel();
 
@@ -87,7 +84,7 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
     strategyTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent focusEvent) {
-
+        //do nothing.
       }
 
       @Override
@@ -111,23 +108,13 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
 
       @Override
       public void focusLost(FocusEvent focusEvent) {
-
+        //do anything.
       }
     });
 
-    executeCustomWeightsBtn.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        invest(actionEvent, true);
-      }
-    });
+    executeCustomWeightsBtn.addActionListener(actionEvent -> invest(actionEvent, true));
 
-    executeEqualWeightsBtn.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        invest(actionEvent, false);
-      }
-    });
+    executeEqualWeightsBtn.addActionListener(actionEvent -> invest(actionEvent, false));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
@@ -137,26 +124,35 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
                     .addComponent(strategyTextField)
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                                    .LEADING)
                                     .addComponent(portfolioNumberLbl)
                                     .addComponent(strategyLabel)
                                     .addComponent(resultLabel)
                                     .addComponent(weightsLbl))
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                                    .LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                            .addComponent(weightsComoboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(weightsComoboBox, javax.swing.GroupLayout
+                                                    .PREFERRED_SIZE, 101, javax.swing
+                                                    .GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle
+                                                    .ComponentPlacement.RELATED)
+                                            .addComponent(weightsTextField, javax.swing.GroupLayout
+                                                    .PREFERRED_SIZE, 105, javax.swing
+                                                    .GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle
+                                                    .ComponentPlacement.RELATED)
                                             .addComponent(updateWeightBtn))
                                     .addGroup(layout.createSequentialGroup()
                                             .addComponent(executeCustomWeightsBtn)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addPreferredGap(javax.swing.LayoutStyle
+                                                    .ComponentPlacement.RELATED)
                                             .addComponent(executeEqualWeightsBtn)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(resultLabel)))
+                                            .addPreferredGap(javax.swing.LayoutStyle
+                                                    .ComponentPlacement.RELATED)))
                             .addGap(0, 338, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -165,25 +161,38 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(portfolioNumberLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(portfolioNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(portfolioNumberTextField, javax.swing.GroupLayout
+                                    .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax
+                                    .swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(strategyLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(strategyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(strategyTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing
+                                            .GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(weightsLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(weightsComoboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(weightsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                                    .BASELINE)
+                                    .addComponent(weightsComoboBox, javax.swing.GroupLayout
+                                                    .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                    .DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(weightsTextField, javax.swing.GroupLayout
+                                                    .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                    .DEFAULT_SIZE,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(updateWeightBtn))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                    .Alignment.BASELINE)
                                     .addComponent(executeCustomWeightsBtn)
-                                    .addComponent(executeEqualWeightsBtn))
+                                    .addComponent(executeEqualWeightsBtn)
+                                    .addComponent(resultLabel))
                             .addContainerGap(370, Short.MAX_VALUE))
     );
-  }// </editor-fold>//GEN-END:initComponents
+  } // </editor-fold>//GEN-END:initComponents
 
 
   private void getStrategyDetails(FocusEvent f) {
@@ -196,7 +205,7 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
         resultLabel.setText("Negative numbers are not allowed");
         return;
       }
-      String details[] = this.stockMarketController.getStrategyDetails(strategyNumber);
+      String[] details = this.stockMarketController.getStrategyDetails(strategyNumber);
       amount = (int) Double.parseDouble(details[0]);
       startDate = details[1];
       endDate = details[2];
@@ -240,8 +249,9 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
         String response;
         boolean flag = true;
         for (Map.Entry<String, Integer> entry : weights.entrySet()) {
-          double investAmount = (entry.getValue() / 100.0) * amount;
-          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount, date, pn, 0);
+          double investAmount = (entry.getValue() / 100.0) * (double) amount;
+          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount,
+                  date, pn, 0);
           if (!response.trim().equals("pass")) {
             flag = false;
           }
@@ -253,8 +263,9 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
         String response;
         boolean flag = true;
         for (Map.Entry<String, Integer> entry : weights.entrySet()) {
-          double investAmount = (100.0 / weights.size()) * amount;
-          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount, date, pn, 0);
+          double investAmount = (100.0 / weights.size()) * (double) amount;
+          response = this.stockMarketController.buyStockByAmount(entry.getKey(), investAmount, date,
+                  pn, 0);
           if (!response.trim().equals("pass")) {
             flag = false;
           }
@@ -272,16 +283,9 @@ public class ApplyStrategyPanel extends javax.swing.JPanel {
     }
   }
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton executeCustomWeightsBtn;
-  private javax.swing.JButton executeEqualWeightsBtn;
-  private javax.swing.JLabel portfolioNumberLbl;
   private javax.swing.JTextField portfolioNumberTextField;
-  private javax.swing.JButton updateWeightBtn;
   private javax.swing.JComboBox<String> weightsComoboBox;
-  private javax.swing.JLabel weightsLbl;
   private javax.swing.JTextField weightsTextField;
-  private javax.swing.JLabel strategyLabel;
   private javax.swing.JTextField strategyTextField;
   private javax.swing.JLabel resultLabel;
   // End of variables declaration//GEN-END:variables

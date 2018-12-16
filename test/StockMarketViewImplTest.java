@@ -155,7 +155,9 @@ public class StockMarketViewImplTest {
               " 4. Create Strategy\n" +
               " 5. View Composition of a portfolio.\n" +
               " 6. View total cost basis and evaluation of a portfolio on a particular date.\n" +
-              " 7. Quit.\n" +
+              " 7. Save Portfolio.\n" +
+              " 8. Apply Existing Strategy.\n" +
+              " 9. Quit.\n" +
               "\n" +
               "Enter Stock details: \n" +
               "Stock symbol(Ticker): \n" +
@@ -165,7 +167,7 @@ public class StockMarketViewImplTest {
               "\n" +
               "Please enter date(yyyy-mm-dd): \n" +
               "Enter portfolio number: \n" +
-              "Enter commission amount: ", ap.toString());
+              "Enter commission amount (%): ", ap.toString());
     } catch (Exception e) {
       e.printStackTrace();
     }

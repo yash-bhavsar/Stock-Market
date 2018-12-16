@@ -72,7 +72,8 @@ public interface IStockMarketController {
    * @param commission      the commission
    * @return string
    */
-  String buyStockByAmount(String ticker, double amount, String date, int portfolioNumber, double commission);
+  String buyStockByAmount(String ticker, double amount, String date, int portfolioNumber,
+                          double commission);
 
   /**
    * Execute strategy string.
@@ -108,7 +109,8 @@ public interface IStockMarketController {
    * @param frequency      the frequency
    * @return string
    */
-  String saveStrategy(String strategyNumber, double amount, String sdate, String edate, int frequency);
+  String saveStrategy(String strategyNumber, double amount, String sdate, String edate,
+                      int frequency);
 
   /**
    *

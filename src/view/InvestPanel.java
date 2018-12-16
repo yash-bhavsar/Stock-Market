@@ -16,8 +16,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.GroupLayout.Alignment;
+
 import controller.IStockMarketController;
 import model.Stock;
+
+import static javax.swing.GroupLayout.DEFAULT_SIZE;
+import static javax.swing.GroupLayout.PREFERRED_SIZE;
+
 
 /**
  * The class Invest panel.
@@ -31,7 +37,7 @@ public class InvestPanel extends javax.swing.JPanel {
   private IStockMarketController stockMarketController;
 
   /**
-   * Creates new form InvestPanel
+   * Creates new form InvestPanel.
    *
    * @param stockMarketController the stock market controller
    */
@@ -50,22 +56,23 @@ public class InvestPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">
   private void initComponents() {
 
-    investPortfolioNumberLabel = new javax.swing.JLabel();
+    javax.swing.JLabel investPortfolioNumberLbl = new javax.swing.JLabel();
     investPortfolioField = new javax.swing.JTextField();
-    investDateLabel = new javax.swing.JLabel();
+    javax.swing.JLabel investDateLabel = new javax.swing.JLabel();
     investDateField = new javax.swing.JTextField();
-    amountToInvestLabel = new javax.swing.JLabel();
+    // Variables declaration - do not modify
+    javax.swing.JLabel amountToInvestLabel = new javax.swing.JLabel();
     amountToinvesttextField = new javax.swing.JTextField();
-    investBtn = new javax.swing.JButton();
-    weightsLabel = new javax.swing.JLabel();
+    javax.swing.JButton investBtn = new javax.swing.JButton();
+    javax.swing.JLabel wL = new javax.swing.JLabel();
     tickersComboBox = new javax.swing.JComboBox<>();
     weightsTextField = new javax.swing.JTextField();
-    customWeightsBtn = new javax.swing.JButton();
-    equalWeightsBtn = new javax.swing.JButton();
-    updateWeightsBtn = new javax.swing.JButton();
+    javax.swing.JButton customWeightsBtn = new javax.swing.JButton();
+    javax.swing.JButton equalWeightsBtn = new javax.swing.JButton();
+    javax.swing.JButton updateWeightsBtn = new javax.swing.JButton();
     resultLabel = new javax.swing.JLabel();
 
-    investPortfolioNumberLabel.setText("Please enter the portfolio number.");
+    investPortfolioNumberLbl.setText("Please enter the portfolio number.");
 
     investPortfolioField.setText("");
 
@@ -79,7 +86,7 @@ public class InvestPanel extends javax.swing.JPanel {
 
     investBtn.setText("Invest");
 
-    weightsLabel.setText("Select Ticker.");
+    wL.setText("Select Ticker.");
 
     tickersComboBox.setModel(new javax.swing.DefaultComboBoxModel<>());
 
@@ -94,7 +101,7 @@ public class InvestPanel extends javax.swing.JPanel {
     investDateField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent focusEvent) {
-
+        //do nothing.
       }
 
       @Override
@@ -132,32 +139,32 @@ public class InvestPanel extends javax.swing.JPanel {
 
       @Override
       public void focusLost(FocusEvent focusEvent) {
-
+        //do nothing.
       }
     });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(
-                                    javax.swing.GroupLayout.Alignment.LEADING)
+                                    Alignment.LEADING)
                                     .addComponent(investBtn,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            DEFAULT_SIZE,
+                                            DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                             .addContainerGap()
                                             .addGroup(layout.createParallelGroup(
-                                                    javax.swing.GroupLayout.Alignment.LEADING)
+                                                    Alignment.LEADING)
                                                     .addComponent(investPortfolioField)
                                                     .addComponent(investDateField)
                                                     .addGroup(layout.createSequentialGroup()
                                                             .addGroup(layout.createParallelGroup(
-                                                                    javax.swing.GroupLayout.
-                                                                            Alignment.LEADING)
+                                                                    Alignment.LEADING)
                                                                     .addComponent(
-                                                                        investPortfolioNumberLabel)
+                                                                            investPortfolioNumberLbl
+                                                                    )
                                                                     .addComponent(investDateLabel)
                                                                     .addComponent(
                                                                             amountToInvestLabel)
@@ -167,95 +174,84 @@ public class InvestPanel extends javax.swing.JPanel {
                                                     .addComponent(amountToinvesttextField)))
                                     .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(
-                                                    javax.swing.GroupLayout.Alignment.TRAILING,
+                                                    Alignment.TRAILING,
                                                     false)
                                                     .addComponent(customWeightsBtn,
-                                                            javax.swing.GroupLayout.Alignment.
+                                                            Alignment.
                                                                     LEADING,
-                                                            javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                            DEFAULT_SIZE,
                                                             251, Short.MAX_VALUE)
                                                     .addGroup(layout.createSequentialGroup()
                                                             .addGroup(layout.createParallelGroup(
-                                                                    javax.swing.GroupLayout.
-                                                                            Alignment.TRAILING,
+                                                                    Alignment.TRAILING,
                                                                     false)
                                                                     .addComponent(tickersComboBox,
-                                                                            javax.swing.GroupLayout.
-                                                                                    Alignment.
+                                                                            Alignment.
                                                                                     LEADING,
                                                                             0,
-                                                                            javax.swing.GroupLayout.
-                                                                                    DEFAULT_SIZE,
+                                                                            DEFAULT_SIZE,
                                                                             Short.MAX_VALUE)
-                                                                    .addGroup(javax.swing.
-                                                                                    GroupLayout.
-                                                                            Alignment.
-                                                                            LEADING,
-                                                                            layout.
-                                                                            createSequentialGroup()
-                                                                            .addContainerGap()
-                                                                            .addComponent(
-                                                                                    weightsLabel)))
-                                                            .addPreferredGap(
+                                                                    .addGroup(Alignment.LEADING,
+                                                                    layout.createSequentialGroup().
+                                                                                    addContainerGap(
+
+                                                                                    )
+                                                                                    .addComponent(wL
+                                                                                    )))
+                                                                    .addPreferredGap(
                                                                     javax.swing.LayoutStyle.
                                                                             ComponentPlacement.
                                                                             RELATED)
                                                             .addComponent(weightsTextField,
-                                                                    javax.swing.GroupLayout.
-                                                                            PREFERRED_SIZE,
-                                                                    145, javax.swing.
-                                                                            GroupLayout.
-                                                                            PREFERRED_SIZE)))
+                                                                    PREFERRED_SIZE,
+                                                                    145, PREFERRED_SIZE)))
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(
-                                                    javax.swing.GroupLayout.Alignment.LEADING)
+                                                    Alignment.LEADING)
                                                     .addComponent(equalWeightsBtn,
-                                                            javax.swing.GroupLayout.
-                                                                    PREFERRED_SIZE,
-                                                            247, javax.swing.GroupLayout.
-                                                                    PREFERRED_SIZE)
+                                                            PREFERRED_SIZE,
+                                                            247, PREFERRED_SIZE)
                                                     .addComponent(updateWeightsBtn))
                                             .addGap(0, 0, Short.MAX_VALUE)))
                             .addContainerGap())
     );
     layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                            .addComponent(investPortfolioNumberLabel)
+                            .addComponent(investPortfolioNumberLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(investPortfolioField, javax.swing.GroupLayout.
-                                    PREFERRED_SIZE, javax.swing.GroupLayout.
-                                    DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(investPortfolioField, PREFERRED_SIZE, DEFAULT_SIZE, 
+                                    PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(investDateLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(investDateField, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(investDateField, PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(amountToInvestLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(amountToinvesttextField,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(weightsLabel)
+                            .addComponent(wL)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(
-                                    javax.swing.GroupLayout.Alignment.BASELINE)
+                                    Alignment.BASELINE)
                                     .addComponent(tickersComboBox,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            PREFERRED_SIZE,
+                                            DEFAULT_SIZE,
+                                            PREFERRED_SIZE)
                                     .addComponent(weightsTextField,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            PREFERRED_SIZE,
+                                            DEFAULT_SIZE,
+                                            PREFERRED_SIZE)
                                     .addComponent(updateWeightsBtn))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(
-                                    javax.swing.GroupLayout.Alignment.BASELINE)
+                                    Alignment.BASELINE)
                                     .addComponent(customWeightsBtn)
                                     .addComponent(equalWeightsBtn))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
@@ -266,10 +262,11 @@ public class InvestPanel extends javax.swing.JPanel {
                             .addComponent(investBtn)
                             .addContainerGap())
     );
-  }// </editor-fold>
+  } // </editor-fold>
 
   /**
    * Private helper method to get stocks.
+   *
    * @param l is the event object.
    */
   private void getStocks(FocusEvent l) {
@@ -300,6 +297,7 @@ public class InvestPanel extends javax.swing.JPanel {
 
   /**
    * Private helper method used to update weights.
+   *
    * @param actionEvent is the event object.
    */
   private void updateWeights(ActionEvent actionEvent) {
@@ -317,8 +315,9 @@ public class InvestPanel extends javax.swing.JPanel {
 
   /**
    * Private helper method to invest.
+   *
    * @param actionEvent is the event object.
-   * @param custom is the flag for equal and custom weights.
+   * @param custom      is the flag for equal and custom weights.
    */
   private void invest(ActionEvent actionEvent, boolean custom) {
     String pNumber = investPortfolioField.getText();
@@ -374,19 +373,10 @@ public class InvestPanel extends javax.swing.JPanel {
   }
 
 
-  // Variables declaration - do not modify
-  private javax.swing.JLabel amountToInvestLabel;
   private javax.swing.JTextField amountToinvesttextField;
-  private javax.swing.JButton customWeightsBtn;
-  private javax.swing.JButton equalWeightsBtn;
-  private javax.swing.JButton investBtn;
   private javax.swing.JTextField investDateField;
-  private javax.swing.JLabel investDateLabel;
   private javax.swing.JTextField investPortfolioField;
-  private javax.swing.JLabel investPortfolioNumberLabel;
-  private javax.swing.JButton updateWeightsBtn;
   private javax.swing.JComboBox<String> tickersComboBox;
-  private javax.swing.JLabel weightsLabel;
   private javax.swing.JTextField weightsTextField;
   private javax.swing.JLabel resultLabel;
   // End of variables declaration

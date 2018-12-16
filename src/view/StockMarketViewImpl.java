@@ -158,7 +158,7 @@ public class StockMarketViewImpl implements IStockMarketView {
 
   @Override
   public void setFeatures() {
-
+    //do nothing.
   }
 
   /**

@@ -17,7 +17,7 @@ import controller.IStockMarketController;
 public class CreatePortfolioPanel extends javax.swing.JPanel {
 
   /**
-   * Creates new form createPortfolioPanel
+   * Creates new form createPortfolioPanel.
    */
 
   private IStockMarketController stockMarketController;
@@ -42,7 +42,8 @@ public class CreatePortfolioPanel extends javax.swing.JPanel {
 
     createPortfolioLabel = new javax.swing.JLabel();
     createPortfolioTextField = new javax.swing.JTextField();
-    createPortfolioBtn = new javax.swing.JButton();
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton createPortfolioBtn = new javax.swing.JButton();
 
     createPortfolioLabel.setName("createPortfolioLabel");
     createPortfolioTextField.setName("createPortfolioTextField");
@@ -98,22 +99,23 @@ public class CreatePortfolioPanel extends javax.swing.JPanel {
                             .addComponent(createPortfolioBtn)
                             .addContainerGap(211, Short.MAX_VALUE))
     );
-  }// </editor-fold>//GEN-END:initComponents
+  } // </editor-fold>//GEN-END:initComponents
 
   private void createPortfolioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
     //GEN-FIRST:event_createPortfolioTextFieldActionPerformed
     // TODO add your handling code here:
-  }//GEN-LAST:event_createPortfolioTextFieldActionPerformed
+  } //GEN-LAST:event_createPortfolioTextFieldActionPerformed
 
   private void createPortfolioBtnActionPerformed(java.awt.event.ActionEvent evt) {
     //GEN-FIRST:event_createPortfolioBtnActionPerformed
     // TODO add your handling code here:
     createPortfolio(createPortfolioTextField.getText());
-  }//GEN-LAST:event_createPortfolioBtnActionPerformed
+  } //GEN-LAST:event_createPortfolioBtnActionPerformed
 
 
   /**
    * Private helper method used to create a portfolio.
+   *
    * @param n is the number of the portfolio to be created.
    */
   private void createPortfolio(String n) {
@@ -134,8 +136,6 @@ public class CreatePortfolioPanel extends javax.swing.JPanel {
   }
 
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton createPortfolioBtn;
   private javax.swing.JLabel createPortfolioLabel;
   private javax.swing.JTextField createPortfolioTextField;
   // End of variables declaration//GEN-END:variables

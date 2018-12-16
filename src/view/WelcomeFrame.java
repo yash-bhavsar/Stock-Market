@@ -4,13 +4,10 @@ package view;/*
  * and open the template in the editor.
  */
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import controller.IStockMarketController;
 
@@ -34,10 +31,9 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
   private ApplyStrategyPanel applyStrategyPanel;
   private GraphPanel graphPanel;
   private InvestPanel investPanel;
-  private Object WelcomeFrame = this;
 
   /**
-   * Creates new form WelcomeFrame
+   * Creates new form WelcomeFrame.
    *
    * @param stockMarketController the stock market controller
    */
@@ -63,7 +59,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
 
   @Override
   public void result(String result) throws IOException {
-
+    //do nothing.
   }
 
   @Override
@@ -92,13 +88,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
     applyStrategyButton.addActionListener(l -> jSplitPane1.setRightComponent(applyStrategyPanel));
     plotGraphButton.addActionListener(l -> jSplitPane1.setRightComponent(graphPanel));
-    exitButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        JOptionPane.showConfirmDialog((Component) WelcomeFrame, "Quitting...");
-        System.exit(0);
-      }
-    });
+    exitButton.addActionListener(actionEvent -> System.exit(0));
   }
 
   /**
@@ -110,7 +100,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
   private void initComponents() {
 
     jSplitPane1 = new javax.swing.JSplitPane();
-    jPanel1 = new javax.swing.JPanel();
+    javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
     createPortfolioButton = new javax.swing.JButton();
     buyStockButton = new javax.swing.JButton();
     investButton = new javax.swing.JButton();
@@ -121,7 +111,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
     exitButton = new javax.swing.JButton();
     createStrategyButton = new javax.swing.JButton();
     costbasisEvaluationButton = new javax.swing.JButton();
-    jPanel2 = new javax.swing.JPanel();
+    javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,7 +225,7 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
 
     pack();
     setVisible(true);
-  }// </editor-fold>//GEN-END:initComponents
+  } // </editor-fold>//GEN-END:initComponents
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton buyStockButton;
@@ -244,8 +234,6 @@ public class WelcomeFrame extends JFrame implements IStockMarketView {
   private javax.swing.JButton createStrategyButton;
   private javax.swing.JButton exitButton;
   private javax.swing.JButton investButton;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
   private javax.swing.JSplitPane jSplitPane1;
   private javax.swing.JButton viewCompositionButton;
   private javax.swing.JButton plotGraphButton;

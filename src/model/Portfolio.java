@@ -81,7 +81,7 @@ class Portfolio {
       throw new IllegalArgumentException("No stocks in the portfolio");
     }
     try {
-      File file = new File("./src/portfolios/portfolio-" + pNumber + ".csv");
+      File file = new File("../src/portfolios/portfolio-" + pNumber + ".csv");
       FileWriter output = new FileWriter(file);
       CSVWriter writer = new CSVWriter(output);
       for (Stock stock : this.stocks) {
@@ -89,7 +89,7 @@ class Portfolio {
         writer.writeNext(stockArray);
       }
       writer.close();
-    } catch(IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }

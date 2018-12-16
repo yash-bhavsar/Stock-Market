@@ -4,10 +4,8 @@ package view;/*
  * and open the template in the editor.
  */
 
-import controller.IStockMarketController;
-
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -18,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import controller.IStockMarketController;
+
 /**
  * The class Sample graph frame.
  *
@@ -26,7 +26,7 @@ import java.util.Date;
 public class SampleGraphFrame extends javax.swing.JFrame {
 
   /**
-   * Creates new form SampleGraphFrame
+   * Creates new form SampleGraphFrame.
    *
    * @param portfolioNumber  the portfolio number
    * @param applicationTitle the application title
@@ -52,9 +52,10 @@ public class SampleGraphFrame extends javax.swing.JFrame {
 
   /**
    * Test private method.
+   *
    * @return the data-set.
    */
-  private DefaultCategoryDataset createDataset( ) {
+  private DefaultCategoryDataset createDataset() {
     String series1 = "Cost";
     String series2 = "Value";
 
@@ -99,8 +100,8 @@ public class SampleGraphFrame extends javax.swing.JFrame {
 
     try {
       stDate = df.parse(startDate);
-    } catch (ParseException p) {
-
+    } catch (ParseException ignored) {
+      //do nothing.
     }
     Date enDate = new Date();
 
@@ -120,7 +121,7 @@ public class SampleGraphFrame extends javax.swing.JFrame {
         dataset.addValue(cost, xAxis, temp);
         dataset.addValue(value, yAxis, temp);
       } catch (IllegalArgumentException e) {
-
+        throw new IllegalArgumentException(e.getMessage());
       }
       Calendar c = Calendar.getInstance();
       c.setTime(temp);
@@ -148,6 +149,7 @@ public class SampleGraphFrame extends javax.swing.JFrame {
 
   /**
    * Private helper method to get evaluation.
+   *
    * @param costValue is the costValue.
    * @return the value.
    */
@@ -180,43 +182,7 @@ public class SampleGraphFrame extends javax.swing.JFrame {
 
     pack();
     setVisible(true);
-  }// </editor-fold>//GEN-END:initComponents
-
-  /**
-   * Main.
-   *
-   * @param args the command line arguments
-   */
-  public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-     */
-    try {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-          javax.swing.UIManager.setLookAndFeel(info.getClassName());
-          break;
-        }
-      }
-    } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(SampleGraphFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(SampleGraphFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(SampleGraphFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(SampleGraphFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-      }
-    });
-  }
+  } // </editor-fold>//GEN-END:initComponents
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables

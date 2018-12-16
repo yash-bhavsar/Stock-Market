@@ -21,7 +21,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
 
 
   /**
-   * Constructor which initializes stock market model and view objects.
+   * Constructor which initializes stock market model object.
    *
    * @param im IStockMarketModel object.
    */
@@ -32,6 +32,12 @@ public class StockMarketControllerImpl implements IStockMarketController {
     this.im = im;
   }
 
+  /**
+   * Constructor which initiates stock market model and view objects.
+   *
+   * @param im IStockMarketModel object.
+   * @param iv IStockMarketView object.
+   */
   public StockMarketControllerImpl(IStockMarketModel im, IStockMarketView iv) {
     if (im == null || iv == null) {
       throw new IllegalArgumentException("Model or View is null");

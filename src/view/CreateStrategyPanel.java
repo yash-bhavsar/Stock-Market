@@ -16,8 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.LayoutStyle.ComponentPlacement;
+
 import controller.IStockMarketController;
 import model.Stock;
+
+import static javax.swing.GroupLayout.PREFERRED_SIZE;
+import static javax.swing.GroupLayout.DEFAULT_SIZE;
+import static javax.swing.GroupLayout.Alignment;
+import static javax.swing.GroupLayout.Alignment.LEADING;
 
 /**
  * The class Create strategy panel.
@@ -31,7 +38,7 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
   private Map<String, Integer> weights;
 
   /**
-   * Creates new form CreateStrategypanel
+   * Creates new form CreateStrategypanel.
    *
    * @param stockMarketController the stock market controller
    */
@@ -52,33 +59,34 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    strategyPortfolioNumberLabel = new javax.swing.JLabel();
+    javax.swing.JLabel strategyPortfolioNumberLabel = new javax.swing.JLabel();
     strategyPortfolioNumberField = new javax.swing.JTextField();
-    startDateLabel = new javax.swing.JLabel();
+    javax.swing.JLabel startDateLabel = new javax.swing.JLabel();
     strategyStartDateField = new javax.swing.JTextField();
-    strategyEndDateLabel = new javax.swing.JLabel();
+    javax.swing.JLabel strategyEndDateLabel = new javax.swing.JLabel();
     strategyEndDateComboBox = new javax.swing.JComboBox<>();
     strategyEndDateLbl = new javax.swing.JLabel();
     strategyEndDateField = new javax.swing.JTextField();
-    strategyFrequencyLabel = new javax.swing.JLabel();
+    javax.swing.JLabel strategyFrequencyLabel = new javax.swing.JLabel();
     strategyFrequencyField = new javax.swing.JTextField();
-    strategyAmountLabel = new javax.swing.JLabel();
+    javax.swing.JLabel strategyAmountLabel = new javax.swing.JLabel();
     strategyAmountField = new javax.swing.JTextField();
-    weightsLabel = new javax.swing.JLabel();
+    javax.swing.JLabel weightsLabel = new javax.swing.JLabel();
     tickerComboBox = new javax.swing.JComboBox<>();
     weightsTextField = new javax.swing.JTextField();
-    updateWeightsBtn = new javax.swing.JButton();
-    customWeightsBtn = new javax.swing.JButton();
-    equalWeightsBtn = new javax.swing.JButton();
-    saveStrategyBtn = new javax.swing.JButton();
+    javax.swing.JButton updateWeightsBtn = new javax.swing.JButton();
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton customWeightsBtn = new javax.swing.JButton();
+    javax.swing.JButton equalWeightsBtn = new javax.swing.JButton();
+    javax.swing.JButton saveStrategyBtn = new javax.swing.JButton();
     resultLbl = new javax.swing.JLabel();
     strategyNumberField = new javax.swing.JTextField();
-    strategyNumberLabel = new javax.swing.JLabel();
+    javax.swing.JLabel strategyNumberLabel = new javax.swing.JLabel();
 
     strategyStartDateField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent focusEvent) {
-
+        //do nothing.
       }
 
       @Override
@@ -148,7 +156,7 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
 
       @Override
       public void focusLost(FocusEvent focusEvent) {
-
+        //do nothing.
       }
     });
 
@@ -178,165 +186,149 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(LEADING)
                     .addComponent(strategyAmountField)
                     .addGroup(layout.createSequentialGroup()
-                            .addGroup(
-                                    layout.createParallelGroup(
-                                            javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.
+                                    createParallelGroup(LEADING)
                                     .addComponent(strategyPortfolioNumberField)
                                     .addComponent(strategyNumberField)
                                     .addComponent(strategyStartDateField)
                                     .addComponent(strategyEndDateComboBox, 0,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            DEFAULT_SIZE,
+                                            Short.MAX_VALUE)
                                     .addComponent(strategyEndDateField)
                                     .addComponent(strategyFrequencyField)
                                     .addGroup(layout.createSequentialGroup()
                                             .addContainerGap()
-                                    .addGroup(layout.createParallelGroup(
-                                            javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(strategyPortfolioNumberLabel)
-                                            .addComponent(strategyNumberLabel)
-                                            .addComponent(startDateLabel)
-                                            .addComponent(strategyEndDateLabel)
-                                            .addComponent(strategyEndDateLbl)
-                                            .addComponent(strategyFrequencyLabel)
-                                            .addComponent(strategyAmountLabel)
-                                            .addComponent(weightsLabel)
-                                            .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(
-                                                            layout.createParallelGroup(
-                                                                    javax.swing.GroupLayout.
-                                                                            Alignment.
-                                                                            LEADING)
-                                                            .addGroup(
-                                                                    layout.
-                                                                    createSequentialGroup()
-                                                                    .addComponent
-                                                                            (tickerComboBox,
-                                                                            javax.swing.
-                                                                                    GroupLayout.
-                                                                                    PREFERRED_SIZE,
-                                                                            javax.swing.
-                                                                                    GroupLayout.
-                                                                                    DEFAULT_SIZE,
-                                                                            javax.swing.
-                                                                                    GroupLayout.
-                                                                                    PREFERRED_SIZE)
-                                                                    .addPreferredGap
-                                                                          (javax.swing.LayoutStyle.
-                                                                                ComponentPlacement.
-                                                                                RELATED)
+                                            .addGroup(layout.createParallelGroup(LEADING)
+                                                    .addComponent(
+                                                            strategyPortfolioNumberLabel)
+                                                    .addComponent(strategyNumberLabel)
+                                                    .addComponent(startDateLabel)
+                                                    .addComponent(strategyEndDateLabel)
+                                                    .addComponent(strategyEndDateLbl)
+                                                    .addComponent(strategyFrequencyLabel)
+                                                    .addComponent(strategyAmountLabel)
+                                                    .addComponent(weightsLabel)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                            .addGroup(layout.
+                                                                    createParallelGroup(
+                                                                            LEADING).addGroup(layout
+                                                                    .createSequentialGroup().
+                                                                    addComponent(
+                                                                            tickerComboBox,
+                                                                            PREFERRED_SIZE,
+                                                                            DEFAULT_SIZE,
+                                                                            PREFERRED_SIZE)
+                                                                    .addPreferredGap(
+                                                                            ComponentPlacement.
+                                                                                    RELATED)
                                                                     .addComponent(
                                                                             weightsTextField,
-                                                                            javax.swing.GroupLayout.
-                                                                                    PREFERRED_SIZE,
+                                                                            PREFERRED_SIZE,
                                                                             130,
-                                                                            javax.swing.GroupLayout.
-                                                                                    PREFERRED_SIZE))
-                                                            .addComponent(customWeightsBtn))
-                                                    .addPreferredGap(javax.swing.
-                                                            LayoutStyle.ComponentPlacement.
-                                                            RELATED)
-                                                    .addGroup(layout.createParallelGroup(
-                                                            javax.swing.GroupLayout.
-                                                                    Alignment.
+                                                                            PREFERRED_SIZE))
+                                                                    .addComponent(customWeightsBtn))
+                                                            .addPreferredGap(ComponentPlacement.
+                                                                    RELATED)
+                                                            .addGroup(layout.createParallelGroup(
                                                                     LEADING)
-                                                            .addComponent(equalWeightsBtn)
-                                                            .addComponent(updateWeightsBtn))
-                                            ))
+                                                                    .addComponent(equalWeightsBtn)
+                                                                    .addComponent(updateWeightsBtn))
+                                                    ))
                                             .addGap(0, 319, Short.MAX_VALUE))
                                     .addComponent(saveStrategyBtn,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            DEFAULT_SIZE,
+                                            DEFAULT_SIZE, Short.MAX_VALUE))
                             .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(resultLbl)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(LEADING)
                     .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(strategyPortfolioNumberLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyPortfolioNumberField,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyNumberLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyNumberField,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(startDateLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyStartDateField,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyEndDateLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyEndDateComboBox,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyEndDateLbl)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyEndDateField,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyFrequencyLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyFrequencyField,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(strategyAmountLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(strategyAmountField, javax.swing.GroupLayout.
-                                            PREFERRED_SIZE,
-                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
+                            .addComponent(strategyAmountField, PREFERRED_SIZE,
+                                    DEFAULT_SIZE,
+                                    PREFERRED_SIZE)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(weightsLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                            .addPreferredGap(ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(Alignment
                                     .BASELINE)
                                     .addComponent(tickerComboBox,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            PREFERRED_SIZE,
+                                            DEFAULT_SIZE,
+                                            PREFERRED_SIZE)
                                     .addComponent(weightsTextField,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE,
-                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            PREFERRED_SIZE,
+                                            DEFAULT_SIZE,
+                                            PREFERRED_SIZE)
                                     .addComponent(updateWeightsBtn))
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.
+                            .addGroup(layout.createParallelGroup(Alignment.
                                     BASELINE)
                                     .addComponent(customWeightsBtn)
                                     .addComponent(equalWeightsBtn))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(saveStrategyBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(resultLbl)
                             .addContainerGap(21, Short.MAX_VALUE))
     );
-  }// </editor-fold>//GEN-END:initComponents
+  } // </editor-fold>//GEN-END:initComponents
 
   /**
    * Private helper method which is used to fetch the stocks.
+   *
    * @param l the event object which listens for a focus change event.
    */
   private void getStocks(FocusEvent l) {
@@ -367,6 +359,7 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
 
   /**
    * Private helper method which is used to update weights.
+   *
    * @param actionEvent is the event object.
    */
   private void updateWeights(ActionEvent actionEvent) {
@@ -383,8 +376,9 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
 
   /**
    * Private helper method which is used to execute strategy.
+   *
    * @param actionEvent is the event object.
-   * @param custom is the flag for custom and equal weights.
+   * @param custom      is the flag for custom and equal weights.
    */
   private void executeStrategy(ActionEvent actionEvent, boolean custom) {
     String pNumber = strategyPortfolioNumberField.getText();
@@ -456,6 +450,7 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
 
   /**
    * Private helper method which is used to save the strategy.
+   *
    * @param actionEvent is the event object.
    */
   private void saveStrategy(ActionEvent actionEvent) {
@@ -505,28 +500,16 @@ public class CreateStrategyPanel extends javax.swing.JPanel {
     }
   }
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton customWeightsBtn;
-  private javax.swing.JButton equalWeightsBtn;
-  private javax.swing.JLabel startDateLabel;
   private javax.swing.JLabel resultLbl;
-  private javax.swing.JButton saveStrategyBtn;
   private javax.swing.JTextField strategyAmountField;
-  private javax.swing.JLabel strategyAmountLabel;
   private javax.swing.JComboBox<String> strategyEndDateComboBox;
   private javax.swing.JTextField strategyEndDateField;
-  private javax.swing.JLabel strategyEndDateLabel;
   private javax.swing.JLabel strategyEndDateLbl;
   private javax.swing.JTextField strategyFrequencyField;
-  private javax.swing.JLabel strategyFrequencyLabel;
   private javax.swing.JTextField strategyPortfolioNumberField;
-  private javax.swing.JLabel strategyPortfolioNumberLabel;
   private javax.swing.JTextField strategyStartDateField;
   private javax.swing.JComboBox<String> tickerComboBox;
-  private javax.swing.JButton updateWeightsBtn;
-  private javax.swing.JLabel weightsLabel;
   private javax.swing.JTextField weightsTextField;
-  private javax.swing.JLabel strategyNumberLabel;
   private javax.swing.JTextField strategyNumberField;
   // End of variables declaration//GEN-END:variables
 }

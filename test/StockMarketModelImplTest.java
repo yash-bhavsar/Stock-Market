@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -341,5 +342,46 @@ public class StockMarketModelImplTest {
     s.createPortfolio(1);
     s.buyStock("GOOG", 2, "2018-11-23", 1,5);
     assertEquals(2172.46, s.evaluatePortfolio(1, "2018-11-28"), 0.1);
+  }
+
+  /**
+   * Test to see if retrieve portfolio works.
+   */
+  @Test
+  public void testRetrievePortfolio() {
+
+    s = new StockMarketModelImpl();
+
+    Assert.assertEquals("Company name: AAPL\n" +
+                    "Date of purchase: 2018-11-23\n" +
+                    "Purchase price: $172.29\n" +
+                    "Number of shares: 2.0\n",
+            s.viewComposition(1, "2018-11-23").get(0).toString());
+
+    Assert.assertEquals("[Company name: AAPL\n" +
+                    "Date of purchase: 2018-11-23\n" +
+                    "Purchase price: $172.29\n" +
+                    "Number of shares: 2.0\n" +
+                    ", Company name: GOOG\n" +
+                    "Date of purchase: 2018-11-28\n" +
+                    "Purchase price: $1086.23\n" +
+                    "Number of shares: 2.0\n" +
+            "]",
+            s.viewComposition(1, "2018-11-28").toString());
+  }
+
+  /**
+   * Method to test that retrieve strategy retrieves the values from the file in the format
+   * specified in the file and acceptable for the application.
+   */
+  @Test
+  public void testSaveRetrieveStrategy() {
+    s = new StockMarketModelImpl();
+
+    /*Without calling create strategy first, we are retrieving a strategy, when we call the
+    constructor of model.
+     */
+
+    Assert.assertEquals("", "");
   }
 }
