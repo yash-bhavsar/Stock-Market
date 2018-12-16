@@ -246,7 +246,7 @@ public class StockMarketControllerImpl implements IStockMarketController {
     try {
       Double costBasis = this.im.calculateCostBasis(portfolioNumber, date);
       Double valuation = this.im.evaluatePortfolio(portfolioNumber, date);
-      return "Cost Basis: " + costBasis.toString() + "\nEvaluation: " + valuation.toString();
+      return "Cost Basis: $" + costBasis.toString() + "\nEvaluation: $" + valuation.toString();
     } catch (IllegalArgumentException e) {
       throw new IllegalArgumentException(e.getMessage());
     }

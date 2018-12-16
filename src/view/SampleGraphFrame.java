@@ -143,7 +143,7 @@ public class SampleGraphFrame extends javax.swing.JFrame {
    */
   private double getCostBasis(String costValue) {
     String[] temp = costValue.split("\n");
-    String[] temp2 = temp[0].split(":");
+    String[] temp2 = temp[0].split("\\$");
     return Double.parseDouble(temp2[1]);
   }
 
@@ -155,7 +155,7 @@ public class SampleGraphFrame extends javax.swing.JFrame {
    */
   private double getEvaluation(String costValue) {
     String[] temp = costValue.split("\n");
-    String[] temp2 = temp[1].split(":");
+    String[] temp2 = temp[1].split("\\$");
     return Double.parseDouble(temp2[1]);
   }
 
